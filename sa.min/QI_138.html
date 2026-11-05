@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>iki1uc · PC INDEX FINAL V7 · ULTRA-VISUAL DETAILSICHT</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#02060a;color:#c8d8e8;font-family:'JetBrains Mono',Consolas,monospace;overflow:hidden;height:100vh;display:flex;flex-direction:column}
+header{height:46px;background:linear-gradient(90deg,#06101c,#02060a);border-bottom:1px solid rgba(124,224,168,.25);display:flex;align-items:center;padding:0 12px;gap:8px;flex-shrink:0}
+header h1{font-size:11px;letter-spacing:2px;background:linear-gradient(90deg,#ff8a2a,#39ff88,#5cf0ff,#ffcc44);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;white-space:nowrap}
+.tabs{display:flex;gap:4px;margin-left:12px}
+.tab{padding:6px 10px;border:1px solid rgba(120,200,180,.12);background:#0a1420;color:#5a7288;border-radius:6px 6px 0 0;font-size:9px;cursor:pointer;transition:.2s;white-space:nowrap}
+.tab.on{background:rgba(124,224,168,.12);border-color:#7ce0a8;color:#7ce0a8;box-shadow:0 -2px 10px rgba(124,224,168,.2)}
+.tab:hover{border-color:rgba(124,224,168,.4);color:#c8d8e8}
+.main{flex:1;display:grid;grid-template-columns:1fr;overflow:hidden;position:relative}
+iframe{width:100%;height:100%;border:0;background:#02060a}
+.panel{display:none;flex-direction:column;height:100%;overflow:auto}
+.panel.on{display:flex}
+footer{height:22px;background:#000;border-top:1px solid rgba(124,224,168,.15);display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:2px;color:#5a7288;flex-shrink:0}
+</style>
+</head>
+<body>
+<header>
+<h1>◈ iki1uc · PC INDEX FINAL V7 · CHESS GHOSTS × 3ROOT + ROM/RAM + ULTRA-VISUAL DETAILSICHT · f(f(x))=f(x)</h1>
+<div class="tabs">
+<button class="tab on" onclick="switchTab('ultra')">◈ ULTRA-VISUAL DETAILSICHT</button>
+<button class="tab" onclick="switchTab('chess')">♟ CHESS 3×ROOT</button>
+<button class="tab" onclick="switchTab('pc')">🧠 eye.brain.open</button>
+<button class="tab" onclick="switchTab('tt')">🚀 TT TURBO</button>
+<button class="tab" onclick="switchTab('kon')">◈ 81 DASH</button>
+<button class="tab" onclick="switchTab('all')">🗂 MODULE</button>
+</div>
+<div style="margin-left:auto;display:flex;gap:8px;align-items:center;font-size:9px;color:#5a7288">
+<span>LAUF=LOGIK IM LAUF</span><span style="color:#7ce0a8">● ⊤ FIXPUNKT</span>
+</div>
+</header>
+<div class="main">
+<div id="ultraPanel" class="panel on">
+<iframe id="ultraFrame" src="ultra_visual_detailsicht.html"></iframe>
+</div>
+<div id="chessPanel" class="panel">
+<iframe src="chess_ghosts_3root.html"></iframe>
+</div>
+<div id="pcPanel" class="panel">
+<iframe src="chess_ghosts_81_konstellation.html"></iframe>
+</div>
+<div id="ttPanel" class="panel">
+<div style="padding:20px;color:#5a7288;font-size:10px">TT TURBOKARTE ctrl.ler · W/RAM/GPU*wahrheit · siehe chess_ghosts Module</div>
+</div>
+<div id="konPanel" class="panel">
+<iframe src="chess_ghosts_81_konstellation.html"></iframe>
+</div>
+<div id="allPanel" class="panel">
+<div style="padding:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">
+<a href="ultra_visual_detailsicht.html" target="_blank" style="background:#0a1420;border:1px solid #7ce0a844;border-radius:8px;padding:10px;color:#7ce0a8;text-decoration:none"><b>◈ ULTRA-VISUAL DETAILSICHT</b><br><span style="font-size:9px;color:#5a7288">Lauf als Logik · f(f(x))=f(x) · Selbstlauf</span></a>
+<a href="chess_ghosts_3root.html" target="_blank" style="background:#0a1420;border:1px solid #1a2a3a;border-radius:8px;padding:10px;color:#8a9aaa;text-decoration:none"><b>♟ CHESS GHOSTS 3×ROOT</b></a>
+<a href="chess_ghosts_81_konstellation.html" target="_blank" style="background:#0a1420;border:1px solid #1a2a3a;border-radius:8px;padding:10px;color:#8a9aaa;text-decoration:none"><b>◈ 81 KONSTELLATION</b></a>
+</div>
+</div>
+</div>
+<footer>iki1uc · ULTRA-VISUAL · 81.tmp → LIVE-BRIDGE → GATE → WLOCH → EXPORT · f(f(x))=f(x) · ⊤ FIXPUNKT</footer>
+<script>
+function switchTab(t){
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+if(t==='ultra'){document.querySelectorAll('.tab')[0].classList.add('on');document.getElementById('ultraPanel').classList.add('on')}
+if(t==='chess'){document.querySelectorAll('.tab')[1].classList.add('on');document.getElementById('chessPanel').classList.add('on')}
+if(t==='pc'){document.querySelectorAll('.tab')[2].classList.add('on');document.getElementById('pcPanel').classList.add('on')}
+if(t==='tt'){document.querySelectorAll('.tab')[3].classList.add('on');document.getElementById('ttPanel').classList.add('on')}
+if(t==='kon'){document.querySelectorAll('.tab')[4].classList.add('on');document.getElementById('konPanel').classList.add('on')}
+if(t==='all'){document.querySelectorAll('.tab')[5].classList.add('on');document.getElementById('allPanel').classList.add('on')}
+}
+</script>
+</body>
+</html>

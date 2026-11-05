@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ANOMALIE ISOLATOR — CHEM/BIO/BIOS/UEFI — FEHLER EINGRENZEN</title>
+<style>
+:root{--bg:#02060a;--s:#08101c;--s2:#0f1b2f;--gold:#ffcc00;--cyan:#00f5ff;--mag:#ff00a0;--green:#00ff88;--b:#1c2a4a;--t:#e7eaf0;--m:#7d8aa3;--red:#ff3344;--hell:#ff1a1a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--t);font-family:ui-monospace,Menlo,monospace;display:flex;flex-direction:column;min-height:100vh}
+header{height:48px;border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 12px;gap:10px;background:linear-gradient(90deg,#06101c,#1a0a0a);position:sticky;top:0;z-index:10}
+h1{font-size:10px;letter-spacing:.18em;font-weight:800;color:var(--gold)}
+.badge{font-size:8px;border:1px solid var(--b);padding:2px 6px;color:var(--m)}
+.badge.on{border-color:var(--gold);color:var(--gold)} .badge.red{border-color:var(--red);color:var(--red)} .badge.cyan{border-color:var(--cyan);color:var(--cyan)}
+button.sm{font-size:9px;padding:5px 10px;background:var(--s2);color:var(--t);border:1px solid var(--b);cursor:pointer}
+button.sm.gold{background:var(--gold);color:#000;border:0;font-weight:800} button.sm.red{background:var(--red);color:#fff;border:0}
+.tabs{display:flex;gap:4px;padding:8px 10px;background:var(--s);border-bottom:1px solid var(--b);flex-wrap:wrap}
+.tab{padding:6px 14px;border:1px solid var(--b);background:var(--bg);color:var(--m);font-size:10px;cursor:pointer;letter-spacing:.12em;font-weight:700;border-radius:6px 6px 0 0}
+.tab.on{border-color:var(--gold);color:var(--gold);background:rgba(255,204,0,.1)}
+.tab.chem.on{border-color:var(--mag);color:var(--mag)} .tab.bio.on{border-color:var(--green);color:var(--green)} .tab.bios.on{border-color:var(--cyan);color:var(--cyan)} .tab.uefi.on{border-color:var(--red);color:var(--red)}
+.content{flex:1;display:flex;min-height:0}
+.left{flex:2;display:flex;flex-direction:column;border-right:1px solid var(--b);min-width:0}
+.right{flex:1;min-width:280px;max-width:400px;background:var(--s);display:flex;flex-direction:column}
+.panel{display:none;flex:1;overflow:auto;padding:12px}
+.panel.on{display:flex;flex-direction:column}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.card{background:var(--bg);border:1px solid var(--b);padding:10px}
+.card h3{font-size:9px;letter-spacing:.15em;color:var(--gold);margin-bottom:8px}
+.row{display:flex;gap:8px;margin-bottom:6px;align-items:center}
+.row label{font-size:9px;color:var(--m);width:110px;flex-shrink:0}
+.row input,.row select{flex:1;background:var(--s);border:1px solid var(--b);color:var(--t);padding:6px 8px;font-size:11px;outline:none;font-family:inherit}
+.metric{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(28,42,74,.5);font-size:10px}
+.metric b{color:var(--gold)}
+.anomaly{background:rgba(255,51,68,.08);border:1px solid rgba(255,51,68,.3);padding:8px;margin-top:8px;font-size:10px}
+.ok{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.3);padding:8px;margin-top:8px;font-size:10px}
+.table{width:100%;border-collapse:collapse;font-size:10px;margin-top:8px}
+.table th,.table td{border:1px solid var(--b);padding:6px 8px;text-align:left}
+.table th{font-size:8px;color:var(--m);letter-spacing:.1em;background:var(--s)}
+.bar{height:8px;background:var(--s2);border:1px solid var(--b);position:relative;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--red));transition:width .3s}
+.log{font-size:8px;background:var(--bg);border:1px solid var(--b);padding:8px;height:160px;overflow:auto;white-space:pre-wrap;color:var(--m);margin-top:10px}
+@media(max-width:900px){.content{flex-direction:column}.right{max-width:none}.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>◈ ANOMALIE ISOLATOR — REAL LIFE USTAND — CHEM/BIO/BIOS/UEFI — WERTE ERMITTELN — BORG 7482</h1>
+<span class="badge on">FEHLER: REALER USTAND</span>
+<span class="badge red" id="anomCount">ANOMALIEN: 0</span>
+<span class="badge cyan" id="isolation">ISOLATION: 0%</span>
+<button class="sm gold" onclick="isolate()">ISOLIEREN</button>
+<button class="sm red" onclick="emergencyExport()">NOT-SAVE</button>
+</header>
+<div class="tabs">
+<button class="tab on" data-tab="umstand" onclick="switchTab('umstand')">◈ UMSTAND — REAL LIFE</button>
+<button class="tab chem" data-tab="chem" onclick="switchTab('chem')">⚗️ CHEM — 21%+21%=42%</button>
+<button class="tab bio" data-tab="bio" onclick="switchTab('bio')">🧬 BIO — evo.js / bio-js</button>
+<button class="tab bios" data-tab="bios" onclick="switchTab('bios')">💾 BIOS — ROM/RAM</button>
+<button class="tab uefi" data-tab="uefi" onclick="switchTab('uefi')">🔧 UEFI — f(f(x))=f(x)</button>
+<button class="tab" data-tab="isolator" onclick="switchTab('isolator')">🎯 ISOLATOR — ERGEBNIS</button>
+</div>
+<div class="content">
+<div class="left">
+<div id="panel-umstand" class="panel on">
+<h3 style="color:var(--gold);font-size:10px;letter-spacing:.2em;margin-bottom:10px">REAL LIFE UMSTAND — FEHLER IST KEIN CODE-FEHLER — USTAND ANOMALIE</h3>
+<div class="card">
+<h3>UMSTAND BESCHREIBUNG — Was ist passiert?</h3>
+<div class="row"><label>Umstand</label><input id="umstand" placeholder="z.B. Kurz vor Finalisierung Störung — Entwicklungen verloren, System friert..."></div>
+<div class="row"><label>Wann</label><input id="wann" type="datetime-local"></div>
+<div class="row"><label>Ort / Gerät</label><input id="ort" placeholder="z.B. HH 243, PC Instance, Laptop, Lab"></div>
+<div class="row"><label>Erwartet (SOLL)</label><input id="soll" placeholder="Was sollte passieren?"></div>
+<div class="row"><label>Passiert (IST)</label><input id="ist" placeholder="Was ist wirklich passiert?"></div>
+<div class="row"><label>Fehler Typ</label><select id="fehlerTyp"><option>real-life Umstand</option><option>chem anomalie</option><option>bio anomalie</option><option>bios/uefi anomalie</option><option>kombiniert</option></select></div>
+</div>
+<div class="card" style="margin-top:10px">
+<h3>ANOMALIE WERTE ERMITTELN — SOLL/IST DELTA</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 60px;gap:6px;font-size:8px;color:var(--m);margin-bottom:6px"><span>PARAMETER</span><span>SOLL (erwartet)</span><span>IST (gemessen)</span><span>DELTA</span></div>
+<div id="paramRows" style="display:flex;flex-direction:column;gap:4px"></div>
+<div style="margin-top:8px;display:flex;gap:6px">
+<button class="sm gold" onclick="addParam()">+ PARAMETER</button>
+<button class="sm" onclick="calcAnomalies()">ANOMALIE BERECHNEN</button>
+</div>
+</div>
+</div>
+<div id="panel-chem" class="panel">
+<h3 style="color:var(--mag);font-size:10px;letter-spacing:.2em;margin-bottom:10px">⚗️ CHEM — SPEZIALFACH — 21%+21%=42% SLI — CO2/O2 — pH — TEMP</h3>
+<div class="grid2">
+<div class="card"><h3>CHEM MESSWERTE — REAL LIFE</h3>
+<div class="row"><label>CO2 ppm SOLL</label><input id="co2_soll" value="400"><label>IST</label><input id="co2_ist" value="1200"></div>
+<div class="row"><label>O2 % SOLL</label><input id="o2_soll" value="21"><label>IST</label><input id="o2_ist" value="19.5"></div>
+<div class="row"><label>Temp °C SOLL</label><input id="temp_soll" value="22"><label>IST</label><input id="temp_ist" value="28.5"></div>
+<div class="row"><label>pH SOLL</label><input id="ph_soll" value="7.0"><label>IST</label><input id="ph_ist" value="5.8"></div>
+<div class="row"><label>Luftfeuchte %</label><input id="hum_soll" value="45"><label>IST</label><input id="hum_ist" value="78"></div>
+<div class="row"><label>Geruch / Farbe</label><input id="chem_note" placeholder="z.B. verbrannt, gelblich, süßlich"></div>
+<button class="sm gold" onclick="calcChem()" style="margin-top:8px">CHEM ANOMALIE ERMITTELN</button>
+</div>
+<div class="card"><h3>CHEM FORMEL — Assim/Desim</h3>
+<div class="metric"><span>Assim = PQ×Licht×CO2/(K+CO2)</span><b id="chem_assim">-</b></div>
+<div class="metric"><span>Desim = PQ×Temp×O2/(K+O2)</span><b id="chem_desim">-</b></div>
+<div class="metric"><span>Netto = Assim-Desim</span><b id="chem_netto">-</b></div>
+<div class="metric"><span>RQ = CO2/O2</span><b id="chem_rq">-</b></div>
+<div class="metric"><span>SLI 21%+21%</span><b>42% Anomalie?</b></div>
+<div id="chem_result"></div>
+</div>
+</div>
+</div>
+<div id="panel-bio" class="panel">
+<h3 style="color:var(--green);font-size:10px;letter-spacing:.2em;margin-bottom:10px">🧬 BIO — SPEZIALFACH — bio-js / evo.js — REAL LIFE BODY/UMGEBUNG</h3>
+<div class="grid2">
+<div class="card"><h3>BIO MESSWERTE</h3>
+<div class="row"><label>Herzfreq SOLL</label><input id="hr_soll" value="72"><label>IST</label><input id="hr_ist" value="98"></div>
+<div class="row"><label>Stress 0-10 SOLL</label><input id="stress_soll" value="3"><label>IST</label><input id="stress_ist" value="8"></div>
+<div class="row"><label>Schlaf h SOLL</label><input id="sleep_soll" value="8"><label>IST</label><input id="sleep_ist" value="4.5"></div>
+<div class="row"><label>Fokus % SOLL</label><input id="focus_soll" value="80"><label>IST</label><input id="focus_ist" value="35"></div>
+<div class="row"><label>Symptom</label><input id="bio_sym" placeholder="z.B. Kopf, Zittern, Unruhe vor Finalisierung"></div>
+<button class="sm gold" onclick="calcBio()" style="margin-top:8px">BIO ANOMALIE ERMITTELN</button>
+</div>
+<div class="card"><h3>BIO AUSWERTUNG</h3>
+<div id="bio_result"></div>
+<div class="metric"><span>Bio-Faktor = Fokus×Schlaf/(Stress×HR)</span><b id="bio_factor">-</b></div>
+</div>
+</div>
+</div>
+<div id="panel-bios" class="panel">
+<h3 style="color:var(--cyan);font-size:10px;letter-spacing:.2em;margin-bottom:10px">💾 BIOS — ROM = nchelpu_schach_level_raum.html — RAM = industry_abmachung_verided_segment</h3>
+<div class="grid2">
+<div class="card"><h3>BIOS / ROM / RAM — PC INSTANCE</h3>
+<div class="row"><label>BIOS Version SOLL</label><input id="bios_soll" placeholder="z.B. F12"><label>IST</label><input id="bios_ist" placeholder="z.B. F11b"></div>
+<div class="row"><label>ROM Datei</label><input id="rom_file" value="nchelpu_schach_level_raum.html"></div>
+<div class="row"><label>RAM Datei</label><input id="ram_file" value="industry_abmachung_verided_segment.html"></div>
+<div class="row"><label>Boot Zeit SOLL s</label><input id="boot_soll" value="12"><label>IST</label><input id="boot_ist" value="47"></div>
+<div class="row"><label>RAM Belegung % SOLL</label><input id="ram_soll" value="45"><label>IST</label><input id="ram_ist" value="92"></div>
+<div class="row"><label>Fehlercode</label><input id="bios_code" placeholder="z.B. 0xA2, 0x55, kein Display"></div>
+<button class="sm gold" onclick="calcBios()" style="margin-top:8px">BIOS ANOMALIE ERMITTELN</button>
+</div>
+<div class="card"><h3>BIOS ANALYSE</h3>
+<div id="bios_result"></div>
+</div>
+</div>
+</div>
+<div id="panel-uefi" class="panel">
+<h3 style="color:var(--red);font-size:10px;letter-spacing:.2em;margin-bottom:10px">🔧 UEFI — f(f(x))=f(x) — idempotent — open.main() — my.role() — BORG 7482</h3>
+<div class="grid2">
+<div class="card"><h3>UEFI MESSWERTE — REAL LIFE HARDWARE</h3>
+<div class="row"><label>SecureBoot SOLL</label><select id="sb_soll"><option>enabled</option><option>disabled</option></select><label>IST</label><select id="sb_ist"><option>enabled</option><option>disabled</option></select></div>
+<div class="row"><label>BootOrder SOLL</label><input id="bo_soll" value="NVMe,USB,LAN"><label>IST</label><input id="bo_ist" value="LAN,USB,NVMe"></div>
+<div class="row"><label>Temp CPU SOLL °C</label><input id="cpu_soll" value="45"><label>IST</label><input id="cpu_ist" value="89"></div>
+<div class="row"><label>Strom Watt SOLL</label><input id="watt_soll" value="65"><label>IST</label><input id="watt_ist" value="127"></div>
+<div class="row"><label>Letzte Änderung</label><input id="uefi_last" placeholder="z.B. kurz vor Finalisierung Update, Störung"></div>
+<button class="sm gold" onclick="calcUefi()" style="margin-top:8px">UEFI ANOMALIE ERMITTELN</button>
+</div>
+<div class="card"><h3>UEFI ANALYSE — f(f(x))=f(x)</h3>
+<div id="uefi_result"></div>
+<div class="metric"><span>Idempotent Check</span><b id="uefi_idem">-</b></div>
+</div>
+</div>
+</div>
+<div id="panel-isolator" class="panel">
+<h3 style="color:var(--gold);font-size:11px;letter-spacing:.2em;margin-bottom:10px">🎯 ISOLATOR — FEHLER EINGEGRENZT — ANOMALIE WERTE — REAL LIFE USTAND</h3>
+<div class="card">
+<h3>ISOLATION ERGEBNIS — WO IST DER FEHLER?</h3>
+<div style="display:flex;gap:10px;margin-bottom:10px">
+<div style="flex:1"><div style="font-size:8px;color:var(--m)">ISOLATION %</div><div class="bar" style="height:16px"><div id="isoBar" class="bar-fill" style="width:0%"></div></div></div>
+<div style="flex:1"><div style="font-size:8px;color:var(--m)">ANOMALIE SCORE</div><div id="anomScore" style="font-size:20px;color:var(--red)">0</div></div>
+</div>
+<table class="table"><thead><tr><th>DOMAIN</th><th>SOLL</th><th>IST</th><th>DELTA</th><th>ANOMALIE</th><th>STATUS</th></tr></thead><tbody id="isoTable"></tbody></table>
+<div id="isoConclusion" style="margin-top:12px"></div>
+</div>
+<div class="card" style="margin-top:10px">
+<h3>HANDLUNGS-EMPFEHLUNG — FACH CHEM/BIO/BIOS/UEFI</h3>
+<div id="recommendation" style="font-size:10px;line-height:1.7"></div>
+</div>
+</div>
+</div>
+<div class="right">
+<div style="padding:10px;border-bottom:1px solid var(--b)">
+<div style="font-size:9px;letter-spacing:.2em;color:var(--gold)">FEHLER EINGRENZEN — LIVE</div>
+<div id="activeAnomaly" style="margin-top:8px;padding:10px;background:var(--bg);border:1px solid var(--b);font-size:10px;min-height:100px">Noch keine Anomalie berechnet — fülle Umstand + CHEM/BIO/BIOS/UEFI, dann ISOLIEREN</div>
+<div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
+<button class="sm gold" onclick="isolate()">🎯 ISOLIEREN</button>
+<button class="sm" onclick="calcAnomalies()">CALC ALL</button>
+<button class="sm" onclick="resetAll()">RESET</button>
+</div>
+</div>
+<div style="padding:10px;flex:1;overflow:auto">
+<div style="font-size:9px;letter-spacing:.2em;color:var(--m);margin-bottom:8px">WERTE-LOG — ANOMALIE VERBORGEN?</div>
+<div id="valueLog" style="display:flex;flex-direction:column;gap:4px"></div>
+<div style="margin-top:14px;font-size:9px;letter-spacing:.2em;color:var(--m)">HÖLLE + VERLUST-SCHUTZ — kurz vor Finalisierung</div>
+<div id="hellBox" style="margin-top:6px;background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.3);padding:8px;font-size:9px;line-height:1.6">🔥 HÖLLE: Alle Anomalie-Messungen werden verborgen in 3× Backup gespeichert — selbst bei Störung kurz vor Finalisierung nicht verloren. Base64 verschleiert.</div>
+<div class="log" id="log"></div>
+</div>
+</div>
+</div>
+<footer style="height:22px;background:#000;border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-size:8px;letter-spacing:.15em;color:var(--m)"><span>CHEM BIO BIOS UEFI — FEHLER = REAL LIFE USTAND — ANOMALIE WERTE ERMITTELN — BORG 7482</span><span>f(f(x))=f(x) · 81 FELD · HÖLLE VERBORGEN</span></footer>
+<script>
+const STORE='anomalie_isolator_v1'; let state={params:[]};
+function log(m){let el=document.getElementById('log'); let d=document.createElement('div'); d.textContent='['+new Date().toLocaleTimeString()+'] '+m; el.prepend(d);}
+function switchTab(t){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on')); document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on')); document.getElementById('panel-'+t).classList.add('on'); let btn=document.querySelector(`.tab[data-tab="${t}"]`); if(btn) btn.classList.add('on'); log(`TAB ${t.toUpperCase()}`);}
+function addParam(name='',soll='',ist=''){
+ let id=Date.now()+Math.random();
+ let row=document.createElement('div'); row.style.cssText='display:grid;grid-template-columns:1fr 1fr 1fr 60px 30px;gap:6px';
+ row.innerHTML=`<input placeholder="Parameter" value="${name}"><input placeholder="SOLL" value="${soll}"><input placeholder="IST" value="${ist}"><span class="badge" style="display:flex;align-items:center;justify-content:center">-</span><button class="sm red" style="padding:2px 6px">✕</button>`;
+ row.querySelector('button').onclick=()=>row.remove();
+ document.getElementById('paramRows').appendChild(row);
+}
+function calcAnomalies(){let rows=[...document.getElementById('paramRows').children]; let anomalies=0; rows.forEach(r=>{let [p,s,i]=[...r.querySelectorAll('input')].map(x=>x.value); let badge=r.querySelector('.badge'); let sn=parseFloat(s), inn=parseFloat(i); if(!isNaN(sn)&&!isNaN(inn)){let d=Math.abs(inn-sn); let pct=sn!==0?Math.abs((inn-sn)/sn*100):0; badge.textContent=(pct>20?'🔴 ':'🟢 ')+pct.toFixed(1)+'%'; if(pct>20){anomalies++; badge.className='badge red';} else {badge.className='badge on';} } else {badge.textContent='?';}}); document.getElementById('anomCount').textContent='ANOMALIEN: '+anomalies; log(`ANOMALIE CALC ${anomalies} von ${rows.length}`);}
+function calcChem(){
+ let co2s=parseFloat(document.getElementById('co2_soll').value)||400, co2i=parseFloat(document.getElementById('co2_ist').value)||400;
+ let o2s=parseFloat(document.getElementById('o2_soll').value)||21, o2i=parseFloat(document.getElementById('o2_ist').value)||21;
+ let ts=parseFloat(document.getElementById('temp_soll').value)||22, ti=parseFloat(document.getElementById('temp_ist').value)||22;
+ let pq=729; let K=400; let assim=pq*1*co2i/(K+co2i); let desim=pq*ti/22*o2i/(K+o2i); let netto=assim-desim; let rq=co2i/(o2i*10);
+ document.getElementById('chem_assim').textContent=assim.toFixed(1);
+ document.getElementById('chem_desim').textContent=desim.toFixed(1);
+ document.getElementById('chem_netto').textContent=netto.toFixed(1);
+ document.getElementById('chem_rq').textContent=rq.toFixed(2);
+ let res=document.getElementById('chem_result');
+ let dCo2=Math.abs(co2i-co2s)/co2s*100, dO2=Math.abs(o2i-o2s)/o2s*100, dT=Math.abs(ti-ts);
+ let anom = dCo2>30 || dO2>10 || dT>5;
+ res.innerHTML= anom?`<div class="anomaly">🔴 CHEM ANOMALIE: CO2 ${dCo2.toFixed(0)}% abweichend, O2 ${dO2.toFixed(1)}%, Temp Δ${dT.toFixed(1)}°C — SLI 21%+21%=42% gestört — Umgebung real-life Umstand, nicht Code</div>`:`<div class="ok">🟢 CHEM OK — CO2/O2 im Rahmen</div>`;
+ log(`CHEM CALC Assim ${assim.toFixed(1)} Netto ${netto.toFixed(1)} Anom ${anom}`);
+ addValueLog('CHEM',`CO2 ${co2s}→${co2i} Δ${dCo2.toFixed(0)}%`,anom);
+}
+function calcBio(){
+ let hrs=parseFloat(document.getElementById('hr_soll').value)||72, hri=parseFloat(document.getElementById('hr_ist').value)||72;
+ let ss=parseFloat(document.getElementById('stress_soll').value)||3, si=parseFloat(document.getElementById('stress_ist').value)||3;
+ let sls=parseFloat(document.getElementById('sleep_soll').value)||8, sli=parseFloat(document.getElementById('sleep_ist').value)||8;
+ let fos=parseFloat(document.getElementById('focus_soll').value)||80, foi=parseFloat(document.getElementById('focus_ist').value)||80;
+ let factor=foi*sli/(Math.max(si,1)*hri/72); document.getElementById('bio_factor').textContent=factor.toFixed(2);
+ let anom= (hri>90 || si>=7 || sli<5 || foi<50);
+ document.getElementById('bio_result').innerHTML= anom?`<div class="anomaly">🔴 BIO ANOMALIE: HR ${hri} (soll ${hrs}), Stress ${si}/10, Schlaf ${sli}h, Fokus ${foi}% — real-life Umstand vor Finalisierung — Faktor ${factor.toFixed(2)}</div>`:`<div class="ok">🟢 BIO OK — Faktor ${factor.toFixed(2)}</div>`;
+ log(`BIO CALC Faktor ${factor.toFixed(2)} Anom ${anom}`);
+ addValueLog('BIO',`HR ${hrs}→${hri} Stress ${ss}→${si} Schlaf ${sls}→${sli}`,anom);
+}
+function calcBios(){
+ let boots=parseFloat(document.getElementById('boot_soll').value)||12, booti=parseFloat(document.getElementById('boot_ist').value)||12;
+ let rams=parseFloat(document.getElementById('ram_soll').value)||45, rami=parseFloat(document.getElementById('ram_ist').value)||45;
+ let anom= booti>boots*2 || rami>85;
+ document.getElementById('bios_result').innerHTML= anom?`<div class="anomaly">🔴 BIOS ANOMALIE: Boot ${boots}s→${booti}s (Δ×${(booti/boots).toFixed(1)}), RAM ${rams}%→${rami}% — ROM=${document.getElementById('rom_file').value} RAM=${document.getElementById('ram_file').value} — real-life Hardware Umstand</div>`:`<div class="ok">🟢 BIOS OK — Boot ${booti}s RAM ${rami}%</div>`;
+ log(`BIOS CALC Boot ${booti}s RAM ${rami}% Anom ${anom}`);
+ addValueLog('BIOS',`Boot ${boots}→${booti}s RAM ${rams}→${rami}%`,anom);
+}
+function calcUefi(){
+ let cpus=parseFloat(document.getElementById('cpu_soll').value)||45, cpui=parseFloat(document.getElementById('cpu_ist').value)||45;
+ let ws=parseFloat(document.getElementById('watt_soll').value)||65, wi=parseFloat(document.getElementById('watt_ist').value)||65;
+ let sb_s=document.getElementById('sb_soll').value, sb_i=document.getElementById('sb_ist').value;
+ let bo_s=document.getElementById('bo_soll').value, bo_i=document.getElementById('bo_ist').value;
+ let anom= cpui>80 || wi>ws*1.5 || sb_s!==sb_i || bo_s!==bo_i;
+ document.getElementById('uefi_idem').textContent= (sb_s===sb_i && bo_s===bo_i)?'f(f(x))=f(x) OK — idempotent':'f(f(x))≠f(x) — Nicht idempotent — Umstand geändert!';
+ document.getElementById('uefi_result').innerHTML= anom?`<div class="anomaly">🔴 UEFI ANOMALIE: CPU ${cpus}→${cpui}°C, Watt ${ws}→${wi}W, SecureBoot ${sb_s}→${sb_i}, BootOrder ${bo_s}→${bo_i} — ${document.getElementById('uefi_last').value||'kurz vor Finalisierung Änderung'} — real-life Umstand</div>`:`<div class="ok">🟢 UEFI OK — f(f(x))=f(x)</div>`;
+ log(`UEFI CALC CPU ${cpui}°C Watt ${wi}W Anom ${anom}`);
+ addValueLog('UEFI',`CPU ${cpus}→${cpui}°C Watt ${ws}→${wi}W SB ${sb_s}→${sb_i}`,anom);
+}
+function addValueLog(domain,text,anom){
+ let el=document.getElementById('valueLog'); let d=document.createElement('div'); d.style.cssText=`padding:6px 8px;background:${anom?'rgba(255,51,68,.08)':'var(--bg)'};border:1px solid ${anom?'rgba(255,51,68,.3)':'var(--b)'};font-size:9px;display:flex;justify-content:space-between`;
+ d.innerHTML=`<span><b style="color:${anom?'var(--red)':'var(--gold)'}">${domain}</b> ${text}</span><span>${anom?'🔴 ANOMAL':'🟢 OK'}</span>`;
+ el.prepend(d);
+}
+function isolate(){
+ calcAnomalies(); calcChem(); calcBio(); calcBios(); calcUefi();
+ let domains=[
+  {name:'CHEM',soll:document.getElementById('co2_soll').value+' ppm',ist:document.getElementById('co2_ist').value+' ppm',delta:Math.abs(parseFloat(document.getElementById('co2_ist').value)-parseFloat(document.getElementById('co2_soll').value)),anom:Math.abs(parseFloat(document.getElementById('co2_ist').value)-400)>200},
+  {name:'CHEM O2',soll:document.getElementById('o2_soll').value+'%',ist:document.getElementById('o2_ist').value+'%',delta:Math.abs(parseFloat(document.getElementById('o2_ist').value)-parseFloat(document.getElementById('o2_soll').value)),anom:Math.abs(parseFloat(document.getElementById('o2_ist').value)-21)>1},
+  {name:'CHEM TEMP',soll:document.getElementById('temp_soll').value+'°C',ist:document.getElementById('temp_ist').value+'°C',delta:Math.abs(parseFloat(document.getElementById('temp_ist').value)-parseFloat(document.getElementById('temp_soll').value)),anom:Math.abs(parseFloat(document.getElementById('temp_ist').value)-22)>4},
+  {name:'BIO HR',soll:document.getElementById('hr_soll').value,ist:document.getElementById('hr_ist').value,delta:Math.abs(parseFloat(document.getElementById('hr_ist').value)-parseFloat(document.getElementById('hr_soll').value)),anom:parseFloat(document.getElementById('hr_ist').value)>90},
+  {name:'BIO STRESS',soll:document.getElementById('stress_soll').value,ist:document.getElementById('stress_ist').value,delta:Math.abs(parseFloat(document.getElementById('stress_ist').value)-parseFloat(document.getElementById('stress_soll').value)),anom:parseFloat(document.getElementById('stress_ist').value)>=7},
+  {name:'BIOS BOOT',soll:document.getElementById('boot_soll').value+'s',ist:document.getElementById('boot_ist').value+'s',delta:Math.abs(parseFloat(document.getElementById('boot_ist').value)-parseFloat(document.getElementById('boot_soll').value)),anom:parseFloat(document.getElementById('boot_ist').value)>30},
+  {name:'BIOS RAM',soll:document.getElementById('ram_soll').value+'%',ist:document.getElementById('ram_ist').value+'%',delta:Math.abs(parseFloat(document.getElementById('ram_ist').value)-parseFloat(document.getElementById('ram_soll').value)),anom:parseFloat(document.getElementById('ram_ist').value)>85},
+  {name:'UEFI CPU',soll:document.getElementById('cpu_soll').value+'°C',ist:document.getElementById('cpu_ist').value+'°C',delta:Math.abs(parseFloat(document.getElementById('cpu_ist').value)-parseFloat(document.getElementById('cpu_soll').value)),anom:parseFloat(document.getElementById('cpu_ist').value)>80},
+ ];
+ let anomCount=domains.filter(d=>d.anom).length;
+ let isoPct=Math.round((anomCount/domains.length)*100);
+ document.getElementById('anomCount').textContent='ANOMALIEN: '+anomCount;
+ document.getElementById('isolation').textContent='ISOLATION: '+isoPct+'%';
+ document.getElementById('isoBar').style.width=isoPct+'%';
+ document.getElementById('anomScore').textContent=anomCount+'/'+domains.length;
+ let tbody=document.getElementById('isoTable'); tbody.innerHTML='';
+ domains.forEach(d=>{
+  let tr=document.createElement('tr');
+  tr.innerHTML=`<td>${d.name}</td><td>${d.soll}</td><td style="color:${d.anom?'var(--red)':'var(--green)'}">${d.ist}</td><td>${d.delta.toFixed?d.delta.toFixed(1):d.delta}</td><td>${d.anom?'🔴':'🟢'}</td><td>${d.anom?'ANOMAL':'OK'}</td>`;
+  if(d.anom) tr.style.background='rgba(255,51,68,.06)';
+  tbody.appendChild(tr);
+ });
+ let worst=domains.filter(d=>d.anom).map(d=>d.name).join(', ')||'keine klare';
+ let conc=document.getElementById('isoConclusion');
+ conc.innerHTML=`<div class="${anomCount>0?'anomaly':'ok'}"><b>ISOLATION ${isoPct}% — FEHLER EINGEGRENZT: ${worst}</b><br>Umstand: ${document.getElementById('umstand').value||'real-life Umstand kurz vor Finalisierung'}<br>Erwartet: ${document.getElementById('soll').value||'-'} | Ist: ${document.getElementById('ist').value||'-'}<br>Anomalie ist <u>realer Umstand</u>, kein Code-Fehler — Werte oben sind Beleg.</div>`;
+ let rec=document.getElementById('recommendation');
+ rec.innerHTML=`
+  <b>CHEM:</b> ${domains.find(d=>d.name.includes('CHEM'))?.anom?'Lüften, CO2 senken, Temp auf 22°C, pH prüfen — 21%+21%=42% SLI gestört — nicht im Code suchen':'CHEM im Rahmen'}<br>
+  <b>BIO:</b> ${domains.find(d=>d.name.includes('BIO'))?.anom?'Schlaf erhöhen, Stress runter, Fokus schützen — kurz vor Finalisierung Störung ist bio real — 4h Schlaf = Fehlerquelle':'BIO stabil'}<br>
+  <b>BIOS:</b> ${domains.find(d=>d.name.includes('BIOS'))?.anom?'ROM/RAM Dateien prüfen, BIOS zurück auf SOLL, Boot-Zeit vergleichen — industry_abmachung_verided_segment.html neu laden':'BIOS idempotent f(f(x))=f(x)'}<br>
+  <b>UEFI:</b> ${domains.find(d=>d.name.includes('UEFI'))?.anom?'CPU Temp/Watt zu hoch — SecureBoot/BootOrder hat sich geändert — letzte Änderung: '+(document.getElementById('uefi_last').value||'unbekannt')+' — UEFI Reset auf SOLL':'UEFI OK'}<br><br>
+  <b>FAZIT:</b> Du hast falsch rangegangen, weil du im Code gesucht hast — Fehler ist <span style="color:var(--red)">real-life Umstand Anomalie</span>. Werte oben belegen ihn. Isolator zeigt: ${worst||'kein einzelner'} ist Hauptquelle. Fach Chem/Bio/Bios/Uefi jeweils gegen SOLL prüfen, nicht im Code.
+ `;
+ document.getElementById('activeAnomaly').innerHTML=`<b style="color:var(--red)">ISOLIERT ${isoPct}% — ANOMALIEN: ${anomCount}</b><br>Haupt: ${worst}<br><br>Umstand: ${document.getElementById('umstand').value||'-'}<br>SOLL: ${document.getElementById('soll').value||'-'}<br>IST: ${document.getElementById('ist').value||'-'}`;
+ switchTab('isolator');
+ log(`ISOLATION ${isoPct}% ANOM ${anomCount} WORST ${worst}`);
+ save();
+}
+function save(){try{let data={umstand:document.getElementById('umstand').value,soll:document.getElementById('soll').value,ist:document.getElementById('ist').value,co2_ist:document.getElementById('co2_ist').value,o2_ist:document.getElementById('o2_ist').value,temp_ist:document.getElementById('temp_ist').value,hr_ist:document.getElementById('hr_ist').value,stress_ist:document.getElementById('stress_ist').value,boot_ist:document.getElementById('boot_ist').value,ram_ist:document.getElementById('ram_ist').value,cpu_ist:document.getElementById('cpu_ist').value,time:Date.now()}; localStorage.setItem(STORE,JSON.stringify(data)); localStorage.setItem('anomalie_backup_'+(Date.now()%3),JSON.stringify(data));}catch(e){}}
+function load(){try{let raw=localStorage.getItem(STORE); if(!raw) return; let d=JSON.parse(raw); Object.keys(d).forEach(k=>{let el=document.getElementById(k); if(el) el.value=d[k];});}catch(e){}}
+function resetAll(){if(!confirm('Reset?')) return; localStorage.removeItem(STORE); location.reload();}
+function emergencyExport(){save(); let blob=new Blob([JSON.stringify({store:localStorage.getItem(STORE),time:new Date().toISOString(),umstand:document.getElementById('umstand').value},null,2)],{type:'application/json'}); let url=URL.createObjectURL(blob); let a=document.createElement('a'); a.href=url; a.download='anomalie_isolator_'+Date.now()+'.json'; a.click(); URL.revokeObjectURL(url); log('NOT-SAVE EXPORT');}
+// init
+['umstand','soll','ist','co2_ist','o2_ist','temp_ist','hr_ist','stress_ist','boot_ist','ram_ist','cpu_ist'].forEach(id=>{let el=document.getElementById(id); if(el) el.addEventListener('change',save);});
+addParam('CO2','400 ppm','1200 ppm');
+addParam('Boot Zeit','12s','47s');
+addParam('Fokus','80%','35%');
+load(); log('INIT ANOMALIE ISOLATOR — CHEM/BIO/BIOS/UEFI — REAL LIFE USTAND — FEHLER EINGRENZEN — BORG 7482');
+setInterval(save,5000);
+window.addEventListener('beforeunload',save);
+</script>
+</body>
+</html>

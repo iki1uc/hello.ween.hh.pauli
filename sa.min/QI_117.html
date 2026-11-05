@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>iki1uc · PC INDEX FINAL · CHESS GHOSTS × 3ROOT + ROM/RAM + 3^9^81 + eye.brain.open</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#02060a;color:#c8d8e8;font-family:'JetBrains Mono',Consolas,monospace;overflow:hidden;height:100vh;display:flex;flex-direction:column}
+header{height:44px;background:linear-gradient(90deg,#06101c,#02060a);border-bottom:1px solid rgba(120,200,180,.15);display:flex;align-items:center;padding:0 12px;gap:8px;flex-shrink:0}
+header h1{font-size:11px;letter-spacing:2px;background:linear-gradient(90deg,#ff8a2a,#39ff88,#5cf0ff,#b388ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;white-space:nowrap}
+.tabs{display:flex;gap:4px;margin-left:12px}
+.tab{padding:6px 12px;border:1px solid rgba(120,200,180,.12);background:#0a1420;color:#5a7288;border-radius:6px 6px 0 0;font-size:10px;cursor:pointer;transition:.2s;white-space:nowrap}
+.tab.on{background:rgba(255,138,42,.12);border-color:#ff8a2a;color:#ff8a2a;box-shadow:0 -2px 10px rgba(255,138,42,.2)}
+.tab:hover{border-color:rgba(255,138,42,.4);color:#c8d8e8}
+.main{flex:1;display:grid;grid-template-columns:1fr;overflow:hidden;position:relative}
+iframe{width:100%;height:100%;border:0;background:#02060a}
+.panel{display:none;flex-direction:column;height:100%;overflow:auto}
+.panel.on{display:flex}
+#pcPanel{padding:10px;gap:10px;background:#050a12}
+.grid{display:grid;gap:10px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:1fr 1fr}
+@media(max-width:1100px){.g3{grid-template-columns:1fr 1fr}} @media(max-width:700px){.g3,.g2{grid-template-columns:1fr}}
+.card{background:#0e141c;border:1px solid #1a2a3a;border-radius:10px;padding:10px}
+.card h2{font-size:10px;letter-spacing:1px;color:#5a7288;margin-bottom:6px;border-bottom:1px solid #16202a;padding-bottom:4px}
+.row{display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #0e1620;font-size:11px}
+.l{color:#5a7288} .v{font-weight:700}
+.btn{border:1px solid #2a3a4a;background:#141e28;color:#d0d8e0;border-radius:6px;padding:5px 10px;font-size:9px;cursor:pointer;margin:2px}
+.btn:hover{background:#1e2a36}
+.bar{height:6px;background:#080c12;border:1px solid #16202a;border-radius:6px;overflow:hidden;margin:4px 0}
+.bar i{display:block;height:100%;transition:width .3s}
+.log{height:120px;overflow-y:auto;background:#080c12;border:1px solid #16202a;border-radius:8px;padding:6px 8px;font-size:9px;white-space:pre-wrap;color:#5a7288}
+.eq{font-size:9px;text-align:center;padding:5px;background:#080c12;border-radius:6px;border:1px dashed #1a2230;margin:4px 0;color:#8a9aaa}
+.mod{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px}
+.mod a{display:block;background:#0a101a;border:1px solid #1a2230;border-radius:8px;padding:8px;font-size:10px;color:#8a9aaa;text-decoration:none}
+.mod a:hover{border-color:#a8c686;color:#a8c686}
+.tower{display:flex;flex-direction:column;gap:4px}
+.lvl{border-radius:8px;padding:6px 8px;border:1px solid #1a1a2a;display:flex;justify-content:space-between;align-items:center;transition:.2s;cursor:pointer}
+.lvl.on{border-color:#a8c686;box-shadow:0 0 12px rgba(168,198,134,.4)}
+footer{height:22px;background:#000;border-top:1px solid rgba(255,138,42,.15);display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:2px;color:#5a7288;flex-shrink:0}
+</style>
+</head>
+<body>
+<header>
+<h1>◈ iki1uc · PC INDEX FINAL · CHESS GHOSTS × 3ROOT + ROM/RAM + 3^9^81 + eye.brain.open</h1>
+<div class="tabs">
+<button class="tab on" onclick="switchTab('chess')">♟ CHESS GHOSTS 3×ROOT</button>
+<button class="tab" onclick="switchTab('pc')">🧠 eye.brain.open + ROM/RAM + 3^9^81</button>
+<button class="tab" onclick="switchTab('tt')">🚀 TT TURBOKARTE ctrl.ler</button>
+<button class="tab" onclick="switchTab('kon')">◈ 81 KONSTELLATION DASH SEEDER</button>
+<button class="tab" onclick="switchTab('runtime')">◈ RUNTIME 3 EXPLORER</button>
+<button class="tab" onclick="switchTab('all')">🗂 ALLE MODULE</button>
+</div>
+<div style="margin-left:auto;display:flex;gap:8px;align-items:center;font-size:9px;color:#5a7288">
+<span>ASSIM=eye.brain.open</span><span style="color:#39ff88">● Online</span>
+</div>
+</header>
+<div class="main">
+<div id="chessPanel" class="panel on">
+<iframe id="chessFrame" src="chess_ghosts_3root.html"></iframe>
+</div>
+<div id="pcPanel" class="panel">
+<div class="grid g3">
+<div class="card">
+<h2>🧠 eye.brain.open · ASSIMILATION</h2>
+<div class="eq">Assimilation = éye.brain.open = Auge → Gehirn → offen = CO₂ → Licht → PQ</div>
+<div class="row"><span class="l">Auge (eye)</span><span class="v" style="color:#00ff88">PAR <span id="lightv">650</span></span></div><input type="range" id="lightr" min="0" max="2000" value="650" style="width:100%">
+<div class="row"><span class="l">Brain (Gehirn) PQ</span><span class="v" style="color:#0ff"><span id="pq1v">1.00</span></span></div><input type="range" id="pq1r" min="0" max="2" step="0.01" value="1" style="width:100%">
+<div class="row"><span class="l">Open CO₂</span><span class="v"><span id="co2v">420</span> ppm</span></div><input type="range" id="co2r" min="200" max="1200" value="420" style="width:100%">
+<div class="bar"><i id="assimBar" style="width:50%;background:linear-gradient(90deg,#00ff88,#0ff)"></i></div>
+<div class="row"><span class="l">Assim Rate</span><span class="v" style="color:#00ff88" id="assimRate">0.00</span></div>
+<button class="btn" style="border-color:#00ff88;color:#00ff88" onclick="app.docker()">🐳 DOCKERIESIEREN</button>
+<button class="btn" style="border-color:#ffd700;color:#ffd700" onclick="app.eye()">👁 eye.brain.open</button>
+<div class="eq">docker run -v ./iki1uc:/app iki1uc:latest --assimilation eye.brain.open</div>
+</div>
+<div class="card">
+<h2>🗄 ROM // RAM + SCHACH + INDUSTRY</h2>
+<div class="row"><span class="l">ROM</span><span class="v">schach_level_raum.html · fest</span></div>
+<div class="row"><span class="l">RAM</span><span class="v">industry_abmachung_verided_segment.html · variabel</span></div>
+<div class="eq">ROM = Read Only = Level Raum fest · RAM = Random Access = Verided Segment variabel</div>
+<div class="mod">
+<a href="#" onclick="app.load('schach');return false"><b>♟ SCHACH LEVEL RAUM</b><br>nchelpu_schach_level_raum.html</a>
+<a href="#" onclick="app.load('industry');return false"><b>🏭 INDUSTRY ABMACHUNG</b><br>verided_segment.html</a>
+<a href="#" onclick="app.load('rom');return false"><b>💾 ROM</b><br>Read Only</a>
+<a href="#" onclick="app.load('ram');return false"><b>⚡ RAM</b><br>Random Access</a>
+</div>
+<div style="margin-top:8px;position:relative;width:100%;aspect-ratio:4/3;max-height:260px;border-radius:10px;overflow:hidden;border:1px solid #1a2230;background:#05070c">
+<iframe id="subFrame" src="about:blank" style="width:100%;height:100%;border:0"></iframe>
+<div id="frameLabel" style="position:absolute;top:6px;left:6px;background:#0e141cdd;padding:3px 8px;border-radius:99px;border:1px solid #2a3a4a;font-size:9px;color:#a8c686">ROM/RAM idle</div>
+</div>
+</div>
+<div class="card">
+<h2>🔥 DESIMILATION · PQ2 · SENKE</h2>
+<div class="row"><span class="l">PQ2</span><span class="v" id="pq2v">1.00</span></div><input type="range" id="pq2r" min="0" max="2" step="0.01" value="1" style="width:100%">
+<div class="row"><span class="l">O₂% / Temp</span><span class="v"><span id="o2v">21</span>% / <span id="tempv">24</span>°C</span></div>
+<div class="bar"><i id="desimBar" style="width:45%;background:linear-gradient(90deg,#ff5a5a,#ff00ff)"></i></div>
+<div class="row"><span class="l">Desim Rate</span><span class="v" style="color:#ff5a5a" id="desimRate">0.00</span></div>
+<div class="row"><span class="l">Netto</span><span class="v" id="netv" style="color:#ffd700">0.00</span></div><div class="bar"><i id="netBar" style="width:50%;background:linear-gradient(90deg,#ffd700,#ff00ff)"></i></div>
+<div class="row"><span class="l">RQ / PQnet</span><span class="v"><span id="rqv">0.92</span> / <span id="pqnet">1.00</span></span></div>
+<button class="btn" style="border-color:#ff00ff;color:#ff00ff" onclick="app.boost()">DESIM +</button><button class="btn" style="border-color:#0ff;color:#0ff" onclick="app.sync()">SYNC 81→9→3→9→81</button>
+</div>
+</div>
+<div class="grid g2">
+<div class="card">
+<h2>♾ 3^9^81 · TETRATION · INDUSTRY HOCH</h2>
+<div class="tower" id="tower"></div>
+<canvas id="towerCanvas" width="420" height="160" style="width:100%;background:#08080f;border:1px solid #16202a;border-radius:10px;display:block;margin:6px auto"></canvas>
+<div class="row"><span class="l">BigInt 9⁸¹</span><span class="v" id="bigDigits">78 digits</span></div>
+<div class="log" id="bigLog" style="height:70px">BigInt wird berechnet...</div>
+<div><button class="btn" style="border-color:#00ff88;color:#00ff88" id="computeBtn">COMPUTE 9⁸¹</button><button class="btn" style="border-color:#0ff;color:#0ff" id="estimateBtn">ESTIMATE 3^9^81</button><button class="btn" style="border-color:#ffd700;color:#ffd700" id="deployBtn">DEPLOY 81 shards</button><button class="btn" id="oliveBtn">🫒 OLIVE ×7</button></div>
+<div class="eq">3^9=19683 · 9^81=3^162 · 3^(9^81) digits≈2.11×10⁷⁷ · 9^(9^81) digits≈4.23×10⁷⁷</div>
+<div class="bar"><i id="shardBar" style="width:0%;background:linear-gradient(90deg,#a8c686,#0ff)"></i></div>
+<div class="row"><span class="l">Shards / Olive Drops</span><span class="v"><span id="shardv">0/81</span> / <span id="olivev">0</span></span></div>
+</div>
+<div class="card">
+<h2>🌀 PFAD 81→9→3→9→81 + PQ→PQ RESPO + WERTUNG→BEWERTUNG</h2>
+<canvas id="orbit" width="420" height="220" style="width:100%;background:#08080f;border:1px solid #16202a;border-radius:10px"></canvas>
+<canvas id="curve" width="420" height="80" style="width:100%;background:#080c12;border:1px solid #16202a;border-radius:8px;margin-top:4px"></canvas>
+<div class="row"><span class="l">Pfad i · Mode</span><span class="v"><span id="pIdx">0 · 81</span> · <span id="modev">STAGE</span></span></div>
+<div class="row"><span class="l">pump/6 /8 · Krümmung</span><span class="v"><span id="fA">0</span>/<span id="fB">0</span> · <span id="krum">0.000</span></span></div>
+<div><button class="btn" id="loopBtn">▶ LOOP</button><button class="btn" style="border-color:#ffd700;color:#ffd700" id="stepBtn">▶ STEP</button><button class="btn" style="border-color:#00ff88;color:#00ff88" id="solveBtn">◈ LÖSEN</button><button class="btn" style="border-color:#0ff;color:#0ff" id="exportBtn">EXPORT JSON</button></div>
+<div class="log" id="log">◈ PC FINAL geladen · CHESS GHOSTS × 3ROOT + ROM/RAM + 3^9^81 + eye.brain.open
+Assimilation = éye.brain.open · Dockeriesieren bereit.
+</div>
+</div>
+</div>
+</div>
+<div id="ttPanel" class="panel">
+<div style="padding:10px;display:grid;grid-template-columns: 1fr 360px;gap:10px;height:100%;background:#02060a">
+<div style="display:flex;flex-direction:column;gap:10px;overflow:auto">
+<div class="card" style="border-color:#ff4d6d55">
+<h2 style="color:#ff4d6d">🚀 TT TURBOKARTE · CHESS GHOSTS 3×ROOT TURBO</h2>
+<div class="eq">TT = Turbo Tracking = ctrl.ler = Control Learner = WERTUNG→BEWERTUNG in Echtzeit · 81→9→3→9→81 Turbo Map</div>
+<canvas id="turboMap" width="900" height="540" style="width:100%;background:#04060c;border:1px solid #1a2230;border-radius:12px;cursor:crosshair"></canvas>
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<button class="btn" style="border-color:#ff4d6d;color:#ff4d6d" id="turboPlay">▶ TURBO PLAY</button>
+<button class="btn" style="border-color:#b388ff;color:#b388ff" id="turboCtrl">⌃ ctrl.ler LEARN</button>
+<button class="btn" style="border-color:#66ffcc;color:#66ffcc" id="turboGhost">👻 GHOST TRACE</button>
+<button class="btn" style="border-color:#ffd700;color:#ffd700" id="turboExport">EXPORT TT</button>
+<span style="font-size:9px;color:#5a7288;margin-left:8px">Tasten: [C]=calc [Space]=turbo [L]=ctrl.ler [G]=ghost [R]=reset | Mausklick = Warp</span>
+</div>
+<div class="row"><span class="l">Turbo Speed / Ghost Opacity</span><span class="v"><span id="turboSpeedV">3.0</span>x / <span id="ghostOpV">0.6</span></span></div>
+<input type="range" id="turboSpeed" min="0.1" max="10" step="0.1" value="3" style="width:48%"><input type="range" id="ghostOp" min="0" max="1" step="0.05" value="0.6" style="width:48%">
+<div class="row"><span class="l">TT Pos / ctrl.ler State</span><span class="v"><span id="ttPos">81 → 9 → 3</span> / <span id="ctrlLer" style="color:#66ffcc">idle</span></span></div>
+<div class="bar"><i id="ttBar" style="width:30%;background:linear-gradient(90deg,#ff4d6d,#b388ff,#66ffcc)"></i></div>
+</div>
+<div class="card">
+<h2>🎮 ctrl.ler · Control Learner = WERTUNG→BEWERTUNG Engine</h2>
+<div class="eq">ctrl.ler lernt aus CHESS GHOSTS Partien: W / RAM / GPU * wahrheit → ctrl vector</div>
+<div class="grid g2" style="grid-template-columns:1fr 1fr">
+<div>
+<div class="row"><span class="l">WERTUNG</span><span class="v" id="wertungV" style="color:#ff4d6d">0.00</span></div>
+<div class="row"><span class="l">BEWERTUNG</span><span class="v" id="bewertungV" style="color:#66ffcc">0.00</span></div>
+<div class="row"><span class="l">Wahrheit factor</span><span class="v"><input type="range" id="wahrheit" min="0" max="2" step="0.01" value="1" style="width:80px"><span id="wahrheitV">1.00</span></span></div>
+</div>
+<div>
+<div class="row"><span class="l">RAM used</span><span class="v" id="ramV">0 MB</span></div>
+<div class="row"><span class="l">GPU load</span><span class="v" id="gpuV">0%</span></div>
+<div class="row"><span class="l">TT Turbokarte</span><span class="v" id="ttKarteV">Level 81</span></div>
+</div>
+</div>
+<canvas id="lerCurve" width="440" height="90" style="width:100%;background:#080c12;border:1px solid #16202a;border-radius:8px;margin-top:6px"></canvas>
+<div class="log" id="ttLog" style="height:90px">🚀 TT TURBOKARTE bereit · ctrl.ler idle
+TT = Turbo Map 81→9→3→9→81 · Warp über 3×ROOT Filter
+ctrl.ler = Control Learner aus CHESS GHOSTS Bewertung
+</div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;overflow:auto">
+<div class="card" style="border-color:#b388ff55">
+<h2>♟ 5 PARTIEN · 3×ROOT GHOSTS</h2>
+<div id="ttGames" style="display:flex;flex-direction:column;gap:6px"></div>
+</div>
+<div class="card">
+<h2>📦 CHESS GHOSTS → TT → PQ</h2>
+<div class="row"><span class="l">81→9→3 Pfad</span><span class="v" id="pfadV">81→9→3→9→81</span></div>
+<div class="row"><span class="l">Tetra 3^9^81</span><span class="v" id="tetraV">3^(9^81)</span></div>
+<div class="row"><span class="l">Assimilation</span><span class="v" style="color:#00ff88" id="ttAssimV">eye.brain.open</span></div>
+<div class="eq">ROM: schach_level_raum.html · RAM: industry_abmachung · TT: turbokarte · ctrl.ler lernt W→B</div>
+<button class="btn" style="border-color:#00ff88;color:#00ff88" onclick="app.eye()">👁 eye.brain.open SYNC</button>
+<button class="btn" style="border-color:#0ff;color:#0ff" onclick="switchTab('chess')">♟ CHESS öffnen</button>
+<button class="btn" style="border-color:#ff8a2a;color:#ff8a2a" onclick="switchTab('pc')">🧠 PQ öffnen</button>
+</div>
+<div class="card">
+<h2>⌨️ TT Shortcuts</h2>
+<div style="font-size:9px;line-height:1.6;color:#8a9aaa">
+<b style="color:#c8d8e8">C</b>=calc WERTUNG→BEWERTUNG<br>
+<b style="color:#c8d8e8">Space</b>=Turbo Play / Pause<br>
+<b style="color:#c8d8e8">L</b>=ctrl.ler lernen (10 Iterationen)<br>
+<b style="color:#c8d8e8">G</b>=Ghost Traces an/aus<br>
+<b style="color:#c8d8e8">R</b>=Reset Turbokarte<br>
+<b style="color:#c8d8e8">Click</b> auf Map = Warp zu 81/9/3<br>
+<b style="color:#c8d8e8">Drag</b> = ctrl.ler Pfad zeichnen
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="konPanel" class="panel"><iframe id="konFrame" src="chess_ghosts_81_konstellation.html" style="width:100%;height:100%;border:0"></iframe></div>
+<div id="runtimePanel" class="panel"><iframe id="runtimeFrame" src="runtime3_mind_uhrwerk_kuckuck.html" style="width:100%;height:100%;border:0"></iframe></div>
+<div id="allPanel" class="panel">
+<div style="padding:10px">
+<h2 style="font-size:11px;letter-spacing:2px;color:#ff8a2a;margin-bottom:8px">🗂 ALLE MODULE · iki1uc/PQ · ALLES EINBEZIEHEN</h2>
+<div style="font-size:8px;color:#5a7288;margin-bottom:8px">apfel, arbeit, city, deep, evo, hand, hot.swab, joker, live.9, lvl, master.cache, narr, neu.home, new.ort, oio, ort, our.arbeit, pipeline.use, scan, scsi.raid, tmp, tool.prism, ufo, wahn, world, zauber, bio-js, ort..js, home.md, move.md + nchelpu_schach_level_raum.html + industry_abmachung_verided_segment.html + chess_ghosts_3root.html + 3^9^81 + eye.brain.open</div>
+<div class="mod" id="allMods"></div>
+<div style="margin-top:10px;position:relative;width:100%;height:70vh;border-radius:12px;overflow:hidden;border:1px solid #1a2230;background:#05070c">
+<iframe id="allFrame" src="apfel.html" style="width:100%;height:100%;border:0"></iframe>
+<div id="allLabel" style="position:absolute;top:8px;left:8px;background:#0e141cdd;padding:4px 10px;border-radius:99px;border:1px solid #2a3a4a;font-size:10px;color:#ffd700">▶ apfel.html</div>
+</div>
+</div>
+</div>
+</div>
+<footer>STAND DER DINGE · CHESS GHOSTS × 3×ROOT FILTER · WERTUNG→BEWERTUNG · ROM/RAM · 81→9→3→9→81 · 3^9^81 · eye.brain.open = ASSIMILATION · DOCKERIESIEREN · iki1uc/PQ · PC FINAL</footer>
+<script>
+function switchTab(t){
+document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+if(t==='chess'){document.querySelectorAll('.tab')[0].classList.add('on');document.getElementById('chessPanel').classList.add('on')}
+if(t==='pc'){document.querySelectorAll('.tab')[1].classList.add('on');document.getElementById('pcPanel').classList.add('on')}
+if(t==='tt'){document.querySelectorAll('.tab')[2].classList.add('on');document.getElementById('ttPanel').classList.add('on')}
+if(t==='kon'){document.querySelectorAll('.tab')[3].classList.add('on');document.getElementById('konPanel').classList.add('on')}
+if(t==='runtime'){document.querySelectorAll('.tab')[4].classList.add('on');document.getElementById('runtimePanel').classList.add('on')}
+if(t==='all'){document.querySelectorAll('.tab')[5].classList.add('on');document.getElementById('allPanel').classList.add('on')}
+}
+const app={
+ pq1:1,pq2:1,co2:420,light:650,o2:21,temp:24,assim:0,desim:0,linked:true,pfad:[81,9,3,9,81],pIdx:0,pump:0,loopT:null,shards:0,olives:0,
+ levels:[
+  {id:0,exp:"3",label:"LEVEL 0 BASE",short:"3",digits:"1",color:"#5aff7a"},
+  {id:1,exp:"9 = 3²",label:"LEVEL 1 3²",short:"9",digits:"1",color:"#6b6bff"},
+  {id:2,exp:"81 = 9² = 3⁴",label:"LEVEL 2 9²",short:"81",digits:"2",color:"#0ff"},
+  {id:3,exp:"9⁸¹ = 3¹⁶²",label:"LEVEL 3 9⁸¹",short:"9⁸¹",digits:"78",color:"#a8c686"},
+  {id:4,exp:"3^(9⁸¹)",label:"LEVEL 4 3^(9⁸¹)",short:"3^(9⁸¹)",digits:"~2.11×10⁷⁷",color:"#ff5a5a"}
+ ],
+ init(){this.bind();this.renderTower();this.renderAllMods();this.calc();this.orbit();this.compute();this.log("◈ PC FINAL · CHESS GHOSTS × ROM/RAM × 3^9^81 × eye.brain.open geladen");},
+ bind(){
+  const $=id=>document.getElementById(id);
+  $('pq1r').addEventListener('input',e=>{this.pq1=parseFloat(e.target.value);this.calc()});
+  $('pq2r').addEventListener('input',e=>{this.pq2=parseFloat(e.target.value);this.calc()});
+  $('co2r').addEventListener('input',e=>{this.co2=parseFloat(e.target.value);this.calc()});
+  $('lightr').addEventListener('input',e=>{this.light=parseFloat(e.target.value);this.calc()});
+  $('o2r').addEventListener('input',e=>{this.o2=parseFloat(e.target.value);this.calc()});
+  $('tempr').addEventListener('input',e=>{this.temp=parseFloat(e.target.value);this.calc()});
+  $('computeBtn').onclick=()=>this.compute();
+  $('estimateBtn').onclick=()=>this.estimate();
+  $('deployBtn').onclick=()=>this.deploy();
+  $('oliveBtn').onclick=()=>this.olive();
+  $('loopBtn').onclick=()=>this.loop();
+  $('stepBtn').onclick=()=>this.sync();
+  $('solveBtn').onclick=()=>this.solve();
+  $('exportBtn').onclick=()=>this.export();
+ },
+ calc(){
+  const Kco2=400,Ko2=15;
+  this.assim=this.pq1*(this.light/1000)*(this.co2/(Kco2+this.co2))*(1+this.pfad[this.pIdx]/81*0.3);
+  this.desim=this.pq2*(this.temp/25)*(this.o2/(Ko2+this.o2))*(0.8+this.pfad[this.pIdx]/81*0.2);
+  let net=this.assim-this.desim; let rq=(this.co2/1000)/(this.o2/21)*(this.desim/(this.assim+0.001)); let netPQ=this.linked?(this.pq1+this.pq2)/2*(1+net*0.1):this.pq1; this.pump++;
+  document.getElementById('pq1v').textContent=this.pq1.toFixed(2); document.getElementById('pq2v').textContent=this.pq2.toFixed(2);
+  document.getElementById('co2v').textContent=this.co2; document.getElementById('lightv').textContent=this.light;
+  document.getElementById('o2v').textContent=this.o2; document.getElementById('tempv').textContent=this.temp;
+  document.getElementById('assimRate').textContent=this.assim.toFixed(3); document.getElementById('desimRate').textContent=this.desim.toFixed(3);
+  document.getElementById('netv').textContent=(net>0?"+":"")+net.toFixed(3); document.getElementById('rqv').textContent=rq.toFixed(2); document.getElementById('pqnet').textContent=netPQ.toFixed(2);
+  document.getElementById('assimBar').style.width=Math.min(100,this.assim*60)+"%"; document.getElementById('desimBar').style.width=Math.min(100,this.desim*60)+"%"; document.getElementById('netBar').style.width=Math.min(100,50+net*20)+"%";
+  document.getElementById('fA').textContent=(this.pump/6).toFixed(1); document.getElementById('fB').textContent=(this.pump/8).toFixed(1); document.getElementById('krum').textContent=((this.assim+this.desim)/2).toFixed(3); document.getElementById('pIdx').textContent=this.pIdx+" · "+this.pfad[this.pIdx]; this.curve();
+ },
+ curve(){const c=document.getElementById('curve'),ctx=c.getContext('2d');const w=c.width,h=c.height;ctx.clearRect(0,0,w,h);ctx.strokeStyle="#1a2230";ctx.strokeRect(0,0,w,h);ctx.strokeStyle="#00ff88";ctx.lineWidth=2;ctx.beginPath();for(let x=0;x<w;x++){let p=x/w;let y=h-(this.assim*30+Math.sin(p*10+this.pIdx)*10+p*20);if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();ctx.strokeStyle="#ff5a5a";ctx.beginPath();for(let x=0;x<w;x++){let p=x/w;let y=h-(this.desim*30+Math.cos(p*8+this.pIdx)*10+p*10);if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();ctx.strokeStyle="#ffd700";ctx.setLineDash([4,4]);ctx.beginPath();for(let x=0;x<w;x++){let y=h-((this.assim-this.desim)*20+h/2);if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();ctx.setLineDash([]);},
+ orbit(){const c=document.getElementById('orbit'),ctx=c.getContext('2d');const w=c.width,h=c.height,cx=w/2,cy=h/2-10,r=100;ctx.clearRect(0,0,w,h);let axes=["d","e","i","n","o","r","s","u","w"];let t=Date.now()/1000;let pts=axes.map((_,i)=>{let a=(i/axes.length)*Math.PI*2-Math.PI/2;return {x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)}});ctx.strokeStyle="#1a2230";ctx.beginPath();pts.forEach((p,i)=>{let n=pts[(i+1)%pts.length];ctx.moveTo(p.x,p.y);ctx.lineTo(n.x,n.y)});ctx.stroke();pts.forEach((p,i)=>{let active=i===this.pIdx%9;ctx.fillStyle=active?"#ffd700":"#0e141c";ctx.beginPath();ctx.arc(p.x,p.y,active?14:9,0,Math.PI*2);ctx.fill();ctx.strokeStyle=active?"#ffd700":"#2a3a4a";ctx.stroke();ctx.fillStyle=active?"#000":"#5a7288";ctx.font="11px monospace";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(axes[i],p.x,p.y)});let prog=(Math.sin(t*1.2)+1)/2;let x=cx+(prog*2-1)*r*0.8;let y=cy+Math.sin(t*2)*15;ctx.fillStyle=this.linked?"#ffd700":"#555";ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fill();requestAnimationFrame(()=>this.orbit());},
+ renderTower(){let el=document.getElementById('tower');el.innerHTML=this.levels.map(l=>`<div class="lvl ${l.id===this.pIdx?'on':''}" style="border-color:${l.color}22;background:${l.color}11" onclick="app.selectLevel(${l.id})"><div><b style="color:${l.color}">${l.short}</b> <span style="font-size:9px;color:#8a9aaa">${l.exp}</span></div><div style="font-size:9px;color:${l.color}">${l.digits} digits</div></div>`).join('');let c=document.getElementById('towerCanvas'),ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);let w=c.width,h=c.height;this.levels.slice().reverse().forEach((l,i)=>{let widthPct=(l.id+1)/5*80+20;let ww=w*widthPct/100;let x=(w-ww)/2;let hh=h/5.5;let y=i*(hh+4)+10;ctx.fillStyle=l.color+(this.pIdx===l.id?"44":"22");ctx.strokeStyle=l.color+"88";ctx.lineWidth=this.pIdx===l.id?2:1;ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,ww,hh,6);else ctx.rect(x,y,ww,hh);ctx.fill();ctx.stroke();ctx.fillStyle="#fff";ctx.font="10px monospace";ctx.textAlign="center";ctx.fillText(l.short,w/2,y+hh/2+3);});},
+ selectLevel(id){this.pIdx=id%this.pfad.length;this.renderTower();this.calc();this.log("◈ Level → "+this.levels[id].label);},
+ compute(){try{let start=performance.now();let big=(9n**81n).toString();let end=performance.now();document.getElementById('bigDigits').textContent=big.length+" digits · "+(end-start).toFixed(2)+"ms";document.getElementById('bigLog').textContent=big.slice(0,60)+"…"+big.slice(-30)+"\nBigInt exact · 78 digits · log10≈77.393";this.log("◆ COMPUTE 9⁸¹ · "+big.length+" digits · BigInt exact");}catch(e){document.getElementById('bigLog').textContent="BigInt error: "+e.message}},
+ estimate(){this.log("∑ ESTIMATE · log10(9⁸¹)=77.393 · 9⁸¹≈1.966e77 · digits 3^(9⁸¹)≈2.115e77 · 9^(9⁸¹)≈4.23e77");document.getElementById('bigLog').textContent+="\nESTIMATE:\n3^(9⁸¹) digits ≈2.11×10⁷⁷\n9^(9⁸¹) digits ≈4.23×10⁷⁷";},
+ deploy(){if(this._deploying)return;this._deploying=true;let i=0;let int=setInterval(()=>{i+=Math.floor(Math.random()*4)+1;if(i>=81){i=81;clearInterval(int);this._deploying=false;this.log("◆ DEPLOYED · 81/81 shards · SHARDED · LOGGED · MONITORED");}this.shards=i;document.getElementById('shardv').textContent=i+"/81";document.getElementById('shardBar').style.width=i/81*100+"%";if(i%9===0)this.log("  shard "+i+"/81 · "+(Math.random()>0.5?"3hoch":"9hoch")+" ready");},180);this.log("▶ DEPLOY INDUSTRY · 3 nodes 3hoch · 9 nodes 9hoch · 81 shards");},
+ olive(){this.olives+=7;document.getElementById('olivev').textContent=this.olives;this.log("🫒 OLIVE PRESS ×7 · total "+this.olives);this.shards=Math.min(81,this.shards+1);document.getElementById('shardv').textContent=this.shards+"/81";document.getElementById('shardBar').style.width=this.shards/81*100+"%";},
+ sync(){this.pIdx=(this.pIdx+1)%this.pfad.length;let modes={0:'STAGE',1:'AIR',2:'AIV',3:'OMNI',4:'STAGE'};document.getElementById('modev').textContent=modes[this.pIdx%5];this.renderTower();this.calc();this.log("⟲ SYNC Pfad "+this.pfad.join("→")+" i="+this.pIdx);},
+ loop(){if(this.loopT){clearInterval(this.loopT);this.loopT=null;this.log("⏹ Loop stop")}else{this.loopT=setInterval(()=>this.sync(),500);this.log("▶ Loop 81→9→3→9→81");}},
+ solve(){this.pq1=1.18;this.pq2=1.18;this.co2=550;this.light=900;this.o2=21;this.temp=24;document.getElementById('pq1r').value=1.18;document.getElementById('pq2r').value=1.18;this.calc();this.log("◈ LÖSEN · Assim=Desim Netto 0 · PQ 1.18 · eye.brain.open");},
+ export(){let data={repo:"iki1uc/PQ",chess:"CHESS GHOSTS 3×ROOT",rom:"schach_level_raum",ram:"industry_abmachung",tower:"3^9^81",assimilation:"eye.brain.open",pq1:this.pq1,pq2:this.pq2,co2:this.co2,light:this.light,o2:this.o2,temp:this.temp,assim:this.assim,desim:this.desim,net:this.assim-this.desim,shards:this.shards,olives:this.olives,pfad:this.pfad,pIdx:this.pIdx};let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download=`iki1uc_pc_final_${Date.now()}.json`;a.click();URL.revokeObjectURL(url);this.log("EXPORT JSON");},
+ docker(){this.log("🐳 DOCKER · Dockerfile: FROM node:alpine · COPY ./iki1uc /app · EXPOSE 8080 · CMD [\"node\",\"eye.brain.open.js\"]");this.log("  docker build -t iki1uc:latest . && docker run -p 8080:8080 -v ./iki1uc:/app iki1uc:latest --assimilation eye.brain.open --tower 3^9^81 --chess 3root");},
+ eye(){this.pq1=1.4;this.light=1200;this.co2=600;document.getElementById('pq1r').value=1.4;document.getElementById('lightr').value=1200;document.getElementById('co2r').value=600;this.calc();this.log("👁 eye.brain.open → Auge 1200 PAR · Gehirn PQ 1.4 · Open 600 ppm · Assim ↑");},
+ boost(){this.pq2+=0.1;document.getElementById('pq2r').value=this.pq2.toFixed(2);this.calc();this.log("🔥 DESIM + · PQ2 "+this.pq2.toFixed(2));},
+ load(t){let frame=document.getElementById('subFrame'),label=document.getElementById('frameLabel');if(t==='schach'){frame.srcdoc="<h1 style='color:#a8c686;font-family:monospace;padding:20px'>♟ SCHACH LEVEL RAUM<br>ROM fest<br>Level 0-4: 3→9→81→9⁸¹→3^(9⁸¹)<br>CUBI → BIO.TEL ATOMICAL</h1>";label.textContent="♟ schach_level_raum.html · ROM";}
+  else if(t==='industry'){frame.srcdoc="<h1 style='color:#0ff;font-family:monospace;padding:20px'>🏭 INDUSTRY ABMACHUNG VERIDED SEGMENT<br>RAM variabel<br>Sharding 81→10⁷⁷</h1>";label.textContent="🏭 industry_abmachung · RAM";}
+  else if(t==='rom'){frame.srcdoc="<h1 style='color:#ffd700;font-family:monospace;padding:20px'>💾 ROM<br>Read Only Memory<br>Schach Level Raum fest</h1>";label.textContent="💾 ROM";}
+  else if(t==='ram'){frame.srcdoc="<h1 style='color:#ff5a5a;font-family:monospace;padding:20px'>⚡ RAM<br>Random Access Memory<br>Industry Abmachung variabel</h1>";label.textContent="⚡ RAM";}this.log("🗂 Load "+t);},
+ renderAllMods(){let files=["apfel.html","arbeit.html","city.html","city.js","deep.html","evo.js","hand.html","hot.swab.html","joker.html","live.9.html","lvl.html","master.cache.html","narr.html","neu.home.html","new.ort.html","oio.html","ort.html","our.arbeit.html","pipeline.use.html","scan.html","scsi.raid.html","tmp.html","tool.prism.html","ufo.html","wahn.html","world.html","zauber.html","bio-js","ort..js","home.md","move.md","nchelpu_schach_level_raum.html","industry_abmachung_verided_segment.html","chess_ghosts_3root.html"];let el=document.getElementById('allMods');el.innerHTML=files.map(f=>`<a href="#" onclick="document.getElementById('allFrame').src='${f}';document.getElementById('allLabel').textContent='▶ ${f}';app.log('🗂 → ${f}');return false">${f}</a>`).join('');},
+ log(m){let l=document.getElementById('log');let d=document.createElement('div');d.textContent="["+new Date().toLocaleTimeString()+"] "+m;l.prepend(d);}
+};
+document.addEventListener('DOMContentLoaded',()=>{app.init(); setTimeout(()=>{try{TT.init()}catch(e){console.log('TT err',e)}},400);});
+// === TT TURBOKARTE ctrl.ler ENGINE ===
+const TT = {
+  speed:3, ghostOp:0.6, playing:false, ghosts:true, pos:0, pfad:[81,9,3,9,81], wertung:0, bewertung:0, wahrheit:1, ram:0, gpu:0, traces:[], lerIter:0, lerState:'idle',
+  games:[
+    {id:1,name:"Morphy – Anderssen 1858",w:"W",b:"B",eval:-0.3,roots:[81,9,3],color:"#ff4d6d"},
+    {id:2,name:"Fischer – Spassky 1972 Game6",w:"W",b:"B",eval:0.8,roots:[9,81,9],color:"#b388ff"},
+    {id:3,name:"Kasparov – Topalov 1999",w:"W",b:"B",eval:1.2,roots:[3,9,81],color:"#66ffcc"},
+    {id:4,name:"Carlsen – Nepo 2021",w:"W",b:"B",eval:0.5,roots:[81,3,9],color:"#5fc8ff"},
+    {id:5,name:"AlphaZero – Stockfish 2018",w:"W",b:"B",eval:2.1,roots:[9,3,81],color:"#ffd700"},
+  ],
+  init(){
+    this.bind(); this.renderGames(); this.draw(); this.lerCurve(); this.loop();
+  },
+  bind(){
+    const $=id=>document.getElementById(id);
+    $('turboSpeed').addEventListener('input',e=>{this.speed=parseFloat(e.target.value);$('turboSpeedV').textContent=this.speed.toFixed(1)});
+    $('ghostOp').addEventListener('input',e=>{this.ghostOp=parseFloat(e.target.value);$('ghostOpV').textContent=this.ghostOp.toFixed(2)});
+    $('wahrheit').addEventListener('input',e=>{this.wahrheit=parseFloat(e.target.value);$('wahrheitV').textContent=this.wahrheit.toFixed(2);this.calcWB()});
+    $('turboPlay').onclick=()=>this.toggle();
+    $('turboCtrl').onclick=()=>this.ler();
+    $('turboGhost').onclick=()=>{this.ghosts=!this.ghosts; this.log('👻 Ghosts '+(this.ghosts?'ON':'OFF'))};
+    $('turboExport').onclick=()=>this.export();
+    let c=$('turboMap');
+    c.addEventListener('click',e=>{let r=c.getBoundingClientRect();let x=(e.clientX-r.left)/r.width; let idx=Math.floor(x*this.pfad.length); this.pos=idx%this.pfad.length; this.log('🚀 Warp → '+this.pfad[this.pos]+' idx '+this.pos)});
+    window.addEventListener('keydown',e=>{
+      if(e.target.tagName==='INPUT') return;
+      if(e.code==='Space'){e.preventDefault(); this.toggle()}
+      if(e.key.toLowerCase()==='l') this.ler();
+      if(e.key.toLowerCase()==='g') {this.ghosts=!this.ghosts; this.log('👻 Ghosts '+(this.ghosts?'ON':'OFF'))}
+      if(e.key.toLowerCase()==='c') {this.calcWB()}
+      if(e.key.toLowerCase()==='r') {this.pos=0; this.traces=[]; this.log('⟲ TT Reset')}
+    });
+  },
+  calcWB(){
+    // WERTUNG→BEWERTUNG = W / RAM / GPU * wahrheit
+    this.ram = 50+Math.random()*200; this.gpu = 20+Math.random()*60;
+    this.wertung = (Math.random()*2-1 + this.pos/5) * (81/this.pfad[this.pos] || 1);
+    this.bewertung = (this.wertung / (this.ram/100) / (this.gpu/50 +0.5)) * this.wahrheit;
+    document.getElementById('wertungV').textContent=this.wertung.toFixed(3);
+    document.getElementById('bewertungV').textContent=this.bewertung.toFixed(5);
+    document.getElementById('ramV').textContent=Math.round(this.ram)+' MB';
+    document.getElementById('gpuV').textContent=Math.round(this.gpu)+'%';
+    document.getElementById('ttKarteV').textContent='Level '+this.pfad[this.pos];
+    document.getElementById('ttPos').textContent=this.pfad.join(' → ')+' ['+this.pos+']';
+    document.getElementById('ttBar').style.width=(20+this.pos/this.pfad.length*80)+'%';
+    return this.bewertung;
+  },
+  toggle(){
+    this.playing=!this.playing;
+    document.getElementById('turboPlay').textContent=this.playing?'⏸ PAUSE':'▶ TURBO PLAY';
+    this.log(this.playing?'▶ TURBO PLAY '+this.speed+'x':'⏸ PAUSE');
+  },
+  ler(){
+    this.lerState='learning'; this.lerIter=0;
+    let iv=setInterval(()=>{
+      this.lerIter++; this.calcWB();
+      this.traces.push({x:Math.random(),y:Math.random(),b:this.bewertung,w:this.wertung});
+      if(this.traces.length>200) this.traces.shift();
+      document.getElementById('ctrlLer').textContent='learning '+this.lerIter+'/10';
+      this.lerCurve();
+      if(this.lerIter>=10){clearInterval(iv); this.lerState='idle'; document.getElementById('ctrlLer').textContent='trained ✓'; this.log('⌃ ctrl.ler TRAINED 10 iter · B=' + this.bewertung.toFixed(5));}
+    },300);
+    this.log('⌃ ctrl.ler START · 10 Iterationen W→B');
+  },
+  renderGames(){
+    let el=document.getElementById('ttGames');
+    el.innerHTML=this.games.map(g=>`<div style="background:#0a0e1e;border:1px solid ${g.color}33;border-radius:8px;padding:6px 8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="TT.pos=${g.id%TT.pfad.length};TT.log('♟ → ${g.name}');TT.calcWB()">
+    <div><b style="color:${g.color}">${g.id}. ${g.name}</b><br><span style="font-size:8px;color:#5a7288">${g.roots.join('→')} · eval ${g.eval}</span></div>
+    <div style="text-align:right"><span style="font-size:8px;background:${g.color}22;color:${g.color};padding:2px 6px;border-radius:99px">${g.eval>0?'+':''}${g.eval}</span><br><span style="font-size:8px;color:#5a7288">3×ROOT</span></div>
+    </div>`).join('');
+  },
+  draw(){
+    let c=document.getElementById('turboMap'); if(!c) return; let ctx=c.getContext('2d'); let W=c.width,H=c.height;
+    ctx.clearRect(0,0,W,H);
+    // bg grid
+    ctx.strokeStyle='#111827'; ctx.lineWidth=1;
+    for(let i=0;i<W;i+=90){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,H);ctx.stroke()}
+    for(let i=0;i<H;i+=54){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(W,i);ctx.stroke()}
+    // turbo path 81→9→3→9→81
+    let pf=this.pfad; let pts=pf.map((v,i)=>{return {x:(i/pf.length)*W+W/pf.length/2, y:H/2 + Math.sin(i*1.3)*120 - (Math.log(v+1)/Math.log(81))*80, v:v}});
+    // glow line
+    ctx.save(); ctx.shadowColor='#ff4d6d'; ctx.shadowBlur=18; ctx.strokeStyle='#ff4d6d88'; ctx.lineWidth=3; ctx.beginPath(); pts.forEach((p,i)=>{i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y)}); ctx.stroke(); ctx.restore();
+    ctx.strokeStyle='#b388ff'; ctx.lineWidth=2; ctx.beginPath(); pts.forEach((p,i)=>{i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y)}); ctx.stroke();
+    // nodes
+    pts.forEach((p,i)=>{
+      let active=i===this.pos;
+      ctx.fillStyle=active?'#ff4d6d':'#0a0e1e'; ctx.strokeStyle=active?'#ff4d6d':'#2a3644'; ctx.lineWidth=active?3:1.5;
+      ctx.beginPath(); ctx.arc(p.x,p.y,active?22:14,0,Math.PI*2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle=active?'#fff':'#5a7288'; ctx.font=(active?'bold ':'')+'14px monospace'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(p.v,p.x,p.y);
+      ctx.fillStyle='#8a9aaa'; ctx.font='9px monospace'; ctx.fillText('L'+i,p.x,p.y+28);
+    });
+    // ghost traces
+    if(this.ghosts){
+      this.traces.forEach(t=>{
+        ctx.globalAlpha=this.ghostOp*0.5; ctx.fillStyle=t.b>0?'#66ffcc':'#ff4d6d'; ctx.beginPath(); ctx.arc(t.x*W, t.y*H, 3+Math.abs(t.b)*4,0,Math.PI*2); ctx.fill();
+      });
+      ctx.globalAlpha=1;
+    }
+    // TT head
+    if(pts[this.pos]){
+      let p=pts[this.pos]; ctx.fillStyle='#ffd700'; ctx.shadowColor='#ffd700'; ctx.shadowBlur=12; ctx.beginPath(); ctx.arc(p.x,p.y-36,6,0,Math.PI*2); ctx.fill(); ctx.shadowBlur=0;
+      ctx.fillStyle='#ffd700'; ctx.font='10px monospace'; ctx.fillText('TT',p.x,p.y-52);
+    }
+  },
+  lerCurve(){
+    let c=document.getElementById('lerCurve'); if(!c) return; let ctx=c.getContext('2d'); let W=c.width,H=c.height;
+    ctx.clearRect(0,0,W,H); ctx.strokeStyle='#16202a'; ctx.strokeRect(0,0,W,H);
+    if(this.traces.length<2) return;
+    ctx.strokeStyle='#ff4d6d'; ctx.lineWidth=1.5; ctx.beginPath();
+    this.traces.forEach((t,i)=>{let x=i/this.traces.length*W; let y=H/2 - t.w*20; i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)}); ctx.stroke();
+    ctx.strokeStyle='#66ffcc'; ctx.beginPath();
+    this.traces.forEach((t,i)=>{let x=i/this.traces.length*W; let y=H/2 - t.b*60; i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)}); ctx.stroke();
+  },
+  loop(){
+    setInterval(()=>{ if(this.playing){ this.pos=(this.pos+1)%this.pfad.length; this.calcWB(); if(Math.random()<0.6){this.traces.push({x:Math.random(),y:Math.random(),b:this.bewertung,w:this.wertung}); if(this.traces.length>200) this.traces.shift();}} this.draw(); }, 1000/ (this.speed*2+0.5));
+  },
+  log(m){
+    let el=document.getElementById('ttLog'); if(!el) return; let d=document.createElement('div'); d.textContent='['+new Date().toLocaleTimeString()+'] '+m; el.prepend(d);
+    // also to main log
+    let main=document.getElementById('log'); if(main){ let dd=document.createElement('div'); dd.textContent='[TT] '+m; main.prepend(dd);}
+  },
+  export(){
+    let data={tt:'turbokarte', ctrlLer:'W/RAM/GPU*wahrheit', pfad:this.pfad, pos:this.pos, wertung:this.wertung, bewertung:this.bewertung, traces:this.traces.slice(-20), games:this.games};
+    let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); let url=URL.createObjectURL(blob); let a=document.createElement('a'); a.href=url; a.download='tt_turbokarte_ctrl_ler_'+Date.now()+'.json'; a.click(); URL.revokeObjectURL(url); this.log('EXPORT TT JSON');
+  }
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>iki1uc · PC index · ROM/RAM · SCHACH · INDUSTRY · 3^9^81 · eye.brain.open</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05050a;color:#c8d8e8;font-family:'JetBrains Mono',Consolas,monospace;min-height:100vh}
+.wrap{max-width:1480px;margin:0 auto;padding:12px}
+header{border-bottom:2px solid #a8c686;padding-bottom:8px;margin-bottom:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+h1{font-weight:700;letter-spacing:2px;font-size:18px;background:linear-gradient(90deg,#a8c686,#0ff,#ff5a5a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.badge{font-size:9px;background:#101420;padding:4px 10px;border-radius:99px;border:1px solid #2a3a4a;color:#8a9aaa}
+.grid{display:grid;gap:12px}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:1fr 1fr}
+@media(max-width:1100px){.g3{grid-template-columns:1fr 1fr}} @media(max-width:700px){.g3,.g2{grid-template-columns:1fr}}
+.card{background:#0e141c;border:1px solid #1a1a2a;border-radius:12px;padding:12px}
+.card h2{font-size:10px;letter-spacing:1px;color:#5a6a7a;margin-bottom:8px;border-bottom:1px solid #16202a;padding-bottom:4px}
+.row{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #0e1620;font-size:11px}
+.l{color:#5a6a7a} .v{font-weight:700}
+.btn{border:1px solid #2a3a4a;background:#141e28;color:#d0d8e0;border-radius:6px;padding:5px 10px;font-size:9px;cursor:pointer;margin:2px}
+.btn:hover{background:#1e2a36} .btn.green{border-color:#5aff7a;color:#5aff7a} .btn.gold{border-color:#ffd700;color:#ffd700} .btn.cyan{border-color:#0ff;color:#0ff} .btn.mag{border-color:#ff00ff;color:#ff00ff}
+.btn.on{background:#a8c68622}
+canvas{width:100%;background:#08080f;border:1px solid #16202a;border-radius:10px;display:block;margin:6px auto}
+.bar{height:6px;background:#080c12;border:1px solid #16202a;border-radius:6px;overflow:hidden;margin:4px 0}
+.bar i{display:block;height:100%;transition:width .3s}
+.log{height:150px;overflow-y:auto;background:#080c12;border:1px solid #16202a;border-radius:8px;padding:6px 8px;font-size:9px;white-space:pre-wrap;color:#5a6a7a}
+.eq{font-size:9px;text-align:center;padding:5px;background:#080c12;border-radius:6px;border:1px dashed #1a2230;margin:4px 0;color:#8a9aaa}
+.mod{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px}
+.mod a{display:block;background:#0a101a;border:1px solid #1a2230;border-radius:8px;padding:8px;font-size:10px;color:#8a9aaa;text-decoration:none}
+.mod a:hover{border-color:#a8c686;color:#a8c686}
+.tower{display:flex;flex-direction:column;gap:4px}
+.lvl{border-radius:8px;padding:6px 8px;border:1px solid #1a1a2a;display:flex;justify-content:space-between;align-items:center;transition:.2s;cursor:pointer}
+.lvl.on{border-color:#a8c686;box-shadow:0 0 12px rgba(168,198,134,.4)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div>
+<h1>◈ iki1uc · PC INDEX · ROM/RAM · SCHACH LEVEL RAUM · INDUSTRY ABMACHUNG · 3^9^81 · eye.brain.open</h1>
+<div style="font-size:9px;color:#5a6a7a;margin-top:4px">Assimilation = éye.brain.open · Dockeriesieren · PQ→PQ RESPO · DESAMALATZION + PQ Repo · ALLES EINBEZIEHEN</div>
+</div>
+<div class="badge">PC READY · DOCKER READY · eye.brain.open</div>
+</header>
+<div class="grid g3">
+<div class="card">
+<h2>🧠 eye.brain.open · ASSIMILATION · éye</h2>
+<div class="eq">Assimilation = éye.brain.open = Auge → Gehirn → offen = CO₂ → Licht → PQ</div>
+<div class="row"><span class="l">Auge (eye)</span><span class="v" style="color:#00ff88">Licht PAR <span id="lightv">650</span></span></div>
+<input type="range" id="lightr" min="0" max="2000" value="650">
+<div class="row"><span class="l">Brain (Gehirn)</span><span class="v" style="color:#0ff">PQ <span id="pq1v">1.00</span></span></div>
+<input type="range" id="pq1r" min="0" max="2" step="0.01" value="1">
+<div class="row"><span class="l">Open</span><span class="v">CO₂ <span id="co2v">420</span> ppm</span></div>
+<input type="range" id="co2r" min="200" max="1200" value="420">
+<div class="bar"><i id="assimBar" style="width:50%;background:linear-gradient(90deg,#00ff88,#0ff)"></i></div>
+<div class="row"><span class="l">Assim Rate</span><span class="v" style="color:#00ff88" id="assimRate">0.00</span></div>
+<div style="margin-top:6px">
+<button class="btn green" onclick="app.docker()">🐳 DOCKERIESIEREN</button>
+<button class="btn gold" onclick="app.eye()">👁 eye.brain.open</button>
+</div>
+<div class="eq">docker run -v ./iki1uc:/app iki1uc:latest --assimilation eye.brain.open</div>
+</div>
+<div class="card">
+<h2>🗄 ROM // RAM + SCHACH LEVEL RAUM + INDUSTRY</h2>
+<div class="row"><span class="l">ROM</span><span class="v">schach_level_raum.html</span></div>
+<div class="row"><span class="l">RAM</span><span class="v">industry_abmachung_verided_segment.html</span></div>
+<div class="eq">ROM = Read Only Memory = Level Raum fest · RAM = Random Access = Verided Segment variabel</div>
+<div class="mod">
+<a href="#" onclick="app.load('schach');return false"><b>♟ SCHACH LEVEL RAUM</b>nchelpu_schach_level_raum.html<br><span style="font-size:8px;color:#5a6a7a">CUBI → BIO.TEL ATOMICAL</span></a>
+<a href="#" onclick="app.load('industry');return false"><b>🏭 INDUSTRY ABMACHUNG</b>industry_abmachung_verided_segment.html<br><span style="font-size:8px;color:#5a6a7a">Verided Segment</span></a>
+<a href="#" onclick="app.load('rom');return false"><b>💾 ROM</b>Read Only · Schach<br><span style="font-size:8px">fest</span></a>
+<a href="#" onclick="app.load('ram');return false"><b>⚡ RAM</b>Random Access · Industry<br><span style="font-size:8px">variabel</span></a>
+</div>
+<div style="margin-top:8px;position:relative;width:100%;aspect-ratio:4/3;max-height:300px;border-radius:10px;overflow:hidden;border:1px solid #1a2230;background:#05070c">
+<iframe id="subFrame" src="about:blank" style="width:100%;height:100%;border:0"></iframe>
+<div id="frameLabel" style="position:absolute;top:6px;left:6px;background:#0e141cdd;padding:3px 8px;border-radius:99px;border:1px solid #2a3a4a;font-size:9px;color:#a8c686">ROM/RAM · idle</div>
+</div>
+</div>
+<div class="card">
+<h2>🔥 DESIMILATION · PQ2 · SENKE</h2>
+<div class="row"><span class="l">PQ2</span><span class="v" id="pq2v">1.00</span></div>
+<input type="range" id="pq2r" min="0" max="2" step="0.01" value="1">
+<div class="row"><span class="l">O₂% / Temp</span><span class="v"><span id="o2v">21</span>% / <span id="tempv">24</span>°C</span></div>
+<div class="grid g2"><input type="range" id="o2r" min="5" max="30" value="21"><input type="range" id="tempr" min="0" max="45" value="24"></div>
+<div class="bar"><i id="desimBar" style="width:45%;background:linear-gradient(90deg,#ff5a5a,#ff00ff)"></i></div>
+<div class="row"><span class="l">Desim Rate</span><span class="v" style="color:#ff5a5a" id="desimRate">0.00</span></div>
+<div class="eq">Desim = Abbau = Oxidation = O₂ + Temp → CO₂</div>
+<div class="row"><span class="l">Netto</span><span class="v" id="netv" style="color:#ffd700">0.00</span></div>
+<div class="bar"><i id="netBar" style="width:50%;background:linear-gradient(90deg,#ffd700,#ff00ff)"></i></div>
+<div class="row"><span class="l">RQ</span><span class="v" id="rqv">0.92</span><span class="l">PQnet</span><span class="v" id="pqnet">1.00</span></div>
+<button class="btn mag" onclick="app.boost('desim')">DESIM +</button><button class="btn cyan" onclick="app.sync()">SYNC 81→9→3→9→81</button>
+</div>
+</div>
+<div class="grid g2" style="margin-top:12px">
+<div class="card">
+<h2>♾ 3^9^81 · TETRATION TOWER · INDUSTRY HOCH</h2>
+<div class="tower" id="tower"></div>
+<canvas id="towerCanvas" width="420" height="180"></canvas>
+<div class="row"><span class="l">BigInt 9⁸¹</span><span class="v" id="bigDigits">78 digits</span></div>
+<div class="log" id="bigLog" style="height:80px">BigInt wird berechnet...</div>
+<div class="grid g2">
+<button class="btn green" id="computeBtn">COMPUTE 9⁸¹</button>
+<button class="btn cyan" id="estimateBtn">ESTIMATE 3^9^81</button>
+<button class="btn gold" id="deployBtn">DEPLOY INDUSTRY 81 shards</button>
+<button class="btn" id="oliveBtn">🫒 OLIVE PRESS ×7</button>
+</div>
+<div class="eq">3^9 = 19683 · 9^81 = 3^162 · 3^(9^81) digits ≈ 2.11×10⁷⁷ · 9^(9^81) digits ≈ 4.23×10⁷⁷</div>
+<div class="bar"><i id="shardBar" style="width:0%;background:linear-gradient(90deg,#a8c686,#0ff)"></i></div>
+<div class="row"><span class="l">Shards</span><span class="v" id="shardv">0/81</span><span class="l">Olive Drops</span><span class="v" id="olivev">0</span></div>
+</div>
+<div class="card">
+<h2>🌀 PFAD 81→9→3→9→81 + PQ→PQ RESPO</h2>
+<canvas id="orbit" width="420" height="280"></canvas>
+<canvas id="curve" width="420" height="100"></canvas>
+<div class="row"><span class="l">Pfad</span><span class="v" id="pIdx">0 · 81</span><span class="l">Mode</span><span class="v" id="modev">STAGE</span></div>
+<div class="row"><span class="l">pump/6 /8 · Krümmung</span><span class="v"><span id="fA">0</span>/<span id="fB">0</span> · <span id="krum">0.000</span></span></div>
+<div class="grid g2">
+<button class="btn" id="loopBtn">▶ LOOP</button><button class="btn gold" id="stepBtn">▶ STEP</button>
+<button class="btn green" id="solveBtn">◈ PHYTHAROZ LÖSEN</button><button class="btn cyan" id="exportBtn">EXPORT JSON</button>
+</div>
+<div class="log" id="log" style="height:100px">◈ PC index geladen · ROM/RAM · SCHACH · INDUSTRY · 3^9^81 · eye.brain.open
+Assimilation = éye.brain.open
+Dockeriesieren bereit.
+</div>
+</div>
+</div>
+<div class="card" style="margin-top:12px">
+<h2>🗂 ALLE MODULE · iki1uc/PQ · ALLES EINBEZIEHEN · PC</h2>
+<div style="font-size:8px;color:#5a6a7a;margin-bottom:6px">apfel,arbeit,city,city.js,deep,evo.js,hand,hot.swab,joker,live.9,lvl,master.cache,narr,neu.home,new.ort,oio,ort,our.arbeit,pipeline.use,scan,scsi.raid,tmp,tool.prism,ufo,wahn,world,zauber,bio-js,ort..js,home.md,move.md + schach_level_raum + industry_abmachung + 3^9^81 tower + eye.brain.open</div>
+<div class="mod" id="allMods"></div>
+<div style="margin-top:10px;position:relative;width:100%;aspect-ratio:16/9;max-height:70vh;border-radius:12px;overflow:hidden;border:1px solid #1a2230;background:#05070c">
+<iframe id="allFrame" src="apfel.html" style="width:100%;height:100%;border:0"></iframe>
+<div id="allLabel" style="position:absolute;top:8px;left:8px;background:#0e141cdd;padding:4px 10px;border-radius:99px;border:1px solid #2a3a4a;font-size:10px;color:#ffd700">▶ apfel.html</div>
+</div>
+</div>
+</div>
+<script>
+const app={
+ pq1:1,pq2:1,co2:420,light:650,o2:21,temp:24,assim:0,desim:0,linked:true,pfad:[81,9,3,9,81],pIdx:0,pump:0,loopT:null,
+ shards:0,olives:0,
+ levels:[
+  {id:0,exp:"3",label:"LEVEL 0 · BASE",short:"3",digits:"1",color:"#5aff7a"},
+  {id:1,exp:"9 = 3²",label:"LEVEL 1 · 3²",short:"9",digits:"1",color:"#6b6bff"},
+  {id:2,exp:"81 = 9² = 3⁴",label:"LEVEL 2 · 9²",short:"81",digits:"2",color:"#0ff"},
+  {id:3,exp:"9⁸¹ = 3¹⁶²",label:"LEVEL 3 · 9⁸¹",short:"9⁸¹",digits:"78",color:"#a8c686"},
+  {id:4,exp:"3^(9⁸¹)",label:"LEVEL 4 · 3^(9⁸¹)",short:"3^(9⁸¹)",digits:"~2.11×10⁷⁷",color:"#ff5a5a"}
+ ],
+ init(){
+  this.bind(); this.renderTower(); this.renderAllMods(); this.calc(); this.orbit(); this.compute();
+  this.log("◈ PC INDEX · ROM/RAM · SCHACH LEVEL RAUM · INDUSTRY ABMACHUNG · 3^9^81 · eye.brain.open geladen");
+ },
+ bind(){
+  const $=id=>document.getElementById(id);
+  $('pq1r').addEventListener('input',e=>{this.pq1=parseFloat(e.target.value);this.calc()});
+  $('pq2r').addEventListener('input',e=>{this.pq2=parseFloat(e.target.value);this.calc()});
+  $('co2r').addEventListener('input',e=>{this.co2=parseFloat(e.target.value);this.calc()});
+  $('lightr').addEventListener('input',e=>{this.light=parseFloat(e.target.value);this.calc()});
+  $('o2r').addEventListener('input',e=>{this.o2=parseFloat(e.target.value);this.calc()});
+  $('tempr').addEventListener('input',e=>{this.temp=parseFloat(e.target.value);this.calc()});
+  $('computeBtn').onclick=()=>this.compute();
+  $('estimateBtn').onclick=()=>this.estimate();
+  $('deployBtn').onclick=()=>this.deploy();
+  $('oliveBtn').onclick=()=>this.olive();
+  $('loopBtn').onclick=()=>this.loop();
+  $('stepBtn').onclick=()=>this.sync();
+  $('solveBtn').onclick=()=>this.solve();
+  $('exportBtn').onclick=()=>this.export();
+ },
+ calc(){
+  const Kco2=400,Ko2=15;
+  this.assim=this.pq1*(this.light/1000)*(this.co2/(Kco2+this.co2))*(1+this.pfad[this.pIdx]/81*0.3);
+  this.desim=this.pq2*(this.temp/25)*(this.o2/(Ko2+this.o2))*(0.8+this.pfad[this.pIdx]/81*0.2);
+  let net=this.assim-this.desim;
+  let rq=(this.co2/1000)/(this.o2/21)*(this.desim/(this.assim+0.001));
+  let netPQ=this.linked?(this.pq1+this.pq2)/2*(1+net*0.1):this.pq1;
+  this.pump++;
+  document.getElementById('pq1v').textContent=this.pq1.toFixed(2);
+  document.getElementById('pq2v').textContent=this.pq2.toFixed(2);
+  document.getElementById('co2v').textContent=this.co2;
+  document.getElementById('lightv').textContent=this.light;
+  document.getElementById('o2v').textContent=this.o2;
+  document.getElementById('tempv').textContent=this.temp;
+  document.getElementById('assimRate').textContent=this.assim.toFixed(3);
+  document.getElementById('desimRate').textContent=this.desim.toFixed(3);
+  document.getElementById('netv').textContent=(net>0?"+":"")+net.toFixed(3);
+  document.getElementById('rqv').textContent=rq.toFixed(2);
+  document.getElementById('pqnet').textContent=netPQ.toFixed(2);
+  document.getElementById('assimBar').style.width=Math.min(100,this.assim*60)+"%";
+  document.getElementById('desimBar').style.width=Math.min(100,this.desim*60)+"%";
+  document.getElementById('netBar').style.width=Math.min(100,50+net*20)+"%";
+  document.getElementById('fA').textContent=(this.pump/6).toFixed(1);
+  document.getElementById('fB').textContent=(this.pump/8).toFixed(1);
+  document.getElementById('krum').textContent=((this.assim+this.desim)/2).toFixed(3);
+  document.getElementById('pIdx').textContent=this.pIdx+" · "+this.pfad[this.pIdx];
+  this.curve();
+ },
+ curve(){
+  const c=document.getElementById('curve'),ctx=c.getContext('2d');const w=c.width,h=c.height;ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle="#1a2230";ctx.strokeRect(0,0,w,h);
+  ctx.strokeStyle="#00ff88";ctx.lineWidth=2;ctx.beginPath();for(let x=0;x<w;x++){let p=x/w;let y=h-(this.assim*30+Math.sin(p*10+this.pIdx)*10+p*20);if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();
+  ctx.strokeStyle="#ff5a5a";ctx.beginPath();for(let x=0;x<w;x++){let p=x/w;let y=h-(this.desim*30+Math.cos(p*8+this.pIdx)*10+p*10);if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();
+  ctx.strokeStyle="#ffd700";ctx.setLineDash([4,4]);ctx.beginPath();for(let x=0;x<w;x++){let y=h-((this.assim-this.desim)*20+h/2);if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();ctx.setLineDash([]);
+ },
+ orbit(){
+  const c=document.getElementById('orbit'),ctx=c.getContext('2d');const w=c.width,h=c.height,cx=w/2,cy=h/2-10,r=100;
+  ctx.clearRect(0,0,w,h);
+  let axes=["d","e","i","n","o","r","s","u","w"];let t=Date.now()/1000;
+  let pts=axes.map((_,i)=>{let a=(i/axes.length)*Math.PI*2-Math.PI/2;return {x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)}});
+  ctx.strokeStyle="#1a2230";ctx.beginPath();pts.forEach((p,i)=>{let n=pts[(i+1)%pts.length];ctx.moveTo(p.x,p.y);ctx.lineTo(n.x,n.y)});ctx.stroke();
+  pts.forEach((p,i)=>{let active=i===this.pIdx%9;ctx.fillStyle=active?"#ffd700":"#0e141c";ctx.beginPath();ctx.arc(p.x,p.y,active?14:9,0,Math.PI*2);ctx.fill();ctx.strokeStyle=active?"#ffd700":"#2a3a4a";ctx.stroke();ctx.fillStyle=active?"#000":"#5a6a7a";ctx.font="11px monospace";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(axes[i],p.x,p.y)});
+  let prog=(Math.sin(t*1.2)+1)/2;let x=cx+(prog*2-1)*r*0.8;let y=cy+Math.sin(t*2)*15;ctx.fillStyle=this.linked?"#ffd700":"#555";ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fill();
+  requestAnimationFrame(()=>this.orbit());
+ },
+ renderTower(){
+  let el=document.getElementById('tower');
+  el.innerHTML=this.levels.map(l=>`<div class="lvl ${l.id===this.pIdx?'on':''}" style="border-color:${l.color}22;background:${l.color}11" onclick="app.selectLevel(${l.id})"><div><b style="color:${l.color}">${l.short}</b> <span style="font-size:9px;color:#8a9aaa">${l.exp}</span></div><div style="font-size:9px;color:${l.color}">${l.digits} digits</div></div>`).join('');
+  let c=document.getElementById('towerCanvas'),ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);
+  let w=c.width,h=c.height; this.levels.slice().reverse().forEach((l,i)=>{
+    let widthPct=(l.id+1)/5*80+20; let ww=w*widthPct/100; let x=(w-ww)/2; let hh=h/5.5; let y=i*(hh+4)+10;
+    ctx.fillStyle=l.color+(this.pIdx===l.id?"44":"22"); ctx.strokeStyle=l.color+"88"; ctx.lineWidth=this.pIdx===l.id?2:1;
+    ctx.beginPath(); ctx.roundRect?ctx.roundRect(x,y,ww,hh,6):ctx.rect(x,y,ww,hh); ctx.fill(); ctx.stroke();
+    ctx.fillStyle="#fff"; ctx.font="10px monospace"; ctx.textAlign="center"; ctx.fillText(l.short,w/2,y+hh/2+3);
+  });
+ },
+ selectLevel(id){this.pIdx=id%this.pfad.length;this.renderTower();this.calc();this.log("◈ Level → "+this.levels[id].label);},
+ compute(){
+  try{let start=performance.now();let big=(9n**81n).toString();let end=performance.now();document.getElementById('bigDigits').textContent=big.length+" digits · "+(end-start).toFixed(2)+"ms";document.getElementById('bigLog').textContent=big.slice(0,60)+"…"+big.slice(-30)+"\nBigInt exact · 78 digits expected · log10≈77.393";this.log("◆ COMPUTE 9⁸¹ · "+big.length+" digits · BigInt exact");}catch(e){document.getElementById('bigLog').textContent="BigInt error: "+e.message}
+ },
+ estimate(){this.log("∑ ESTIMATE · log10(9⁸¹)=77.393 · 9⁸¹≈1.966e77 · digits 3^(9⁸¹)≈2.115e77 · 9^(9⁸¹)≈4.23e77 · storage need ~0.2% atoms of universe"); document.getElementById('bigLog').textContent+="\nESTIMATE:\n3^(9⁸¹) digits ≈2.11×10⁷⁷\n9^(9⁸¹) digits ≈4.23×10⁷⁷\nRatio 9-tower/3-tower = 3^(9⁸¹)";},
+ deploy(){if(this._deploying)return; this._deploying=true; let i=0; let int=setInterval(()=>{i+=Math.floor(Math.random()*4)+1; if(i>=81){i=81; clearInterval(int); this._deploying=false; this.log("◆ DEPLOYED · 81/81 shards · SHARDED · LOGGED · MONITORED · OLIVE-PRESSED");} this.shards=i; document.getElementById('shardv').textContent=i+"/81"; document.getElementById('shardBar').style.width=i/81*100+"%"; if(i%9===0) this.log("  shard "+i+"/81 · "+(Math.random()>0.5?"3hoch":"9hoch")+" node ready");},180); this.log("▶ DEPLOY INDUSTRY · sharding tetration tower · 3 nodes for 3hoch · 9 nodes for 9hoch · 81 shards for 9⁸¹");},
+ olive(){this.olives+=7; document.getElementById('olivev').textContent=this.olives; this.log("🫒 OLIVE PRESS ×7 · total "+this.olives+" · 7 drops → 81 Zellen trigger"); this.shards=Math.min(81,this.shards+1); document.getElementById('shardv').textContent=this.shards+"/81"; document.getElementById('shardBar').style.width=this.shards/81*100+"%";},
+ sync(){this.pIdx=(this.pIdx+1)%this.pfad.length;let modes={0:'STAGE',1:'AIR',2:'AIV',3:'OMNI',4:'STAGE'};document.getElementById('modev').textContent=modes[this.pIdx%5];this.renderTower();this.calc();this.log("⟲ SYNC Pfad "+this.pfad.join("→")+" i="+this.pIdx);},
+ loop(){if(this.loopT){clearInterval(this.loopT);this.loopT=null;this.log("⏹ Loop stop")}else{this.loopT=setInterval(()=>this.sync(),500);this.log("▶ Loop 81→9→3→9→81");}},
+ solve(){this.pq1=1.18;this.pq2=1.18;this.co2=550;this.light=900;this.o2=21;this.temp=24;document.getElementById('pq1r').value=1.18;document.getElementById('pq2r').value=1.18;this.calc();this.log("◈ PHYTHAROZ ⊤ GELOEST · Assim=Desim Netto 0 · PQ 1.18 · ROM/RAM sync · eye.brain.open");},
+ export(){let data={repo:"iki1uc/PQ",rom:"schach_level_raum",ram:"industry_abmachung",tower:"3^9^81",assimilation:"eye.brain.open",pq1:this.pq1,pq2:this.pq2,co2:this.co2,light:this.light,o2:this.o2,temp:this.temp,assim:this.assim,desim:this.desim,net:this.assim-this.desim,shards:this.shards,olives:this.olives,pfad:this.pfad,pIdx:this.pIdx,legal:true};let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download=`iki1uc_pc_index_${Date.now()}.json`;a.click();URL.revokeObjectURL(url);this.log("EXPORT JSON Download");},
+ docker(){this.log("🐳 DOCKERIESIEREN · Dockerfile: FROM node:alpine · COPY ./iki1uc /app · EXPOSE 8080 · CMD [\"node\",\"eye.brain.open.js\"]");this.log("  docker build -t iki1uc:latest . && docker run -p 8080:8080 -v ./iki1uc:/app iki1uc:latest --assimilation eye.brain.open --tower 3^9^81");},
+ eye(){this.pq1=1.4;this.light=1200;this.co2=600;document.getElementById('pq1r').value=1.4;document.getElementById('lightr').value=1200;document.getElementById('co2r').value=600;this.calc();this.log("👁 eye.brain.open → Auge=1200 PAR · Gehirn=PQ 1.4 · Open=600 ppm CO₂ · Assimilation ↑");},
+ load(t){
+  let frame=document.getElementById('subFrame'),label=document.getElementById('frameLabel');
+  if(t==='schach'){frame.srcdoc="<h1 style='color:#a8c686;font-family:monospace;padding:20px'>♟ SCHACH LEVEL RAUM<br><br>ROM: fest<br>Level 0-4: 3 → 9 → 81 → 9⁸¹ → 3^(9⁸¹)<br><br>CUBI → BIO.TEL ATOMICAL<br>Jedem Zug ein neues Atom, Zylinder 9x9</h1>"; label.textContent="♟ nchelpu_schach_level_raum.html · ROM";}
+  else if(t==='industry'){frame.srcdoc="<h1 style='color:#0ff;font-family:monospace;padding:20px'>🏭 INDUSTRY ABMACHUNG VERIDED SEGMENT<br><br>RAM: variabel<br>Sharding 81 → 10⁷⁷<br>Abmachung: 3 nodes 3hoch, 9 nodes 9hoch<br><br>Verided Segment = verifiziertes Segment</h1>"; label.textContent="🏭 industry_abmachung_verided_segment.html · RAM";}
+  else if(t==='rom'){frame.srcdoc="<h1 style='color:#ffd700;font-family:monospace;padding:20px'>💾 ROM<br>Read Only Memory<br>Schach Level Raum fest gespeichert</h1>"; label.textContent="💾 ROM";}
+  else if(t==='ram'){frame.srcdoc="<h1 style='color:#ff5a5a;font-family:monospace;padding:20px'>⚡ RAM<br>Random Access Memory<br>Industry Abmachung variabel</h1>"; label.textContent="⚡ RAM";}
+  this.log("🗂 Load "+t+" · ROM/RAM");
+ },
+ renderAllMods(){
+  let files=["apfel.html","arbeit.html","city.html","city.js","deep.html","evo.js","hand.html","hot.swab.html","joker.html","live.9.html","lvl.html","master.cache.html","narr.html","neu.home.html","new.ort.html","oio.html","ort.html","our.arbeit.html","pipeline.use.html","scan.html","scsi.raid.html","tmp.html","tool.prism.html","ufo.html","wahn.html","world.html","zauber.html","bio-js","ort..js","home.md","move.md","nchelpu_schach_level_raum.html","industry_abmachung_verided_segment.html"];
+  let el=document.getElementById('allMods');
+  el.innerHTML=files.map(f=>`<a href="#" onclick="document.getElementById('allFrame').src='${f}';document.getElementById('allLabel').textContent='▶ ${f}';app.log('🗂 Modul → ${f}');return false">${f}</a>`).join('');
+ },
+ log(m){let l=document.getElementById('log');let d=document.createElement('div');d.textContent="["+new Date().toLocaleTimeString()+"] "+m;l.prepend(d);}
+};
+document.addEventListener('DOMContentLoaded',()=>app.init());
+</script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PQ→PQ RESPO · ASSIMILATION ⇄ DESIMILATION · iki1uc</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05080c;color:#d0d8e0;font-family:Consolas,monospace;min-height:100vh;background-image:radial-gradient(ellipse at 30% 20%, #0d1a2a, #050608)}
+.wrap{max-width:1440px;margin:0 auto;padding:12px}
+header{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #ffd700;padding-bottom:8px;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+h1{font-weight:300;letter-spacing:3px;font-size:22px;background:linear-gradient(135deg,#ffd700,#00e5ff,#ff66ff,#b388ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.badge{font-size:11px;background:#101820;padding:4px 14px;border-radius:99px;border:1px solid #2a3a4a}
+.grid{display:grid;gap:12px}
+.g3{grid-template-columns:1fr 1fr 1fr}
+.g2{grid-template-columns:1fr 1fr}
+@media(max-width:1100px){.g3{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.g3,.g2{grid-template-columns:1fr}}
+.card{background:#0e141c;border:1px solid #1a2230;border-radius:12px;padding:12px;position:relative;overflow:hidden}
+.card h2{font-size:11px;letter-spacing:1px;color:#5a6a7a;margin-bottom:8px;border-bottom:1px solid #16202a;padding-bottom:4px}
+.row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #0e1620;font-size:11px}
+.row .l{color:#5a6a7a} .row .v{font-weight:700}
+input[type=range]{width:100%;accent-color:#ffd700}
+.btn{border:1px solid #2a3a4a;background:#141e28;color:#d0d8e0;border-radius:5px;padding:5px 10px;font-size:10px;cursor:pointer;letter-spacing:1px}
+.btn:hover{background:#1e2a36}
+.btn.gold{border-color:#ffd700;color:#ffd700}
+.btn.gold.on{background:#ffd70022;box-shadow:0 0 10px #ffd70044}
+.btn.cyan{border-color:#00e5ff;color:#00e5ff}
+.btn.mag{border-color:#ff00ff;color:#ff00ff}
+.btn.green{border-color:#00ff88;color:#00ff88}
+canvas{width:100%;max-width:420px;background:#0a0e14;border:1px solid #16202a;border-radius:10px;display:block;margin:6px auto}
+.bar{height:6px;background:#080c12;border:1px solid #16202a;border-radius:6px;overflow:hidden;margin:4px 0}
+.bar i{display:block;height:100%;transition:width .3s}
+.log{height:140px;overflow-y:auto;background:#080c12;border:1px solid #16202a;border-radius:8px;padding:6px 8px;font-size:10px;line-height:1.5;white-space:pre-wrap;color:#5a6a7a}
+.pqnode{border:1px solid #1a2230;border-radius:10px;padding:10px;background:#0a101a}
+.pqnode.active{border-color:#ffd700;box-shadow:0 0 12px rgba(255,215,0,.15)}
+.eq{font-size:11px;text-align:center;padding:6px;background:#080c12;border-radius:6px;border:1px dashed #1a2230;margin:6px 0;color:#8a9aaa}
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;margin:8px 0}
+.arrow{font-size:18px;color:#ffd700;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:.4}50%{opacity:1}}
+.matrix{display:grid;grid-template-columns:repeat(9,1fr);gap:2px}
+.cell{aspect-ratio:1;background:#0e0e1a;border:1px solid #1a1a2a;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7px;color:#666}
+.cell.on{border-color:#ff66ff;background:rgba(255,102,255,.08);color:#ffd700}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>◈ PQ→PQ · RESPO · ASSIMILATION ⇄ DESIMILATION · iki1uc · DESAMALATZION</h1>
+<div class="badge"><span style="display:inline-block;width:8px;height:8px;background:#00ff88;border-radius:50%;box-shadow:0 0 8px #00ff88aa;margin-right:6px"></span>PQ LINK AKTIV</div>
+</header>
+<div class="grid g3">
+<div class="card">
+<h2>🫁 PQ1 · QUELLE · ASSIMILATION (Aufbau)</h2>
+<div class="pqnode active" id="pq1">
+<div class="row"><span class="l">PQ1 (O₂/CO₂)</span><span class="v" id="pq1v">1.00</span></div>
+<input type="range" id="pq1r" min="0" max="2" step="0.01" value="1">
+<div class="row"><span class="l">CO₂ In</span><span class="v" id="co2in">420 ppm</span></div>
+<input type="range" id="co2r" min="200" max="1200" value="420">
+<div class="row"><span class="l">Licht (PAR)</span><span class="v" id="lightv">650</span></div>
+<input type="range" id="lightr" min="0" max="2000" value="650">
+<div class="eq">Assimilation = PQ × Licht × CO₂ / (K + CO₂) · 81→9→3</div>
+<div class="bar"><i id="assimBar" style="width:55%;background:linear-gradient(90deg,#00ff88,#00e5ff)"></i></div>
+<div class="row"><span class="l">Rate Assim</span><span class="v" style="color:#00ff88" id="assimRate">0.00</span></div>
+</div>
+<div class="row" style="margin-top:8px"><button class="btn green" onclick="app.boost('assim')">🟩 ASSIM +0.1</button><button class="btn" onclick="app.boost('co2')">CO₂ +50</button></div>
+</div>
+<div class="card">
+<h2>⚡ RESPO INTERFACE · PQ→PQ</h2>
+<canvas id="orbit" width="420" height="340"></canvas>
+<div class="flow">
+<div class="pqnode" style="padding:6px 12px"><b id="flowPQ1">PQ1 1.00</b></div>
+<div class="arrow">⟶</div>
+<div class="pqnode" style="padding:6px 10px;background:#141e28;border-color:#ff00ff"><b>RESPO</b><br><span style="font-size:9px" id="rqv">RQ 0.92</span></div>
+<div class="arrow">⟶</div>
+<div class="pqnode" style="padding:6px 12px"><b id="flowPQ2">PQ2 1.00</b></div>
+</div>
+<div class="eq">RQ = CO₂_out / O₂_in · PQ = O₂_out / CO₂_in · Netto = Assim − Desim</div>
+<div class="bar"><i id="respoBar" style="width:50%;background:linear-gradient(90deg,#ffd700,#ff00ff,#00e5ff)"></i></div>
+<div class="grid g2">
+<div class="row"><span class="l">Netto PQ</span><span class="v" id="netPQ" style="color:#ffd700">1.00</span></div>
+<div class="row"><span class="l">Bilanz</span><span class="v" id="bilanz">+0.00</span></div>
+</div>
+<div style="margin-top:6px" class="grid g2">
+<button class="btn gold on" id="linkBtn" onclick="app.toggleLink()">◈ PQ LINK ON</button>
+<button class="btn cyan" onclick="app.sync()">⟲ SYNC 81→9→3→9→81</button>
+</div>
+<div class="matrix" id="matrix"></div>
+</div>
+<div class="card">
+<h2>🔥 PQ2 · SENKE · DESIMILATION (Abbau)</h2>
+<div class="pqnode" id="pq2">
+<div class="row"><span class="l">PQ2 (O₂/CO₂)</span><span class="v" id="pq2v">1.00</span></div>
+<input type="range" id="pq2r" min="0" max="2" step="0.01" value="1">
+<div class="row"><span class="l">O₂ Out</span><span class="v" id="o2out">21%</span></div>
+<input type="range" id="o2r" min="5" max="30" value="21">
+<div class="row"><span class="l">Temp (°C)</span><span class="v" id="tempv">24°C</span></div>
+<input type="range" id="tempr" min="0" max="45" value="24">
+<div class="eq">Desimilation = PQ × Temp × O₂ / (K + O₂) · 9→81</div>
+<div class="bar"><i id="desimBar" style="width:45%;background:linear-gradient(90deg,#ff6b6b,#ff00ff)"></i></div>
+<div class="row"><span class="l">Rate Desim</span><span class="v" style="color:#ff6b6b" id="desimRate">0.00</span></div>
+</div>
+<div class="row" style="margin-top:8px"><button class="btn mag" onclick="app.boost('desim')">🟥 DESIM +0.1</button><button class="btn" onclick="app.boost('temp')">TEMP +2°</button></div>
+</div>
+</div>
+<div class="grid g2">
+<div class="card">
+<h2>📊 ASSIMILATION ⇄ DESIMILATION KURVEN</h2>
+<canvas id="curve" width="680" height="200"></canvas>
+<div class="row"><span class="l">Formel A pump/6</span><span class="v" id="formA">0.00</span> <span class="l">Formel B pump/8</span><span class="v" id="formB">0.00</span></div>
+<div class="row"><span class="l">Krümmung</span><span class="v" id="krum">0.000</span> <span class="l">Pfad</span><span class="v" id="pfad">81→9→3→9→81</span></div>
+<div class="grid g2" style="margin-top:6px">
+<button class="btn gold" onclick="app.step()">▶ STEP PFAD</button>
+<button class="btn" onclick="app.loop()">▶ LOOP</button>
+<button class="btn green" onclick="app.mode('ASSIM')">ASSIM MODE</button>
+<button class="btn mag" onclick="app.mode('DESIM')">DESIM MODE</button>
+</div>
+</div>
+<div class="card">
+<h2>📜 CHRONIK · iki1uc · DESAMALATZION</h2>
+<div class="log" id="log">◈ PQ→PQ RESPO Interface geladen.
+Public repo iki1uc · Files: 3js,81.js,api.js,RUN.work etc.
+Warte auf Link...
+</div>
+<div style="margin-top:8px" class="grid g2">
+<button class="btn cyan" onclick="app.exportData()">EXPORT JSON (legal)</button>
+<button class="btn gold" onclick="app.solve()">◈ PHYTHAROZ = ASSIM+DESSIM ⊤ LÖSEN</button>
+</div>
+<div style="margin-top:8px;font-size:9px;color:#5a6a7a">
+Public repo: iki1uc · DESAMALATZION · nur legale Daten · alles lokal im Browser. Keine PII. PQ = Photosynthese-Quotient, RQ = Respirations-Quotient. Assimilation = CO₂-Fixierung, Desimilation = Oxidativer Abbau.
+</div>
+</div>
+</div>
+</div>
+<script>
+const app={
+ pq1:1, pq2:1, co2:420, light:650, o2:21, temp:24,
+ assim:0, desim:0, rq:0.92, linked:true, pfad:[81,9,3,9,81], pIdx:0, loopT:null, pump:0,
+ init(){
+  this.bind(); this.calc(); this.drawOrbit(); this.drawCurve(); this.drawMatrix();
+  this.log("◈ Interface PQ→PQ RESPO aktiv · ASSIM ⇄ DESIM getrennt regelbar");
+  this.log("▸ Nutze Slider: PQ1/CO2/Licht für Assimilation, PQ2/O2/Temp für Desimilation. Link verbindet.");
+ },
+ bind(){
+  const $=id=>document.getElementById(id);
+  $('pq1r').addEventListener('input',e=>{this.pq1=parseFloat(e.target.value); this.calc()});
+  $('pq2r').addEventListener('input',e=>{this.pq2=parseFloat(e.target.value); this.calc()});
+  $('co2r').addEventListener('input',e=>{this.co2=parseFloat(e.target.value); this.calc()});
+  $('lightr').addEventListener('input',e=>{this.light=parseFloat(e.target.value); this.calc()});
+  $('o2r').addEventListener('input',e=>{this.o2=parseFloat(e.target.value); this.calc()});
+  $('tempr').addEventListener('input',e=>{this.temp=parseFloat(e.target.value); this.calc()});
+ },
+ calc(){
+  const Kco2=400, Ko2=15;
+  this.assim = this.pq1 * (this.light/1000) * (this.co2/(Kco2+this.co2)) * (1+ this.pfad[this.pIdx]/81*0.3);
+  this.desim = this.pq2 * (this.temp/25) * (this.o2/(Ko2+this.o2)) * (0.8+ this.pfad[this.pIdx]/81*0.2);
+  this.rq = (this.co2/1000) / (this.o2/21) * (this.desim/(this.assim+0.001));
+  let net = this.assim - this.desim;
+  let netPQ = this.linked ? (this.pq1+this.pq2)/2 * (1+ net*0.1) : this.pq1;
+  this.pump++;
+  document.getElementById('pq1v').textContent=this.pq1.toFixed(2);
+  document.getElementById('pq2v').textContent=this.pq2.toFixed(2);
+  document.getElementById('co2in').textContent=this.co2+" ppm";
+  document.getElementById('lightv').textContent=this.light;
+  document.getElementById('o2out').textContent=this.o2+"%";
+  document.getElementById('tempv').textContent=this.temp+"°C";
+  document.getElementById('assimRate').textContent=this.assim.toFixed(3);
+  document.getElementById('desimRate').textContent=this.desim.toFixed(3);
+  document.getElementById('rqv').textContent="RQ "+this.rq.toFixed(2);
+  document.getElementById('flowPQ1').textContent="PQ1 "+this.pq1.toFixed(2);
+  document.getElementById('flowPQ2').textContent="PQ2 "+this.pq2.toFixed(2);
+  document.getElementById('netPQ').textContent=netPQ.toFixed(3);
+  document.getElementById('bilanz').textContent=(net>0?"+":"")+net.toFixed(3);
+  document.getElementById('bilanz').style.color=net>=0?"#00ff88":"#ff6b6b";
+  document.getElementById('assimBar').style.width=Math.min(100,this.assim*60)+"%";
+  document.getElementById('desimBar').style.width=Math.min(100,this.desim*60)+"%";
+  document.getElementById('respoBar').style.width=Math.min(100,50+net*20)+"%";
+  document.getElementById('formA').textContent=(this.pump/6).toFixed(2);
+  document.getElementById('formB').textContent=(this.pump/8).toFixed(2);
+  document.getElementById('krum').textContent=((this.assim+this.desim)/2).toFixed(3);
+  this.drawCurve();
+ },
+ drawOrbit(){
+  const c=document.getElementById('orbit'), ctx=c.getContext('2d'); const w=c.width,h=c.height,cx=w/2,cy=h/2-10,r=110;
+  ctx.clearRect(0,0,w,h);
+  let axes=["d","e","i","n","o","r","s","u","w"]; let t=Date.now()/1000;
+  let pts=axes.map((_,i)=>{let a=(i/axes.length)*Math.PI*2-Math.PI/2; return {x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)}});
+  ctx.strokeStyle="#1a2230"; ctx.beginPath(); pts.forEach((p,i)=>{let n=pts[(i+1)%pts.length]; ctx.moveTo(p.x,p.y); ctx.lineTo(n.x,n.y)}); ctx.stroke();
+  pts.forEach((p,i)=>{let active=i===this.pIdx%9; ctx.fillStyle=active?"#ffd700":"#0e141c"; ctx.beginPath(); ctx.arc(p.x,p.y,active?16:10,0,Math.PI*2); ctx.fill(); ctx.strokeStyle=active?"#ffd700":"#2a3a4a"; ctx.stroke(); ctx.fillStyle=active?"#000":"#5a6a7a"; ctx.font="12px monospace"; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText(axes[i],p.x,p.y)});
+  // PQ flow dot
+  let prog=(Math.sin(t*1.2)+1)/2; let x=cx+(prog*2-1)*r*0.8; let y=cy+Math.sin(t*2)*20; ctx.fillStyle=this.linked?"#ffd700":"#555"; ctx.beginPath(); ctx.arc(x,y,6,0,Math.PI*2); ctx.fill();
+  requestAnimationFrame(()=>this.drawOrbit());
+ },
+ drawCurve(){
+  const c=document.getElementById('curve'), ctx=c.getContext('2d'); const w=c.width,h=c.height; ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle="#1a2230"; ctx.strokeRect(0,0,w,h);
+  // grid
+  ctx.strokeStyle="#0e1620"; for(let i=0;i<5;i++){ctx.beginPath(); ctx.moveTo(0,i*h/5); ctx.lineTo(w,i*h/5); ctx.stroke()}
+  // assim curve green
+  ctx.strokeStyle="#00ff88"; ctx.lineWidth=2; ctx.beginPath();
+  for(let x=0;x<w;x++){let p=x/w; let y=h - (this.assim*30 + Math.sin(p*10+this.pIdx)*10 + p*20); if(x===0)ctx.moveTo(x,y); else ctx.lineTo(x,y)} ctx.stroke();
+  // desim red
+  ctx.strokeStyle="#ff6b6b"; ctx.beginPath();
+  for(let x=0;x<w;x++){let p=x/w; let y=h - (this.desim*30 + Math.cos(p*8+this.pIdx)*10 + p*10); if(x===0)ctx.moveTo(x,y); else ctx.lineTo(x,y)} ctx.stroke();
+  // net gold
+  ctx.strokeStyle="#ffd700"; ctx.setLineDash([4,4]); ctx.beginPath();
+  for(let x=0;x<w;x++){let p=x/w; let y=h - ((this.assim-this.desim)*20 + h/2); if(x===0)ctx.moveTo(x,y); else ctx.lineTo(x,y)} ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle="#5a6a7a"; ctx.font="9px monospace"; ctx.fillText("ASSIM",10,12); ctx.fillStyle="#00ff88"; ctx.fillText("— grün",50,12); ctx.fillStyle="#ff6b6b"; ctx.fillText("DESIM — rot",110,12); ctx.fillStyle="#ffd700"; ctx.fillText("NETTO -- gold",190,12);
+ },
+ drawMatrix(){
+  let el=document.getElementById('matrix'); el.innerHTML=Array.from({length:81}).map((_,i)=>{let on=i%9===0 || i===this.pIdx; return `<div class="cell ${on?'on':''}">${i+1}</div>`}).join('');
+ },
+ log(m){let l=document.getElementById('log'); let d=document.createElement('div'); d.textContent="["+new Date().toLocaleTimeString()+"] "+m; l.prepend(d)},
+ boost(k){
+  if(k==='assim'){this.pq1=Math.min(2,this.pq1+0.1); document.getElementById('pq1r').value=this.pq1}
+  if(k==='desim'){this.pq2=Math.min(2,this.pq2+0.1); document.getElementById('pq2r').value=this.pq2}
+  if(k==='co2'){this.co2=Math.min(1200,this.co2+50); document.getElementById('co2r').value=this.co2}
+  if(k==='temp'){this.temp=Math.min(45,this.temp+2); document.getElementById('tempr').value=this.temp}
+  this.calc(); this.log("BOOST "+k+" → Assim "+this.assim.toFixed(2)+" Desim "+this.desim.toFixed(2));
+ },
+ toggleLink(){this.linked=!this.linked; let b=document.getElementById('linkBtn'); b.textContent=this.linked?"◈ PQ LINK ON":"○ PQ LINK OFF"; b.classList.toggle('on',this.linked); this.log(this.linked?"◈ PQ→PQ Link verbunden":"○ PQ→PQ Link getrennt"); this.calc()},
+ sync(){this.pIdx=(this.pIdx+1)%this.pfad.length; document.getElementById('pfad').textContent=this.pfad.join("→")+" · i="+this.pIdx; this.drawMatrix(); this.calc(); this.log("⟲ SYNC Pfad Index "+this.pIdx+" · A81="+this.pfad[this.pIdx]+" · Orbit: "+["STAGE","AIR","AIV","OMNI"][this.pIdx%4])},
+ step(){this.sync()},
+ loop(){if(this.loopT){clearInterval(this.loopT); this.loopT=null; this.log("⏹ Loop stop")} else {this.loopT=setInterval(()=>this.sync(),500); this.log("▶ Loop start 81→9→3→9→81")}},
+ mode(m){this.log("MODE → "+m+" · "+(m==='ASSIM'?"Aufbau dominiert":"Abbau dominiert")); if(m==='ASSIM'){this.pq1=1.4; this.light=1200} else {this.pq2=1.4; this.temp=32} this.calc()},
+ solve(){this.pq1=1.18; this.pq2=1.18; this.linked=true; this.pIdx=2; this.co2=550; this.light=900; this.o2=21; this.temp=24; document.getElementById('pq1r').value=1.18; document.getElementById('pq2r').value=1.18; this.calc(); this.log("◈ PHYTHAROZ ⊤ GELOEST · ASSIM = DESIM · Netto 0 · PQ1=PQ2=1.18 · RQ~0.9 · 81→9→3→9→81 geschlossen"); document.getElementById('linkBtn').classList.add('on')},
+ exportData(){
+  let data={pq1:this.pq1,pq2:this.pq2,co2:this.co2,light:this.light,o2:this.o2,temp:this.temp,assim:this.assim,desim:this.desim,rq:this.rq,net:this.assim-this.desim,pfad:this.pfad,pIdx:this.pIdx,pump:this.pump,legalOnly:true,note:"nur legale aggregierte Daten, keine PII, iki1uc DESAMALATZION"};
+  let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}); let url=URL.createObjectURL(blob); let a=document.createElement('a'); a.href=url; a.download=`pq_respo_${Date.now()}.json`; a.click(); URL.revokeObjectURL(url); this.log("EXPORT JSON lokal · Download gestartet")
+ }
+};
+document.addEventListener('DOMContentLoaded',()=>app.init());
+</script>
+</body>
+</html>
