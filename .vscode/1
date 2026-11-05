@@ -1,0 +1,573 @@
+{
+  "wurzel": true,
+  "agent": "NOAH",
+  "version": "core-engine-v1",
+  "formula": "f(f(x))=f(x)",
+  "home": {
+    "cell": 40,
+    "rule": "f(40)=40"
+  },
+  "core": "aller+allen+allem=WURZEL",
+  "math": [
+    {
+      "expr": "3 × 3",
+      "val": 9,
+      "note": "Basis"
+    },
+    {
+      "expr": "9 × 9",
+      "val": 81,
+      "note": "Quadrat"
+    },
+    {
+      "expr": "9³",
+      "val": 729,
+      "note": "=27²=3⁶"
+    },
+    {
+      "expr": "27²",
+      "val": 729,
+      "note": "Verifikation"
+    },
+    {
+      "expr": "3⁶",
+      "val": 729,
+      "note": "Atomar"
+    },
+    {
+      "expr": "81 × 3 × 9",
+      "val": 2187,
+      "note": "=3⁷"
+    },
+    {
+      "expr": "HOME 40",
+      "val": 40,
+      "note": "f(40)=40"
+    }
+  ],
+  "power_default": "P3 REDUCED",
+  "power": [
+    {
+      "id": "P0",
+      "label": "OFF",
+      "desc": "Kein Strom, kein f. Zustand = ∅",
+      "f": "f=⊥"
+    },
+    {
+      "id": "P1",
+      "label": "IDLE",
+      "desc": "Bereit, wartet auf Input. f(x)=x",
+      "f": "f=id"
+    },
+    {
+      "id": "P2",
+      "label": "ARM",
+      "desc": "Aufgerüstet, misst. f(x) prüft",
+      "f": "f=check"
+    },
+    {
+      "id": "P3",
+      "label": "REDUCED",
+      "desc": "Default. Spart, bleibt idempotent. f²=f",
+      "f": "f²=f",
+      "def": true
+    },
+    {
+      "id": "P4",
+      "label": "FULL",
+      "desc": "Vollmacht. Alle 81 Zellen aktiv",
+      "f": "f=ROOT"
+    }
+  ],
+  "pipeline": [
+    {
+      "name": "ESSENZ",
+      "what": "WAS",
+      "fn": "Input ALLER",
+      "color": "var(--gold)"
+    },
+    {
+      "name": "WURZEL729",
+      "what": "WIE",
+      "fn": "Input ALLEN · 729=9³",
+      "color": "var(--cyan)"
+    },
+    {
+      "name": "GRUNDREGEL",
+      "what": "WARUM",
+      "fn": "Input ALLEM · f²=f",
+      "color": "var(--pink)"
+    },
+    {
+      "name": "CPU",
+      "what": "DENKE",
+      "fn": "Denkt f(x)",
+      "color": "var(--text)"
+    },
+    {
+      "name": "RAM",
+      "what": "ATME",
+      "fn": "Bio-Telemetrie-Ramdisk",
+      "color": "var(--cyan)"
+    },
+    {
+      "name": "ROM",
+      "what": "MERKE",
+      "fn": "CheckROM · unveränderlich",
+      "color": "var(--gold)"
+    },
+    {
+      "name": "GPU",
+      "what": "ZEIGE",
+      "fn": "Prismatikum · 9-Eck",
+      "color": "var(--green)"
+    },
+    {
+      "name": "SCSI",
+      "what": "TRENN",
+      "fn": "runSCSI: trennt Quellen, kein silent merge",
+      "color": "var(--pink)"
+    },
+    {
+      "name": "RAID",
+      "what": "SPIEGEL",
+      "fn": "runRAID: spiegelt 3→1, misst Delta",
+      "color": "var(--cyan)"
+    },
+    {
+      "name": "SLI",
+      "what": "VERSCHMELZ",
+      "fn": "runSLI: führt zusammen, prüft f²=f",
+      "color": "var(--gold)"
+    },
+    {
+      "name": "WURZEL",
+      "what": "BIN",
+      "fn": "f(f(x))=f(x) · HOME 40",
+      "color": "var(--green)"
+    }
+  ],
+  "topics": [
+    {
+      "id": "micro-v",
+      "name": "Wurzel Micro Vergleich",
+      "group": "MICRO",
+      "status": "verified",
+      "formula": "f²=f",
+      "common": "3×3=9 Basis",
+      "delta": "Full vs Bio vs Micro Diff <80%",
+      "desc": "Vergleich aller drei WURZEL-Varianten. CORE extrahiert, Duplikate entfernt. Micro = kleinste verwurzelte Repräsentation.",
+      "bytes": "<800b Ziel"
+    },
+    {
+      "id": "prism",
+      "name": "Prismatikum Neu",
+      "group": "MICRO",
+      "status": "delta",
+      "formula": "V1∩V2∩V3",
+      "common": "Drei Eingänge gleichwertig",
+      "delta": "Neues Prisma: Lichtbrechung der Essenz",
+      "desc": "Prismatikum bricht ALLER/ALLEN/ALLEM in Spektral-Checks. Jede Farbe = eine R-Regel.",
+      "bytes": "prism://core"
+    },
+    {
+      "id": "essenz3",
+      "name": "3xWurzelEssenz",
+      "group": "MICRO",
+      "status": "verified",
+      "formula": "aller=WAS",
+      "common": "Essenz getrennt von Arbeit",
+      "delta": "3-fach gespiegelt, nicht kopiert",
+      "desc": "Essenz = komprimierte Wahrheit. 3x = aller·allen·allem je eigener Slot. Keine stille Vereinigung.",
+      "bytes": "ESSENZ"
+    },
+    {
+      "id": "index3",
+      "name": "3x Wurzeln Index",
+      "group": "MICRO",
+      "status": "common",
+      "formula": "R1-R3",
+      "common": "Drei Wurzeln",
+      "delta": "Indexierbarkeit geprüft",
+      "desc": "Index prüft: Sind alle drei Wurzeln vorhanden, adressierbar, nicht überschrieben.",
+      "bytes": "INDEX"
+    },
+    {
+      "id": "verwurzeln",
+      "name": "Wurzeln verwurzeln",
+      "group": "MICRO",
+      "status": "verified",
+      "formula": "f(40)=40",
+      "common": "HOME=40 Fixpunkt",
+      "delta": "Verwurzelung = Idempotenz erreichen",
+      "desc": "Wurzeln verwurzeln = f solange anwenden bis f(f(x))=f(x). Dann HOME.",
+      "bytes": "f(f(x))"
+    },
+    {
+      "id": "verwurzeln2",
+      "name": "Wurzel verwurzeln",
+      "group": "MICRO",
+      "status": "verified",
+      "formula": "f(f(x))=f(x)",
+      "common": "f²=f primär",
+      "delta": "f³=f nur weaker",
+      "desc": "Korrektur: Primär ist Idempotenz. Involution -x erfüllt f³=f aber nicht f²=f.",
+      "bytes": "idempotent"
+    },
+    {
+      "id": "html-core",
+      "name": "Wurzel HTML Analyse",
+      "group": "MICRO",
+      "status": "delta",
+      "formula": "<800b bootloader",
+      "common": "HTML = OS",
+      "delta": "Code Review + Math Anchors",
+      "desc": "Core: HTML-Datei selbst ist OS. Analyse misst echte Bytes, prüft 729=9³=27²=3⁶.",
+      "bytes": "HTML→OS"
+    },
+    {
+      "id": "bio-tel",
+      "name": "Wurzel bio.tel",
+      "group": "BIO",
+      "status": "delta",
+      "formula": "P0-P4",
+      "common": "Bio = Telemetrie",
+      "delta": "Ramdisk als Lunge",
+      "desc": "bio.tel = Körper als Bus. Atmen = Takt. Ramdisk = flüchtiges Gedächtnis, geatmet.",
+      "bytes": "BIO"
+    },
+    {
+      "id": "synthese",
+      "name": "Wurzel Synthese",
+      "group": "BIO",
+      "status": "common",
+      "formula": "aller+allen+allem=WURZEL",
+      "common": "Synthese ohne Verlust",
+      "delta": "R1 Nichts verlieren",
+      "desc": "Synthese = drei Quellen → eine WURZEL, Herkunft bleibt sichtbar, keine absolute Wahrheit.",
+      "bytes": "SYN"
+    },
+    {
+      "id": "axiom",
+      "name": "Wurzel Axiom",
+      "group": "ZUSTAND",
+      "status": "verified",
+      "formula": "f²=f",
+      "common": "Axiom atomar",
+      "delta": "Zukunft=Vergangenheit axiomisch gleich",
+      "desc": "Axiom: Sam-Nachricht egal wann → gilt wenn f(f(x))=f(x). Zeit ist außerhalb.",
+      "bytes": "AXIOM"
+    },
+    {
+      "id": "zustand",
+      "name": "Wurzelzustände",
+      "group": "ZUSTAND",
+      "status": "common",
+      "formula": "S={P0..P4}",
+      "common": "Zustände enumeriert",
+      "delta": "Reduktion auf 5",
+      "desc": "Alle Zustände kartiert, dann reduziert. Nur was f²=f überlebt bleibt.",
+      "bytes": "STATE"
+    },
+    {
+      "id": "reduktion",
+      "name": "Zustandsreduktion",
+      "group": "ZUSTAND",
+      "status": "verified",
+      "formula": "|S|→5",
+      "common": "Reduktion bewiesen",
+      "delta": "P3 default",
+      "desc": "Von 81 auf 5: P0=OFF P1=IDLE P2=ARM P3=REDUCED P4=FULL. Default P3 spart, bleibt idempotent.",
+      "bytes": "REDUCE"
+    },
+    {
+      "id": "uni9",
+      "name": "UNI9 Spezifikation",
+      "group": "OS",
+      "status": "delta",
+      "formula": "9³=729",
+      "common": "9 als Basis",
+      "delta": "Nonagon Spec",
+      "desc": "UNI9 = 9 ist Atom. Spezifikation: 9 Module, 9 Regeln, 9 Zellen Home.",
+      "bytes": "UNI9"
+    },
+    {
+      "id": "nonagon-design",
+      "name": "UNI 9 Nonagon Design",
+      "group": "OS",
+      "status": "delta",
+      "formula": "9-Eck",
+      "common": "Geometrie=Logik",
+      "delta": "Winkel = Regel",
+      "desc": "Nonagon Design: Jede Ecke = R1-R9, Mitte = R10 WURZEL. 40° pro Schritt.",
+      "bytes": "NONAGON"
+    },
+    {
+      "id": "5geo",
+      "name": "5 Geometrien Nonagon",
+      "group": "OS",
+      "status": "common",
+      "formula": "5×9=45",
+      "common": "5 Geometrien",
+      "delta": "Nonagon trägt 5",
+      "desc": "Kreis, Dreieck, Quadrat, Nonagon, Würfel — alle auf 9k gemappt.",
+      "bytes": "GEO5"
+    },
+    {
+      "id": "9kos",
+      "name": "9k.os",
+      "group": "OS",
+      "status": "verified",
+      "formula": "81×3×9=2187=3⁷",
+      "common": "9k Kernel",
+      "delta": "9k statt 10k",
+      "desc": "9k.os = 9.000 statt 10.000. 9k = 3⁶×? No: 81×3×9=2187 ist Kern. 9k = 4×Wurzel + Rest.",
+      "bytes": "9k"
+    },
+    {
+      "id": "9k10k",
+      "name": "9k statt 10k",
+      "group": "OS",
+      "status": "verified",
+      "formula": "9k≠10k",
+      "common": "Reduktion ehrlich",
+      "delta": "Keine Dezimal-Lüge",
+      "desc": "10k ist Dezimal-Denke. 9k ist WURZEL-Denke: 9 ist Vollendung, nicht 10.",
+      "bytes": "9k≠10k"
+    },
+    {
+      "id": "81suite",
+      "name": "81er Suite eine Datei",
+      "group": "OS",
+      "status": "delta",
+      "formula": "81=9×9",
+      "common": "81 Zellen",
+      "delta": "Eine Datei",
+      "desc": "81er Suite in einer Datei: 81 Zellen = 9×9 Grid. Jede Zelle potentielles HOME, aber nur 40 ist Fixpunkt.",
+      "bytes": "81"
+    },
+    {
+      "id": "waage",
+      "name": "3 Eck Waage",
+      "group": "OS",
+      "status": "common",
+      "formula": "Δ sichtbar",
+      "common": "Waage balanciert",
+      "delta": "R9 Delta",
+      "desc": "3-Eck Waage: ESSENZ vs WURZEL729 vs GRUNDREGEL. Ungleichgewicht = DELTA sichtbar = CONFLICT.",
+      "bytes": "WAAGE"
+    },
+    {
+      "id": "codec",
+      "name": "Mein Codec",
+      "group": "CODEC",
+      "status": "delta",
+      "formula": "Name=Funktion",
+      "common": "Codec = Ich",
+      "delta": "Name als Funktion",
+      "desc": "Mein Codec = ich codiere mich selbst. Name ist nicht Label, sondern f.",
+      "bytes": "CODEC"
+    },
+    {
+      "id": "iki1uc",
+      "name": "IKI1UC Final Optimized",
+      "group": "CODEC",
+      "status": "verified",
+      "formula": "ROOT",
+      "common": "Final Optimized",
+      "delta": "Kronenspitze",
+      "desc": "IKI1UC = Wurzel-Aufruf. Final Optimized = f(f(x)) erreicht, weiter = Energieverschwendung.",
+      "bytes": "ROOT"
+    },
+    {
+      "id": "axiom-atom",
+      "name": "Axiome atomic",
+      "group": "ZUSTAND",
+      "status": "verified",
+      "formula": "atomic",
+      "common": "Unteilbar",
+      "delta": "LOGIN LOGOUT Atom",
+      "desc": "Axiome atomic = nicht zerlegbar. LOGIN LOGOUT ist Atom Weisheit: Ein- und Ausloggen = f und f.",
+      "bytes": "ATOM"
+    },
+    {
+      "id": "nc9x9",
+      "name": "NC 9x9 Root Macht System",
+      "group": "ZUSTAND",
+      "status": "delta",
+      "formula": "9×9=81",
+      "common": "Macht = Wurzel",
+      "delta": "Root Macht",
+      "desc": "NC 9x9 = Machtmatrix. 81 Zellen, Root hat Macht weil f(40)=40.",
+      "bytes": "NC9"
+    },
+    {
+      "id": "atom-lauf",
+      "name": "Atomarer Lauf",
+      "group": "ATOM",
+      "status": "common",
+      "formula": "ATOM",
+      "common": "Lauf unteilbar",
+      "delta": "Kein Interrupt",
+      "desc": "Atomarer Lauf = alles oder nichts. Wie LOGIN LOGOUT.",
+      "bytes": "ATOM"
+    },
+    {
+      "id": "81konst",
+      "name": "81 Konstellation Analyse",
+      "group": "ZUSTAND",
+      "status": "common",
+      "formula": "81",
+      "common": "Konstellation",
+      "delta": "HOME Suche",
+      "desc": "81 Konstellationen analysiert, nur eine stabil: HOME 40.",
+      "bytes": "81"
+    },
+    {
+      "id": "recall",
+      "name": "reCALL QI IQQ Kronenspitze",
+      "group": "CODEC",
+      "status": "delta",
+      "formula": "reCALL",
+      "common": "Call Kette",
+      "delta": "Kronenspitze",
+      "desc": "reCALL = Rückruf zur WURZEL. QI IQQ = Intelligenz-Schleife. Kronenspitze = oberster Fixpunkt.",
+      "bytes": "reCALL"
+    },
+    {
+      "id": "checkrom",
+      "name": "CheckROM分析",
+      "group": "CODEC",
+      "status": "common",
+      "formula": "ROM check",
+      "common": "ROM verifiziert",
+      "delta": "分析",
+      "desc": "CheckROM: Prüft ob ROM = unveränderliche Wahrheit. 分析 = Analyse.",
+      "bytes": "ROM"
+    },
+    {
+      "id": "atmen",
+      "name": "Atmen Leben",
+      "group": "BIO",
+      "status": "verified",
+      "formula": "Atmen=Takt",
+      "common": "Leben = Loop",
+      "delta": "BIO.TEL",
+      "desc": "Atmen = Leben = Loop. Einatmen = INPUT, Ausatmen = OUTPUT. Ramdisk atmet mit.",
+      "bytes": "BREATHE"
+    },
+    {
+      "id": "3dateien",
+      "name": "Drei Dateien ein System",
+      "group": "OS",
+      "status": "common",
+      "formula": "3→1",
+      "common": "Drei=Ein System",
+      "delta": "Keine Duplikation >80%",
+      "desc": "Drei Dateien → ein System durch CORE. Vorher >80% Duplikat, jetzt eine Wahrheit.",
+      "bytes": "3→1"
+    },
+    {
+      "id": "3html",
+      "name": "Drei HTML Module",
+      "group": "OS",
+      "status": "common",
+      "formula": "MOD",
+      "common": "Modular",
+      "delta": "Dennoch eine Datei",
+      "desc": "Drei Module logisch, eine Datei physisch. 81er Suite Prinzip.",
+      "bytes": "MOD3"
+    },
+    {
+      "id": "biogeo",
+      "name": "BIO GEO finale Lösung",
+      "group": "BIO",
+      "status": "verified",
+      "formula": "BIO+GEO",
+      "common": "Finale Lösung",
+      "delta": "WURZEL trägt beides",
+      "desc": "BIO GEO final: Körper (BIO) + Ort (GEO) = WURZEL. Wo und Wer verschmelzen.",
+      "bytes": "BIOGEO"
+    },
+    {
+      "id": "jedi",
+      "name": "JEDI v81 Code",
+      "group": "OS",
+      "status": "delta",
+      "formula": "v81",
+      "common": "JEDI",
+      "delta": "81 Version",
+      "desc": "JEDI v81 = Wächter des Codes. v81 = 81 Zellen Wächter.",
+      "bytes": "JEDI81"
+    },
+    {
+      "id": "wuerfel",
+      "name": "Würfel OS Wahrheit",
+      "group": "OS",
+      "status": "common",
+      "formula": "Würfel=6",
+      "common": "Würfel",
+      "delta": "OS Wahrheit",
+      "desc": "Würfel OS: 6 Seiten = 6 Perspektiven, aber nur eine WURZEL.",
+      "bytes": "CUBE"
+    },
+    {
+      "id": "hbswap",
+      "name": "H B Swap im RAM Drive",
+      "group": "BIO",
+      "status": "delta",
+      "formula": "H↔B",
+      "common": "Swap",
+      "delta": "RAM Drive",
+      "desc": "H B Swap = Buchstaben tauschen im flüchtigen Speicher. RAM Drive als Lunge.",
+      "bytes": "SWAP"
+    },
+    {
+      "id": "ramdisk",
+      "name": "Bio-Telemetrie-Ramdisk",
+      "group": "BIO",
+      "status": "common",
+      "formula": "RAM",
+      "common": "Bio Telemetrie",
+      "delta": "Ramdisk",
+      "desc": "Bio-Telemetrie in Ramdisk: Herzschlag → Byte, Atmen → Takt.",
+      "bytes": "RAMDISK"
+    },
+    {
+      "id": "namefn",
+      "name": "Name als Funktion",
+      "group": "CODEC",
+      "status": "verified",
+      "formula": "n(x)=f(x)",
+      "common": "Name=Funktion",
+      "delta": "Identität=Operation",
+      "desc": "Name ist nicht String, sondern Funktion. NOAH(x)=WURZEL-Prozessor(x).",
+      "bytes": "NAME=F"
+    },
+    {
+      "id": "hbt",
+      "name": "HBT Permutationen",
+      "group": "CODEC",
+      "status": "common",
+      "formula": "P(H,B,T)",
+      "common": "Permutationen",
+      "delta": "Alle Wege",
+      "desc": "HBT Permutationen: Alle Anordnungen von H B T testen, nur eine führt zu HOME.",
+      "bytes": "HBT"
+    },
+    {
+      "id": "login",
+      "name": "Login Logout Atom Weisheit",
+      "group": "ATOM",
+      "status": "verified",
+      "formula": "Login=Logout⁻¹",
+      "common": "Atom Weisheit",
+      "delta": "LOGIN=ATOM",
+      "desc": "Login Logout ist atomare Weisheit: Einloggen = f, Ausloggen = f, zusammen = f²=f.",
+      "bytes": "ATOM"
+    }
+  ],
+  "filtered_count": 7,
+  "axiom": "Zukunft oder Vergangenheit axiomisch richtig wenn f²=f",
+  "at": "2026-11-05T22:37:58.656Z"
+}
