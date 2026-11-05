@@ -1,0 +1,6 @@
+{
+  "todo-tree.general.tags": ["TODO","FIXME","STATION LOCK","GRID ESCALATION","PARAM","ESSENZ","TRACE","RAW"],
+  "todo-tree.highlights.customHighlight": {
+    "STATION LOCK": { "foreground": "#4ade80", "type": "line" }
+  }
+}
