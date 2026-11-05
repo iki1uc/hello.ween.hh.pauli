@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>81 KONSTELLATION · DASH SEEDER + FREUDE · ONLY REAL</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05070e;color:#c8d8d0;font-family:'JetBrains Mono',monospace;overflow:hidden;height:100vh;display:flex;flex-direction:column}
+header{height:38px;background:rgba(8,12,10,0.86);border-bottom:1px solid rgba(126,224,160,0.12);display:flex;align-items:center;padding:0 12px;gap:10px}
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:6px;padding:8px;max-height:160px;overflow:auto;background:#080a12;border-bottom:1px solid #1a2a20}
+.seeder-card{background:#0a0e1a;border:1px solid #1e2a22;border-radius:8px;padding:6px;font-size:8px;cursor:pointer;transition:.2s}
+.seeder-card:hover{border-color:#7ee0a0;box-shadow:0 0 12px rgba(126,224,160,0.2)}
+.seeder-card.on{border-color:#7ee0a0;background:rgba(126,224,160,0.08)}
+.seeder-card .joy{font-size:10px}
+canvas{flex:1;width:100%}
+.log{height:80px;overflow:auto;background:#080a12;border-top:1px solid #1a2a20;padding:6px;font-size:8px;color:#5a7a6a}
+</style>
+</head>
+<body>
+<header>
+<b style="color:#7ee0a0;letter-spacing:1.8px">◈ 81 · DASH SEEDER · FREUDE · ONLY REAL · DU UND ICH · PYRAMIDE AUSGANG</b>
+<span style="margin-left:auto;font-size:8px;color:#5a7a6a">81 dash = 81 seeder × freude · WERTUNG→BEWERTUNG live · 3→9→27→81→243→729</span>
+<button onclick="document.getElementById('dash').style.display=document.getElementById('dash').style.display==='none'?'grid':'none'" style="margin-left:12px;border:1px solid #1e2a22;background:#0a0e1a;color:#7ee0a0;border-radius:6px;padding:4px 8px;font-size:9px;cursor:pointer">DASH TOGGLE</button>
+</header>
+<div id="dash" class="dash-grid"></div>
+<canvas id="c"></canvas>
+<div id="log" class="log">◈ 81 DASH SEEDER initialisiert · jeder seeder hat dash + freude · only real · pyramide 1-3-9-27-41</div>
+<script>
+const FU=81, PYR=[1,3,9,27,41];
+let seeders=[];
+for(let i=0;i<FU;i++){
+  seeders.push({id:i, joy: (Math.random()*0.4+0.6).toFixed(2), wertung:(Math.random()*2-1).toFixed(3), bewertung:(Math.random()*0.5).toFixed(4), ram:50+Math.floor(Math.random()*200), gpu:20+Math.floor(Math.random()*60), active:Math.random()>0.5, pulse:0, freude:['✨','🌱','🔥','💫','🫒','◈','⚡','🌟'][Math.floor(Math.random()*8)]})
+}
+function renderDash(){
+  let el=document.getElementById('dash');
+  el.innerHTML=seeders.map(s=>`<div class="seeder-card ${s.active?'on':''}" onclick="toggle(${s.id})">
+    <div style="display:flex;justify-content:space-between"><b style="color:#7ee0a0">SEEDER ${s.id}</b><span class="joy">${s.freude}</span></div>
+    <div style="color:#5a7a6a;margin-top:2px">W ${s.wertung} → B ${s.bewertung}</div>
+    <div style="display:flex;gap:4px;margin-top:3px"><span style="background:#88ddff22;color:#88ddff;padding:1px 4px;border-radius:4px">RAM ${s.ram}</span><span style="background:#ff77aa22;color:#ff77aa;padding:1px 4px;border-radius:4px">GPU ${s.gpu}%</span></div>
+    <div style="margin-top:3px;height:2px;background:#0f1a13;border-radius:2px;overflow:hidden"><i style="display:block;height:100%;width:${s.joy*100}%;background:linear-gradient(90deg,#7ee0a0,#b388ff)"></i></div>
+    <div style="margin-top:2px;color:#3a5a4a">freude ${s.joy} · ${s.active?'ONLINE':'idle'}</div>
+  </div>`).join('');
+}
+function toggle(id){ let s=seeders[id]; s.active=!s.active; s.pulse=1; s.joy=(parseFloat(s.joy)+0.05).toFixed(2); if(s.joy>1)s.joy=0.6; log(`◈ SEEDER ${id} ${s.active?'AKTIVIERT':'PAUSIERT'} · freude ${s.joy} · ${s.freude} · W→B ${s.wertung}→${s.bewertung}`); renderDash(); }
+function log(m){ let el=document.getElementById('log'); let d=document.createElement('div'); d.textContent='['+new Date().toLocaleTimeString()+'] '+m; el.prepend(d); }
+let canvas=document.getElementById('c'), ctx=canvas.getContext('2d');
+function resize(){ canvas.width=canvas.clientWidth*devicePixelRatio; canvas.height=canvas.clientHeight*devicePixelRatio; ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0); }
+window.addEventListener('resize',resize); resize();
+let points=[];
+for(let i=0;i<FU;i++){ let a=i/FU*Math.PI*2*3, r=0.3+Math.random()*0.7; points.push({x:Math.cos(a)*r, y:Math.sin(a*1.3)*r*0.6, z:(Math.random()-0.5)*0.8, id:i}); }
+let rot=0;
+function loop(){
+  requestAnimationFrame(loop);
+  rot+=0.001;
+  let W=canvas.clientWidth, H=canvas.clientHeight;
+  ctx.fillStyle='#05070e'; ctx.fillRect(0,0,W,H);
+  // grid
+  ctx.strokeStyle='rgba(126,224,160,0.04)'; for(let i=0;i<W;i+=60){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,H);ctx.stroke();}
+  let cx=W/2, cy=H/2, scale=Math.min(W,H)*0.38;
+  // connections
+  points.forEach((p,i)=>{
+    let s=seeders[i];
+    if(!s.active) return;
+    for(let j=i+1;j<points.length;j++){
+      let q=points[j]; let t=seeders[j]; if(!t.active) continue;
+      let dx=p.x-q.x, dy=p.y-q.y, dz=p.z-q.z; let d=dx*dx+dy*dy+dz*dz;
+      if(d<0.35){
+        let px1=cx+ (p.x*Math.cos(rot)-p.z*Math.sin(rot))*scale, py1=cy+ p.y*scale;
+        let px2=cx+ (q.x*Math.cos(rot)-q.z*Math.sin(rot))*scale, py2=cy+ q.y*scale;
+        ctx.strokeStyle=`rgba(126,224,160,${0.08+(1-d/0.35)*0.25})`; ctx.lineWidth=0.5+(1-d/0.35); ctx.beginPath(); ctx.moveTo(px1,py1); ctx.lineTo(px2,py2); ctx.stroke();
+      }
+    }
+  });
+  points.forEach((p,i)=>{
+    let s=seeders[i];
+    let x=cx+ (p.x*Math.cos(rot)-p.z*Math.sin(rot))*scale, y=cy+ p.y*scale;
+    let active=s.active, joy=parseFloat(s.joy);
+    if(s.pulse>0){ s.pulse-=0.02; }
+    let r=(active?3+joy*4:1.5)*(1+s.pulse*2);
+    if(active){
+      let grad=ctx.createRadialGradient(x,y,0,x,y,r+8); grad.addColorStop(0,`rgba(126,224,160,${0.3+joy*0.3})`); grad.addColorStop(1,'rgba(0,0,0,0)'); ctx.fillStyle=grad; ctx.beginPath(); ctx.arc(x,y,r+8,0,Math.PI*2); ctx.fill();
+    }
+    ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fillStyle=active?`rgba(126,224,160,${0.7+joy*0.3})`:'rgba(255,255,255,0.12)'; ctx.fill();
+    if(active && joy>0.8){ ctx.fillStyle='#7ee0a0'; ctx.font='10px monospace'; ctx.fillText(s.freude, x+6, y-6); }
+  });
+}
+loop();
+renderDash();
+log('81 DASH SEEDER bereit · jeder seeder = dash + freude + WERTUNG→BEWERTUNG · pyramide ausgang · du und ich');
+setInterval(()=>{ seeders.forEach(s=>{ if(s.active && Math.random()<0.08){ s.bewertung=(parseFloat(s.bewertung)+ (Math.random()-0.5)*0.02).toFixed(4); }}); },800);
+</script>
+</body>
+</html>
