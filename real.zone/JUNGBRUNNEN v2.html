@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>jungbrunnen</title>
+<style>
+  :root{--bg:#05070d;--panel:#0a0f19;--line:#243044;--fg:#e6eefc;--mu:#7f8ca3;
+    --gold:#ffd700;--cyan:#00e5ff;--pink:#ff2d9a;--ok:#4dff9b;--vio:#b388ff;color-scheme:dark}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+    padding:16px;max-width:760px;margin:0 auto}
+  h1{margin:0 0 4px;color:var(--gold);font-size:16px;letter-spacing:.18em}
+  .sub{color:var(--mu);font-size:10px;letter-spacing:.14em;margin-bottom:16px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+  .chip{padding:3px 8px;border:1px solid var(--line);border-radius:999px;
+    color:var(--mu);font-size:10px;background:#050912}
+  .chip.g{color:var(--gold);border-color:rgba(255,215,0,.4)}
+  .chip.cy{color:var(--cyan);border-color:rgba(0,229,255,.4)}
+  .chip.ok{color:var(--ok);border-color:rgba(77,255,155,.4);background:rgba(77,255,155,.08)}
+  .chip.bad{color:var(--pink);border-color:rgba(255,45,154,.4);background:rgba(255,45,154,.08)}
+  .chip.vio{color:var(--vio);border-color:rgba(179,136,255,.5);background:rgba(179,136,255,.08)}
+  section{border:1px solid var(--line);background:var(--panel);border-radius:12px;
+    padding:14px;margin-bottom:12px}
+  h2{margin:0 0 10px;font-size:10px;letter-spacing:.18em;color:var(--mu);text-transform:uppercase}
+  canvas{display:block;width:100%;max-width:600px;margin:0 auto;border-radius:8px;
+    background:#03050a;border:1px solid var(--line)}
+  .age{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:10px;
+    color:var(--mu);letter-spacing:.1em}
+  input[type=range]{flex:1;accent-color:var(--gold)}
+  .age b{color:var(--gold);font-size:13px;letter-spacing:0;min-width:36px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  @media(max-width:520px){.grid{grid-template-columns:1fr}}
+  .c{border:1px solid var(--line);background:#050912;border-radius:8px;
+    padding:9px 10px;display:flex;flex-direction:column;gap:3px}
+  .c .row{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+  .c .n{font-weight:700;font-size:11px}
+  .c .f{font-size:10px;color:var(--mu)}
+  .c .tags{display:flex;gap:4px;flex-wrap:wrap}
+  .c .v{font-size:9px;padding:2px 6px;border-radius:999px;border:1px solid var(--line);color:var(--mu)}
+  .c .v.ok{color:var(--ok);border-color:rgba(77,255,155,.5);background:rgba(77,255,155,.08)}
+  .c .v.bad{color:var(--pink);border-color:rgba(255,45,154,.5);background:rgba(255,45,154,.08)}
+  .c .v.vio{color:var(--vio);border-color:rgba(179,136,255,.5);background:rgba(179,136,255,.08)}
+  .c .note{font-size:9px;color:var(--mu);line-height:1.4;margin-top:3px}
+  .c .swatch{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px}
+  .verdict{border-left:2px solid var(--ok);background:rgba(77,255,155,.06);
+    padding:10px 12px;border-radius:0 8px 8px 0;font-size:11px;line-height:1.5}
+  .verdict b{color:var(--ok)}.verdict .k{color:var(--gold)}
+  .link{margin-top:10px;font-size:10px;color:var(--mu);line-height:1.5}
+  .link code{color:var(--cyan)}
+  .foot{color:var(--mu);font-size:9px;letter-spacing:.18em;text-align:center;margin:16px 0 0}
+</style>
+</head>
+<body>
+<h1>JUNGBRUNNEN</h1>
+<div class="sub">ALS f: ZUSTAND → ZUSTAND · SIEBEN KANDIDATEN · DREI TESTS</div>
+
+<div class="chips" id="chips"></div>
+
+<section>
+  <h2>Startalter</h2>
+  <div class="age">
+    <span>START</span>
+    <input id="age" type="range" min="1" max="100" value="60">
+    <b id="agev">60</b>
+  </div>
+  <canvas id="cv" width="600" height="280"></canvas>
+</section>
+
+<section>
+  <h2>Kandidaten · Tests auf [0,1,17,18,40,80,120]</h2>
+  <div class="grid" id="cards"></div>
+</section>
+
+<section>
+  <div class="verdict">
+    <b>Drei Tests, drei Stufen.</b><br>
+    <span class="k">f²=f</span> trennt Abfluss von Fixpunkt-Form.
+    <span class="k">Info</span> (mehr als ein Ausgabewert) trennt Brunnen von Totem.
+    <span class="k">verjüngt</span> (f(x) ≤ x, irgendwo kleiner) trennt Jungbrunnen von bloßem Boden.
+    <div class="link">
+      Nur <code>min(x, 40)</code> besteht alle drei: ab 40 steht jeder Schluck still,
+      alles darunter bleibt unberührt, alles darüber wird auf <code>HOME 40</code> gezogen.
+      <code>max(0,x)</code> und <code>max(18,x)</code> sind Böden: idempotent und informativ, aber sie machen nie jünger.
+      <code>18</code> konstant besteht f²=f, hat aber nur einen Ausgabewert: keine Information, kein Selbst.
+      <code>x−7</code>, <code>x/2</code>, <code>√x</code> sind keine Fixpunkt-Form: jeder weitere Schluck ändert noch etwas.
+    </div>
+  </div>
+</section>
+
+<div class="foot">JUNGBRUNNEN v2 · TESTS BERECHNET · NICHT BEHAUPTET</div>
+
+<script>
+const PAL = {gold:'#ffd700',cyan:'#00e5ff',pink:'#ff2d9a',ok:'#4dff9b',mu:'#7f8ca3',dead:'#5a6b84',vio:'#b388ff',line:'#243044'};
+const PTS = [0,1,17,18,40,80,120];
+
+const KANDIDATEN = [
+  { id:'sub7',    name:'alter − 7',     fs:'x ↦ x − 7',        f:x=>x-7,            color:PAL.pink, note:'klassisch: jede Anwendung 7 Jahre jünger, fällt ins Negative' },
+  { id:'halb',    name:'alter / 2',     fs:'x ↦ x / 2',        f:x=>x/2,            color:PAL.mu,   note:'Halbierung: konvergiert gegen 0' },
+  { id:'sqrt',    name:'√alter',        fs:'x ↦ √x',           f:x=>Math.sqrt(x),   color:PAL.cyan, note:'Wurzel: konvergiert gegen 1' },
+  { id:'boden18', name:'max(18, x)',    fs:'x ↦ max(18, x)',   f:x=>Math.max(18,x), color:PAL.ok,   note:'Boden bei 18: idempotent ab 18, macht Kinder älter' },
+  { id:'relu',    name:'max(0, x)',     fs:'x ↦ max(0, x)',    f:x=>Math.max(0,x),  color:PAL.gold, note:'ReLU: identisch mit „schützen“ aus wurzel-hub, ändert für Alter ≥ 0 nichts' },
+  { id:'konst',   name:'18 (konstant)', fs:'x ↦ 18',           f:()=>18,            color:PAL.dead, note:'f²=f gilt, aber ein einziger Ausgabewert: tötet Information' },
+  { id:'decke40', name:'min(x, 40)',    fs:'x ↦ min(x, 40)',   f:x=>Math.min(x,40), color:PAL.vio,  note:'Decke bei HOME 40: ab 40 Stillstand, darunter unverändert' },
+];
+
+function test(k){
+  const idem = PTS.filter(x => Math.abs(k.f(k.f(x)) - k.f(x)) < 1e-9).length;
+  const distinct = new Set(PTS.map(x => k.f(x))).size;
+  const info = distinct > 1;
+  const younger = PTS.every(x => k.f(x) <= x + 1e-9) && PTS.some(x => k.f(x) < x - 1e-9);
+  const fix = idem === PTS.length;
+  return { idem, distinct, info, younger, fix, brunnen: fix && info, jung: fix && info && younger };
+}
+KANDIDATEN.forEach(k => k.t = test(k));
+
+function trajectory(f, start, n){
+  const t = [start];
+  for (let i=1; i<=n; i++) t.push(f(t[i-1]));
+  return t;
+}
+
+function renderChips(){
+  const n = KANDIDATEN.length, c = p => KANDIDATEN.filter(k => k.t[p]).length;
+  const chips = [
+    ['g','HOME 40'],
+    ['cy','f²=f als Test'],
+    ['bad', (n - c('fix')) + '/' + n + ' Abfluss'],
+    ['ok', c('brunnen') + '/' + n + ' echte Brunnen'],
+    ['vio', c('jung') + '/' + n + ' verjüngt']
+  ];
+  document.getElementById('chips').innerHTML = chips.map(x => `<span class="chip ${x[0]}">${x[1]}</span>`).join('');
+}
+
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d');
+const dpr = Math.min(window.devicePixelRatio||1, 2);
+cv.width = 600 * dpr; cv.height = 280 * dpr;
+ctx.scale(dpr, dpr);
+const W = 600, H = 280, PAD = { l:40, r:16, t:18, b:28 }, N_STEPS = 10;
+
+function niceStep(range){
+  const raw = range / 6, p = Math.pow(10, Math.floor(Math.log10(raw))), n = raw / p;
+  return n < 1.5 ? p : n < 3 ? 2*p : n < 7 ? 5*p : 10*p;
+}
+
+function draw(start){
+  ctx.fillStyle = '#03050a'; ctx.fillRect(0,0,W,H);
+  const trajs = KANDIDATEN.map(k => ({ k, t: trajectory(k.f, start, N_STEPS) }));
+  const all = trajs.flatMap(o => o.t);
+  let yMin = Math.min(...all), yMax = Math.max(...all);
+  const pad = (yMax - yMin) * 0.1 || 4; yMin -= pad; yMax += pad;
+  const px = i => PAD.l + (i / N_STEPS) * (W - PAD.l - PAD.r);
+  const py = v => PAD.t + (1 - (v - yMin) / (yMax - yMin)) * (H - PAD.t - PAD.b);
+
+  ctx.strokeStyle = PAL.line; ctx.lineWidth = .5; ctx.globalAlpha = .6;
+  for (let i=0;i<=N_STEPS;i+=2){ ctx.beginPath(); ctx.moveTo(px(i),PAD.t); ctx.lineTo(px(i),H-PAD.b); ctx.stroke(); }
+  if (yMin <= 40 && 40 <= yMax){
+    ctx.globalAlpha = .5; ctx.strokeStyle = PAL.gold; ctx.setLineDash([3,4]);
+    ctx.beginPath(); ctx.moveTo(PAD.l,py(40)); ctx.lineTo(W-PAD.r,py(40)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = PAL.gold; ctx.font = '9px ui-monospace,monospace'; ctx.textAlign='left'; ctx.textBaseline='alphabetic';
+    ctx.fillText('HOME 40', PAD.l+4, py(40)-3);
+  }
+  ctx.globalAlpha = 1; ctx.strokeStyle = PAL.line;
+  ctx.beginPath(); ctx.moveTo(PAD.l,PAD.t); ctx.lineTo(PAD.l,H-PAD.b); ctx.lineTo(W-PAD.r,H-PAD.b); ctx.stroke();
+
+  ctx.fillStyle = PAL.mu; ctx.font = '9px ui-monospace,monospace'; ctx.textAlign='right'; ctx.textBaseline='middle';
+  const step = niceStep(yMax - yMin);
+  for (let v=Math.ceil(yMin/step)*step; v<=yMax; v+=step) ctx.fillText(String(Math.round(v)), PAD.l-4, py(v));
+  ctx.textAlign='center'; ctx.textBaseline='top';
+  for (let i=0;i<=N_STEPS;i+=2) ctx.fillText(String(i), px(i), H-PAD.b+4);
+  ctx.textAlign='left'; ctx.fillText('Schritte →', PAD.l, H-12);
+
+  trajs.forEach(({k,t}) => {
+    ctx.strokeStyle = k.color; ctx.lineWidth = k.t.jung ? 2.4 : 1.6; ctx.globalAlpha = .9;
+    ctx.beginPath(); t.forEach((v,i)=>{ const x=px(i), y=py(v); i?ctx.lineTo(x,y):ctx.moveTo(x,y); }); ctx.stroke();
+    ctx.fillStyle = k.color; ctx.globalAlpha = 1;
+    ctx.beginPath(); ctx.arc(px(N_STEPS), py(t[t.length-1]), 3, 0, Math.PI*2); ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+}
+
+function renderCards(){
+  document.getElementById('cards').innerHTML = KANDIDATEN.map(k => {
+    const t = k.t, n = PTS.length;
+    return `<div class="c">
+      <div class="row"><div class="n"><span class="swatch" style="background:${k.color}"></span>${k.name}</div></div>
+      <div class="f">${k.fs}</div>
+      <div class="tags">
+        <span class="v ${t.fix?'ok':'bad'}">f²=f ${t.idem}/${n}</span>
+        <span class="v ${t.info?'ok':'bad'}">Info ${t.distinct}/${n}</span>
+        <span class="v ${t.younger?'vio':''}">${t.younger?'verjüngt':'nicht jünger'}</span>
+      </div>
+      <div class="note">${k.note}</div>
+    </div>`;
+  }).join('');
+}
+
+const ageEl = document.getElementById('age'), ageV = document.getElementById('agev');
+ageEl.addEventListener('input', () => { const v = parseInt(ageEl.value,10); ageV.textContent = v; draw(v); });
+
+renderChips(); renderCards(); draw(parseInt(ageEl.value,10));
+</script>
+</body>
+</html>
