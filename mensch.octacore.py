@@ -14,7 +14,7 @@ class OctacoreVector:
     @property
     def worm(self): return f"OPEN({self.nc})"
 
-    def magma(self, intensity=0.68): # flowing lava via sin layers – load 0.68 = homeostatic
+    def magma(self, intensity=0.68): # flowing lava – load 0.68 = homeostatic
         return sum([math.sin(intensity*i + self.AXES.index(self.axis)) for i in range(5)])
 
     def whirl(self, speed=0.74): # whirl-spin 4s/speed
