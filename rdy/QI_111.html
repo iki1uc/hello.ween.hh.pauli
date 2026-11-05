@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ROMALET · PHYTHAROZ GELOEST · SPIEGEL ECONOMY</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#02060a;color:#c8d8e8;font-family:JetBrains Mono,Consolas,monospace;font-size:11px;line-height:1.5}
+:root{--bg:#02060a;--p:#040a14;--b:#1a2a3a;--amber:#ff8a2a;--gold:#ffd700;--green:#39ff88;--cyan:#5cf0ff;--dim:#5a7288}
+.top{position:sticky;top:0;z-index:9;background:rgba(4,10,20,.95);border-bottom:1px solid #ff8a2a33;padding:8px 12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;backdrop-filter:blur(8px)}
+.btn{border:1px solid var(--b);background:#0a1420;color:var(--dim);padding:4px 10px;border-radius:4px;font-size:10px;letter-spacing:1px;cursor:pointer}
+.btn.on{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,.1);box-shadow:0 0 10px rgba(255,215,0,.2)}
+.btn.phy{border-color:#b388ff;color:#b388ff}
+.btn.phy.on{background:rgba(179,136,255,.15);box-shadow:0 0 12px rgba(179,136,255,.3)}
+.grid{padding:10px;display:grid;gap:10px}
+.card{background:rgba(4,10,20,.9);border:1px solid var(--b);border-radius:6px;padding:10px}
+h2{font-size:10px;letter-spacing:2px;color:var(--dim);margin-bottom:8px;display:flex;justify-content:space-between}
+.pill{font-size:8px;padding:1px 6px;border-radius:99px;border:1px solid var(--b);color:var(--dim)}
+.pill.ok{color:var(--green);border-color:#39ff8855;background:rgba(57,255,136,.08)}
+.pill.bad{color:#ff5050;border-color:#ff505055;background:rgba(255,80,80,.08)}
+.pill.gold{color:var(--gold);border-color:#ffd70055;background:rgba(255,215,0,.08)}
+.row{display:flex;gap:6px;flex-wrap:wrap}
+.chess{--s:48px;display:grid;grid-template-columns:repeat(8,var(--s));grid-template-rows:repeat(8,var(--s));gap:1px;background:#0a1420;padding:2px;border-radius:6px;border:1px solid var(--b);width:fit-content}
+.sq{width:var(--s);height:var(--s);display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;font-size:22px;border-radius:3px}
+.sq.light{background:#142030} .sq.dark{background:#0a1420}
+.sq.sel{outline:2px solid var(--gold);z-index:2} .sq.mov{outline:2px solid var(--green)}
+.sq .coord{position:absolute;left:2px;bottom:1px;font-size:6px;color:#2a3a4a}
+.sq .dot{position:absolute;top:2px;right:2px;width:5px;height:5px;border-radius:50%}
+.dot.ok{background:var(--green)} .dot.bad{background:#ff5050}
+.detailGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+@media(max-width:900px){.detailGrid{grid-template-columns:1fr 1fr} .chess{--s:40px}}
+.kv{display:flex;justify-content:space-between;border-bottom:1px dashed rgba(140,180,220,.06);padding:2px 0;font-size:10px}
+.k{color:var(--dim)} .v{font-weight:700}
+.log{height:110px;overflow:auto;background:#02040a;border:1px solid var(--b);border-radius:6px;padding:6px;font-size:9px;color:var(--dim)}
+.drop{border:1px dashed #39ff8833;border-radius:6px;padding:12px;text-align:center;cursor:pointer}
+.pyra{display:flex;flex-direction:column;gap:5px}
+.layer{display:flex;align-items:center;gap:8px}
+.layer .bar{height:26px;display:flex;align-items:center;padding:0 8px;border-radius:4px;border:1px solid var(--b);font-size:9px;transition:.2s}
+</style>
+</head>
+<body>
+<div class="top">
+<b style="color:var(--amber);letter-spacing:2px">◈ ROMALET · PHYTHAROZ GELOEST</b>
+<span style="color:var(--dim);font-size:9px">ATOM ∧ SCHACH ∧ SPIEGEL ∧ PHYTHAROZ = ⊤ · nur legale Daten · lokal</span>
+<div style="margin-left:auto" class="row">
+<button class="btn on" id="tabW" onclick="app.tab('WISSEN')">WISSEN</button>
+<button class="btn" id="tabM" onclick="app.tab('MOVE')">MOVE</button>
+<button class="btn" id="tabS" onclick="app.tab('SPIEGEL')">SPIEGEL A⇄B</button>
+<button class="btn phy" id="tabP" onclick="app.tab('PHY')">PHYTHAROZ ⊤</button>
+<span class="pill ok">LOCAL ONLY</span><span class="pill gold" id="phyStatus">PHY ⊥ ungelöst</span>
+</div>
+</div>
+<div class="grid" style="grid-template-columns:360px 1fr 360px" id="mainGrid">
+<!-- LEFT -->
+<div class="card">
+<h2>◈ ATOM · HIMMEL <span class="pill" id="atomState">N=8</span></h2>
+<div id="atomList"></div>
+<div class="row" style="margin-top:8px">
+<button class="btn" onclick="app.addLayer()">+ EBENE</button>
+<button class="btn phy on" onclick="app.solvePhy()">PHYTHAROZ LÖSEN</button>
+<button class="btn" onclick="app.resetAtom()">RESET</button>
+</div>
+<div style="margin-top:8px;font-size:9px;color:var(--dim)">breite=(n-i)/n · trag=n-i · L(i)=L(i-1)∧R(i) · Click = R(i) toggle</div>
+<div class="card" style="margin-top:10px">
+<h2>◈ PYRAMIDE</h2>
+<div class="pyra" id="pyra"></div>
+</div>
+</div>
+<!-- CENTER -->
+<div>
+<div class="card">
+<h2>◈ SCHACH · 8×8 · ALLES WISSENSWERTE SCHLUMMERT · JETZT OFFEN <span class="pill ok" id="turn">Weiß am Zug</span></h2>
+<div class="row" style="margin-bottom:8px">
+<span class="pill">VULKAN=↑</span><span class="pill">BORG=→</span><span class="pill">7OF9=↓</span><span class="pill">ANDOR=←</span><span class="pill gold">PHYTHAROZ=▲</span>
+<button class="btn" onclick="app.resetBoard()">RESET BRETT</button>
+</div>
+<div id="boardWrap"></div>
+<div class="log" id="log" style="margin-top:8px"></div>
+</div>
+<div class="card" id="spiegelPanel" style="display:none">
+<h2>◈ SPIEGEL ECONOMY · QUADRANT VERGLEICH · LEGAL ONLY</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div><div class="drop" onclick="document.getElementById('fa').click()">Quelle A laden <input type="file" id="fa" hidden accept=".json,.csv"> </div><textarea id="pa" placeholder='[{"quadrant":"Q1","roh":12,"zwischen":4}]' style="width:100%;min-height:60px;background:#02040a;border:1px solid var(--b);color:#c8d8e8;border-radius:4px;padding:6px;font-size:10px;margin-top:6px"></textarea><button class="btn" onclick="app.loadPaste('A')">A laden</button></div>
+<div><div class="drop" onclick="document.getElementById('fb').click()">Quelle B laden <input type="file" id="fb" hidden accept=".json,.csv"></div><textarea id="pb" placeholder='[{"quadrant":"Q2","roh":9}]' style="width:100%;min-height:60px;background:#02040a;border:1px solid var(--b);color:#c8d8e8;border-radius:4px;padding:6px;font-size:10px;margin-top:6px"></textarea><button class="btn" onclick="app.loadPaste('B')">B laden</button></div>
+</div>
+<div id="compare" class="detailGrid" style="margin-top:10px"></div>
+</div>
+</div>
+<!-- RIGHT -->
+<div class="card" id="detail">
+<h2>◈ FELD DETAIL · V B 7 A + PHY <span class="pill" id="detailCoord">—</span></h2>
+<div id="detailBody" style="color:var(--dim)">Wähle ein Feld. Alles Wissenswerte schlummert hier — jetzt offen: Vulkan Formel, Borg Eff, 7of9 Adapt Δ, Andor Ehre, Phytharoz Synthese.</div>
+</div>
+</div>
+<script>
+const SYM=["·","↑","↗","→","↘","↓","↙","←","↖","▲"];
+const ROM={ "·":"ROOT","↑":"QI","↗":"EVO","→":"RAW","↘":"TMP","↓":"CORE","↙":"NC","←":"LOOP","↖":"AXIS","▲":"PHYTHAROZ"};
+const PCS={"w-k":"♔","w-q":"♕","w-r":"♖","w-b":"♗","w-n":"♘","w-p":"♙","b-k":"♚","b-q":"♛","b-r":"♜","b-b":"♝","b-n":"♞","b-p":"♟"};
+function makeBoard(){let b=Array.from({length:8},()=>Array(8).fill(null));let back=["r","n","b","q","k","b","n","r"];for(let i=0;i<8;i++){b[0][i]={t:back[i],c:"b"};b[1][i]={t:"p",c:"b"};b[6][i]={t:"p",c:"w"};b[7][i]={t:back[i],c:"w"}}return b}
+function clone(b){return b.map(r=>r.map(c=>c?{...c}:null))}
+function coord(r,c){return String.fromCharCode(97+c)+(8-r)}
+function isLegal(b,fr,fc,tr,tc){let p=b[fr][fc];if(!p)return false;let dr=tr-fr,dc=tc-fc,adr=Math.abs(dr),adc=Math.abs(dc);if(p.t==="p"){let dir=p.c==="w"?-1:1;if(dc===0&&!b[tr][tc]){if(dr===dir)return true;if((fr===6&&p.c==="w"||fr===1&&p.c==="b")&&dr===2*dir&&!b[fr+dir][fc])return true} if(adc===1&&dr===dir&&b[tr][tc]&&b[tr][tc].c!==p.c)return true; return false}
+if(p.t==="n")return (adr===2&&adc===1)||(adr===1&&adc===2);
+if(p.t==="b"||p.t==="r"||p.t==="q"){if(p.t==="b"&&adr!==adc)return false; if(p.t==="r"&&dr!==0&&dc!==0)return false; let sr=Math.sign(dr),sc=Math.sign(dc),r=fr+sr,c=fc+sc; while(r!==tr||c!==tc){if(b[r][c])return false; r+=sr;c+=sc} return true}
+if(p.t==="k")return adr<=1&&adc<=1;
+return false}
+function attacks(b,r,c,by){for(let i=0;i<8;i++)for(let j=0;j<8;j++){let p=b[i][j];if(p&&p.c===by&&isLegal(b,i,j,r,c))return true} return false}
+function kingPos(b,col){for(let i=0;i<8;i++)for(let j=0;j<8;j++)if(b[i][j]&&b[i][j].t==="k"&&b[i][j].c===col)return [i,j];return null}
+function inCheck(b,col){let kp=kingPos(b,col);if(!kp)return false;return attacks(b,kp[0],kp[1],col==="w"?"b":"w")}
+function legalMoves(b,r,c){let p=b[r][c];if(!p)return [];let ms=[];for(let tr=0;tr<8;tr++)for(let tc=0;tc<8;tc++){if(r===tr&&c===tc)continue;if(b[tr][tc]&&b[tr][tc].c===p.c)continue; if(!isLegal(b,r,c,tr,tc))continue; let nb=clone(b); nb[tr][tc]=p; nb[r][c]=null; if(!inCheck(nb,p.c))ms.push([tr,tc])}return ms}
+const app={
+ atom:[], board:makeBoard(), turn:"w", sel:null, moves:[], tabName:"WISSEN",
+ spiegel:{A:null,B:null}, phySolved:false, selectedIdx:52,
+ init(){
+  this.atom=[{sym:"·",regel:true},{sym:"↑",regel:true},{sym:"↗",regel:true},{sym:"→",regel:true},{sym:"↘",regel:true},{sym:"↓",regel:true},{sym:"↙",regel:true},{sym:"←",regel:true},{sym:"↖",regel:true},{sym:"▲",regel:false}];
+  this.bindFiles(); this.renderAll(); this.log("◈ SYSTEM START · PHYTHAROZ UNGELÖST · ATOM N="+this.atom.length);
+  this.log("▸ Hinweis: alles Wissenswerte schlummerte — jetzt offen pro Feld. Klick Feld für V B 7 A + PHY.");
+ },
+ bindFiles(){
+  document.getElementById('fa').addEventListener('change',e=>{let f=e.target.files[0]; if(!f)return; let r=new FileReader(); r.onload=ev=>{try{let j=JSON.parse(ev.target.result); this.spiegel.A=j; this.renderSpiegel()}catch{}}; r.readAsText(f)});
+  document.getElementById('fb').addEventListener('change',e=>{let f=e.target.files[0]; if(!f)return; let r=new FileReader(); r.onload=ev=>{try{let j=JSON.parse(ev.target.result); this.spiegel.B=j; this.renderSpiegel()}catch{}}; r.readAsText(f)});
+ },
+ tab(t){this.tabName=t; document.querySelectorAll('.top .btn').forEach(b=>b.classList.remove('on')); document.getElementById('tab'+(t[0]))?.classList.add('on'); if(t==="WISSEN"||t==="MOVE"||t==="PHY"){document.getElementById('boardWrap').parentElement.style.display=""; document.getElementById('spiegelPanel').style.display="none"} if(t==="SPIEGEL"){document.getElementById('boardWrap').parentElement.style.display="none"; document.getElementById('spiegelPanel').style.display=""} if(t==="PHY"){this.solvePhy()} this.renderAll()},
+ log(m){let el=document.getElementById('log'); let d=document.createElement('div'); d.textContent="["+new Date().toLocaleTimeString()+"] "+m; el.appendChild(d); el.scrollTop=el.scrollHeight},
+ chainValid(){let ok=true; for(let r of this.atom) ok=ok&&r.regel; return ok},
+ addLayer(){let syms=["↑","↗","→","↘","↓","↙","←","↖"]; let s=syms[Math.floor(Math.random()*syms.length)]; this.atom.splice(this.atom.length-1,0,{sym:s,regel:Math.random()<0.8}); this.renderAll(); this.log(" + EBENE "+s+" vor ▲")},
+ resetAtom(){this.atom=[{sym:"·",regel:true},{sym:"↑",regel:true},{sym:"↗",regel:true},{sym:"→",regel:true},{sym:"↘",regel:true},{sym:"↓",regel:true},{sym:"↙",regel:true},{sym:"←",regel:true},{sym:"↖",regel:true},{sym:"▲",regel:false}]; this.phySolved=false; this.renderAll()},
+ solvePhy(){this.atom=this.atom.map(a=>({...a,regel:true})); this.phySolved=true; document.getElementById('phyStatus').textContent="PHY ⊤ GELOEST"; document.getElementById('phyStatus').className="pill ok"; this.log("◈ PHYTHAROZ GELOEST · L(i)=⊤ ∀i · ATOM ∧ UI → ⊤ · breite=(n-i)/n garantiert"); this.renderAll()},
+ resetBoard(){this.board=makeBoard(); this.turn="w"; this.sel=null; this.moves=[]; this.renderAll(); this.log("Brett reset")},
+ clickBoard(r,c){
+  this.selectedIdx=r*8+c;
+  let p=this.board[r][c];
+  if(this.sel){
+   let [sr,sc]=this.sel; if(this.moves.some(([tr,tc])=>tr===r&&tc===c)){ let nb=clone(this.board); nb[r][c]=nb[sr][sc]; nb[sr][sc]=null; this.board=nb; this.turn=this.turn==="w"?"b":"w"; this.sel=null; this.moves=[]; this.log(`Zug ${coord(sr,sc)}→${coord(r,c)}`); this.renderAll(); return}
+  }
+  if(p&&p.c===this.turn){this.sel=[r,c]; this.moves=legalMoves(this.board,r,c); this.log(`Selektiert ${coord(r,c)} ${p.t.toUpperCase()} · ${this.moves.length} Züge`)} else {this.sel=null; this.moves=[]; if(p) this.log(`${coord(r,c)} ${p.c} nicht am Zug`); else this.log(`${coord(r,c)} leer · Vulkanisch wahr (¬∃p → ⊤)`)}
+  this.renderAll();
+ },
+ evalField(r,c){
+  let b=this.board; let p=b[r][c]; let occupied=!!p; let attW=0, attB=0; for(let i=0;i<8;i++)for(let j=0;j<8;j++){let q=b[i][j]; if(!q)continue; if(isLegal(b,i,j,r,c)){if(q.c==="w")attW++; else attB++}} let ctrl=(attW+attB); let def=occupied? (p.c==="w"?attW:attB) : 0;
+  let pseudo=p? (():number=>{let cnt=0; for(let tr=0;tr<8;tr++)for(let tc=0;tc<8;tc++) if(isLegal(b,r,c,tr,tc)) cnt++; return cnt})() : 0;
+  let legal=occupied? legalMoves(b,r,c).length : 0;
+  let vulkanValid = !occupied ? true : legal>0;
+  let borgEff = Math.round(Math.min(100, ctrl*7 + (occupied?20:5)));
+  let sevenAdapt = Math.round(Math.min(100, borgEff*0.7 + legal*3 + (occupied?10:0)));
+  let andorHonor = Math.round(50 + legal*2 - ctrl*2);
+  let atomValid=this.chainValid();
+  let phyScore = Math.round(( (vulkanValid?100:0) + borgEff + sevenAdapt + Math.max(0,andorHonor) + (atomValid?100:0) )/5);
+  let phyValid = vulkanValid && borgEff>=40 && sevenAdapt>=50 && andorHonor>=20 && atomValid;
+  let finalConcl = vulkanValid && borgEff>=40 && sevenAdapt>=50 && andorHonor>=20;
+  let finalWithPhy = finalConcl && atomValid && (this.phySolved||phyValid);
+  return {r,c,coord:coord(r,c),occupied,piece:p,attW,attB,def,ctrl,pseudo,legal,vulkan:{valid:vulkanValid,score:vulkanValid?100:0,formula:`∀m∈M(${coord(r,c)}): Clear(m)∧¬Check(K) → Valid | ${pseudo}→${legal}`}, borg:{eff:borgEff,valid:borgEff>=40,score:borgEff}, seven:{adapt:sevenAdapt,valid:sevenAdapt>=50,score:sevenAdapt}, andor:{honor:andorHonor,valid:andorHonor>=20,score:andorHonor}, phy:{score:phyScore,valid:phyValid||this.phySolved,atomValid}, final:{concl:finalConcl,withPhy:finalWithPhy}};
+ },
+ renderAtom(){
+  let wrap=document.getElementById('atomList'); let n=this.atom.length;
+  wrap.innerHTML=this.atom.map((a,i)=>{let breite=(n-i)/n; let trag=n-i; let L=this.atom.slice(0,i+1).every(x=>x.regel); let w=Math.round(breite*88); return `<div style="display:flex;align-items:center;gap:6px;margin:3px 0"><span style="width:18px;text-align:center;font-weight:700;color:${L?'#39ff88':'#ff5050'}">${L?'⊤':'⊥'}</span><button onclick="app.atom[${i}].regel=!app.atom[${i}].regel;app.renderAll()" style="width:${w}%;height:28px;background:${L?'rgba(57,255,136,.12)':'rgba(255,80,80,.12)'};border:1px solid ${L?'#39ff8855':'#ff505055'};border-radius:4px;display:flex;align-items:center;justify-content:space-between;padding:0 8px;cursor:pointer"><span>${a.sym} ${ROM[a.sym]||''} R:${a.regel?'⊤':'⊥'}</span><span style="font-size:8px;color:#5a7288">${breite.toFixed(3)} trag ${trag}</span></button><span style="font-size:8px;color:#3a4a5a">L${i}=${L?'⊤':'⊥'}</span></div>`}).join('');
+  document.getElementById('atomState').textContent=`N=${n} L=${this.chainValid()?'⊤':'⊥'} breite 1→${(1/n).toFixed(3)}`;
+  // pyra
+  let py=document.getElementById('pyra'); let evalF=this.evalField(Math.floor(this.selectedIdx/8),this.selectedIdx%8);
+  let layers=[{name:"BASE · ROH",w:100,c:"#2a3644",v:true,txt:`${evalF.occupied?evalF.piece.t.toUpperCase()+'@'+evalF.coord:'LEER'} ctrl ${evalF.ctrl}`},{name:"VULKAN ↑",w:84,c:"#ff8a2a",v:evalF.vulkan.valid,txt:`${evalF.vulkan.valid?'⊤':''} ${evalF.pseudo}→${evalF.legal}`},{name:"BORG →",w:68,c:"#39ff88",v:evalF.borg.valid,txt:`Eff ${evalF.borg.eff}%`},{name:"7OF9 ↓",w:52,c:"#c8d8e8",v:evalF.seven.valid,txt:`Adapt ${evalF.seven.adapt}%`},{name:"ANDOR ←",w:36,c:"#5cf0ff",v:evalF.andor.valid,txt:`Ehre ${evalF.andor.honor}`},{name:"PHYTHAROZ ▲",w:20,c:"#ffd700",v:evalF.phy.valid,txt:`${evalF.phy.score}% ATOM ${evalF.phy.atomValid?'⊤':'⊥'}`}];
+  py.innerHTML=layers.map(l=>`<div class="layer"><span style="width:14px;text-align:center;color:${l.v?'#39ff88':'#ff5050'};font-weight:700">${l.v?'⊤':'⊥'}</span><div class="bar" style="width:${l.w}%;background:${l.v?'rgba(255,255,255,.04)':'rgba(255,80,80,.08)'};border-color:${l.v?l.c+'88':'#ff505055'}"><span style="color:${l.c}">${l.name}</span><span style="margin-left:auto;color:#5a7288">${l.txt}</span></div></div>`).join('') + `<div style="margin-top:8px;padding:6px;border:1px solid ${evalF.final.withPhy?'#ffd70088':'#ff505055'};border-radius:4px;background:${evalF.final.withPhy?'rgba(255,215,0,.08)':'rgba(255,80,80,.06)'};color:${evalF.final.withPhy?'#ffd700':'#ff5050'};font-weight:700;text-align:center">${evalF.final.withPhy?'◈ SPITZE ⊤ · PHYTHAROZ GELOEST · V∧B∧7∧A∧ATOM = ⊤':'◈ SPITZE ⊥ · NOCH BRUCH · '+(!evalF.vulkan.valid?'VULKAN':!evalF.borg.valid?'BORG':!evalF.seven.valid?'7OF9':!evalF.andor.valid?'ANDOR':'ATOM')}</div>`;
+ },
+ renderBoard(){
+  let wrap=document.getElementById('boardWrap'); let b=this.board;
+  let html=`<div class="chess">`+Array.from({length:64}).map((_,idx)=>{let r=Math.floor(idx/8),c=idx%8; let light=(r+c)%2===0; let sel=this.sel&&this.sel[0]===r&&this.sel[1]===c; let mov=this.moves.some(([tr,tc])=>tr===r&&tc===c); let ev=this.evalField(r,c); let p=b[r][c]; let sym=p?PCS[`${p.c}-${p.t}`]:""; return `<div class="sq ${light?'light':'dark'} ${sel?'sel':''} ${mov?'mov':''}" onclick="app.clickBoard(${r},${c})"><span>${sym}</span><span class="coord">${ev.coord}</span><span class="dot ${ev.final.concl?'ok':'bad'}"></span></div>`}).join('')+`</div>`;
+  wrap.innerHTML=html; document.getElementById('turn').textContent=(this.turn==="w"?"Weiß":"Schwarz")+" am Zug";
+  // detail
+  let r=Math.floor(this.selectedIdx/8),c=this.selectedIdx%8; let ev=this.evalField(r,c);
+  document.getElementById('detailCoord').textContent=ev.coord + (ev.occupied?` ${PCS[`${ev.piece.c}-${ev.piece.t}`]} ${ev.piece.t.toUpperCase()}`:" LEER");
+  document.getElementById('detailBody').innerHTML=`
+   <div class="kv"><span class="k">VULKAN · reine Logik</span><span class="v" style="color:${ev.vulkan.valid?'#39ff88':'#ff5050'}">${ev.vulkan.valid?'⊤ WAHR':'⊥ FALSCH'}</span></div><div style="font-size:9px;color:#5a7288;margin-bottom:6px">${ev.vulkan.formula} · Pseudo ${ev.pseudo} Legal ${ev.legal} · ${!ev.occupied?'¬∃p → ⊤ vacuous':ev.vulkan.valid?'haltbar':'gepinnt'}</div>
+   <div class="kv"><span class="k">BORG · Kollektiv Eff</span><span class="v">${ev.borg.eff}% ${ev.borg.valid?'⊤':'⊥'}</span></div><div style="font-size:9px;color:#5a7288;margin-bottom:6px">Ctrl ${ev.ctrl} · Def ${ev.def} · Formel: (Ctrl/14)*100</div>
+   <div class="kv"><span class="k">7OF9 · Adaptation</span><span class="v">${ev.seven.adapt}% ${ev.seven.valid?'⊤':'⊥'}</span></div><div style="font-size:9px;color:#5a7288;margin-bottom:6px">Adapt = Borg*0.7 + Legal*3 + 10 · Mensch Faktor</div>
+   <div class="kv"><span class="k">ANDOR · Ushaan Ehre</span><span class="v">${ev.andor.honor} ${ev.andor.valid?'⊤':'⊥'}</span></div><div style="font-size:9px;color:#5a7288;margin-bottom:6px">Honor = 50 + Legal*2 - Ctrl*2 · Risiko ${ev.ctrl*5}%</div>
+   <div class="kv"><span class="k">ATOM KETTE</span><span class="v" style="color:${ev.phy.atomValid?'#39ff88':'#ff5050'}">${ev.phy.atomValid?'⊤':'⊥'} breite ${(1/this.atom.length).toFixed(3)}</span></div>
+   <div style="margin-top:8px;padding:6px;border:1px solid ${ev.phy.score>=70?'#b388ff88':'#3a4a5a'};border-radius:4px;background:rgba(179,136,255,.08)">
+     <div class="kv"><span class="k" style="color:#b388ff">PHYTHAROZ · Synthese</span><span class="v" style="color:${ev.phy.valid?'#ffd700':'#ff5050'}">${ev.phy.score}% ${ev.phy.valid?'⊤ GELOEST':'⊥'}</span></div>
+     <div style="font-size:9px;color:#8a9aaa">PHY = (V+B+7+A+ATOM)/5 · V=${ev.vulkan.valid?100:0} B=${ev.borg.eff} 7=${ev.seven.adapt} A=${ev.andor.honor} ATOM=${ev.phy.atomValid?100:0}</div>
+     <div style="font-size:9px;color:${ev.final.withPhy?'#ffd700':'#5a7288'};margin-top:4px">${ev.final.withPhy?'◈ ROMALET SPITZE ⊤ · Alles adherent · Move logisch':'Bruch — löse ATOM + Feld Logiken, dann PHYTHAROZ lösen klicken'}</div>
+   </div>
+   <div style="margin-top:8px" class="row">
+     <span class="pill ${ev.final.concl?'ok':'bad'}">FINAL ${ev.final.concl?'⊤':'⊥'} ${ev.final.concl?'HALTBAR':'BRUCH'}</span>
+     <span class="pill ${ev.final.withPhy?'ok':'bad'}" style="${ev.final.withPhy?'border-color:#ffd700;color:#ffd700;background:rgba(255,215,0,.1)':''}">SPITZE ${ev.final.withPhy?'⊤ GELOEST':'⊥'}</span>
+     <span class="pill">Angriff W${ev.attW} B${ev.attB}</span>
+   </div>
+   <div style="margin-top:8px;font-size:9px;color:#3a4a5a">WISSEN: ${ev.occupied?`Masse ${ ({p:1,n:3,b:3,r:5,q:9,k:0}[ev.piece.t]) } · ${ev.piece.c==='w'?'Weiß':'Schwarz'}`:'Leerfeld · Vulkanisch wahr'} · MOVE: ${ev.legal} legale Züge · Pseudo ${ev.pseudo} · Formel L(i)=L(i-1)∧R(i)</div>
+  `;
+ },
+ renderSpiegel(){
+  let el=document.getElementById('compare'); if(!el)return;
+  let A=this.spiegel.A||[], B=this.spiegel.B||[]; if(!Array.isArray(A)) A=[A]; if(!Array.isArray(B)) B=[B];
+  if(A.length===0||B.length===0){el.innerHTML='<div style="grid-column:1/-1;color:#5a7288">Lade A und B (JSON/CSV) für Delta. Nur legale Felder: quadrant, roh, zwischen, fertig, mana, aura, zen.</div>'; return}
+  let agg=rows=>{let m={Q1:{s:0,c:0},Q2:{s:0,c:0},Q3:{s:0,c:0},Q4:{s:0,c:0}}; rows.forEach(r=>{let q=(r.quadrant||r.quad||'Q1').toUpperCase(); if(!m[q]) q='Q1'; let sum=(+r.roh||0)+(+r.zwischen||0)+(+r.fertig||0); m[q].s+=sum; m[q].c++}); return m};
+  let a=agg(A), b=agg(B);
+  el.innerHTML=Object.keys(a).map(q=>{let delta=b[q].s-a[q].s; return `<div class="card" style="margin:0"><div style="font-size:9px;color:#5a7288;display:flex;justify-content:space-between"><span>${q}</span><span style="color:${delta>0?'#39ff88':delta<0?'#ff5050':'#5a7288'}">${delta>0?'▲':delta<0?'▼':'■'} ${delta}</span></div><div class="kv"><span class="k">A</span><span class="v">${a[q].s} (${a[q].c})</span></div><div class="kv"><span class="k">B</span><span class="v">${b[q].s} (${b[q].c})</span></div></div>`}).join('');
+ },
+ renderAll(){this.renderAtom(); this.renderBoard(); this.renderSpiegel(); if(this.phySolved){document.getElementById('phyStatus').textContent="PHY ⊤ GELOEST"; document.getElementById('phyStatus').className="pill ok"}}
+}
+document.addEventListener('DOMContentLoaded',()=>app.init());
+</script>
+</body>
+</html>

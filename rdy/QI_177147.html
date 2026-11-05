@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NC.ECONOMY SPIEGEL · Quadrant Vergleich · Legal Only</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#04070e;--bg2:#0a101e;--bg3:#101828;--fg:#c8d8e8;--dim:#5a7288;--green:#7ce0a8;--cyan:#5fc8ff;--gold:#ffcc44;--vio:#b388ff;--line:rgba(140,180,220,.1)}
+body{background:#04070e;color:var(--fg);font-family:Consolas,monospace;font-size:12px;min-height:100vh}
+.top{height:36px;background:var(--bg2);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 14px;gap:14px}
+.logo{color:var(--green);font-weight:700;letter-spacing:3px} .logo b{color:var(--gold)}
+.pill{font-size:9px;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--dim)}
+.pill.ok{color:var(--green);border-color:rgba(124,224,168,.3);background:rgba(124,224,168,.08)}
+.pill.warn{color:var(--gold);border-color:rgba(255,204,68,.3);background:rgba(255,204,68,.08)}
+.wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;max-width:1400px;margin:0 auto}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}}
+.panel{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:12px}
+.panel h3{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:6px}
+.drop{border:1px dashed rgba(124,224,168,.25);border-radius:8px;padding:18px;text-align:center;background:rgba(16,24,40,.4);cursor:pointer;transition:.2s}
+.drop:hover{border-color:var(--green);background:rgba(124,224,168,.06)}
+.drop input{display:none}
+.grid9{display:grid;grid-template-columns:repeat(9,1fr);gap:3px;background:#03060c;padding:6px;border-radius:8px;border:1px solid rgba(124,224,168,.18);aspect-ratio:1}
+.cell{background:rgba(16,24,40,.7);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#3a4a5a;min-height:0}
+.cell.q1{background:rgba(95,200,255,.10)} .cell.q2{background:rgba(255,204,68,.10)} .cell.q3{background:rgba(179,136,255,.10)} .cell.q4{background:rgba(255,136,176,.10)} .cell.mid{background:rgba(124,224,168,.22);color:#fff}
+.cell.has{color:var(--fg);font-weight:700;box-shadow:inset 0 0 0 1px rgba(124,224,168,.2)}
+.kv{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed rgba(140,180,220,.06);font-size:10.5px}
+.k{color:var(--dim)} .v{font-weight:700}
+.bar{height:4px;background:#0a1420;border-radius:2px;overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--cyan))}
+.btn{flex:1;background:var(--bg3);border:1px solid var(--line);color:var(--fg);padding:7px 10px;border-radius:4px;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.btn:hover{border-color:var(--green);color:var(--green)}
+.btn.gold{border-color:rgba(255,204,68,.35);color:var(--gold)}
+.delta{font-size:10px;padding:2px 6px;border-radius:3px}
+.delta.up{background:rgba(124,224,168,.12);color:var(--green)} .delta.down{background:rgba(255,90,122,.12);color:#ff5a7a} .delta.eq{background:rgba(90,114,136,.12);color:var(--dim)}
+#log{max-height:120px;overflow-y:auto;font-size:10px;color:var(--dim);line-height:1.6;background:#02040a;border:1px solid var(--line);border-radius:6px;padding:8px}
+textarea{width:100%;min-height:70px;background:#02040a;border:1px solid var(--line);color:var(--fg);border-radius:6px;padding:8px;font-family:Consolas,monospace;font-size:10px;resize:vertical}
+</style>
+</head>
+<body>
+<div class="top"><span class="logo">NC<b>::ECONOMY SPIEGEL</b></span><span style="color:var(--dim)">/spiegel/quadrant · nur legale daten · 100% lokal</span>
+<div style="margin-left:auto;display:flex;gap:8px"><span class="pill ok">LOCAL ONLY</span><span class="pill ok">NO UPLOAD</span><span class="pill warn">LEGAL DATA ONLY</span><span id="clock" class="pill">--:--:--</span></div></div>
+<div style="max-width:1400px;margin:0 auto;padding:10px 10px 0;display:grid;grid-template-columns:1fr auto;gap:10px">
+<div class="panel" style="grid-column:1/-1">
+<h3>◈ WIE ES FUNKTIONIERT <span class="pill ok">wir ändern nichts · wir bilden nur ab</span></h3>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;font-size:10.5px;line-height:1.5;color:var(--dim)">
+<div><b style="color:var(--green)">1. Laden</b><br>Du lädst Datei A (z.B. Markt Hamburg Q1) und Datei B (z.B. Markt Berlin Q1). CSV oder JSON. Format: <code>id, quadrant, roh, zwischen, fertig, mana, aura, zen</code> oder beliebiges Key-Value JSON. Alles bleibt im Browser.</div>
+<div><b style="color:var(--cyan)">2. Quadranten</b><br>9x9 = 81 Slots. Aufgeteilt: Q1 NW (0-3,0-3) · Q2 NE (0-3,5-8) · Q3 SW (5-8,0-3) · Q4 SE (5-8,5-8) · Mitte = Kreuz. Vergleich läuft pro Quadrant.</div>
+<div><b style="color:var(--gold)">3. Legal-Check</b><br>Kein Personenbezug ohne Einwilligung. Keine DSGVO-kritischen Felder (Name, Adresse, IBAN, etc.) werden verarbeitet. Parser lehnt Zeilen mit sensiblen Keys ab. Nur aggregierte Wirtschaftsdaten.</div>
+</div>
+</div>
+</div>
+<div class="wrap">
+<div class="panel" id="panelA">
+<h3>◈ QUELLE A · SPIEGEL 1 <span class="pill ok" id="statusA">leer</span></h3>
+<label class="drop" id="dropA"><input type="file" id="fileA" accept=".csv,.json,.txt"> <div style="font-size:22px">◈</div><div style="margin:6px 0;color:var(--fg)">Datei A hierher ziehen oder klicken</div><div style="font-size:9px;color:var(--dim)">CSV / JSON · max 5MB · nur lokal</div></label>
+<textarea id="pasteA" placeholder='Oder JSON direkt einfügen z.B. [{"quadrant":"Q1","roh":12,"zwischen":4,"fertig":2}]'></textarea>
+<div style="display:flex;gap:6px;margin-top:8px"><button class="btn" onclick="app.loadPaste('A')">aus Text laden</button><button class="btn" onclick="app.clear('A')">clear</button><button class="btn gold" onclick="app.demo('A')">Demo A füllen</button></div>
+<div style="margin-top:10px"><div class="grid9" id="gridA"></div></div>
+<div id="statsA" style="margin-top:10px"></div>
+</div>
+<div class="panel" id="panelB">
+<h3>◈ QUELLE B · SPIEGEL 2 · VERGLEICH <span class="pill ok" id="statusB">leer</span></h3>
+<label class="drop" id="dropB"><input type="file" id="fileB" accept=".csv,.json,.txt"> <div style="font-size:22px">⟲</div><div style="margin:6px 0;color:var(--fg)">Datei B hierher ziehen oder klicken</div><div style="font-size:9px;color:var(--dim)">CSV / JSON · max 5MB · nur lokal</div></label>
+<textarea id="pasteB" placeholder='Oder JSON direkt einfügen z.B. [{"quadrant":"Q2","roh":9,"zwischen":5,"fertig":3}]'></textarea>
+<div style="display:flex;gap:6px;margin-top:8px"><button class="btn" onclick="app.loadPaste('B')">aus Text laden</button><button class="btn" onclick="app.clear('B')">clear</button><button class="btn gold" onclick="app.demo('B')">Demo B füllen</button></div>
+<div style="margin-top:10px"><div class="grid9" id="gridB"></div></div>
+<div id="statsB" style="margin-top:10px"></div>
+</div>
+<div class="panel" style="grid-column:1/-1">
+<h3>◈ QUADRANT VERGLEICH · DELTA <span class="pill" id="compareStatus">warte auf 2 Quellen</span></h3>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px" id="compareGrid"></div>
+<div style="margin-top:12px;display:grid;grid-template-columns:1fr 300px;gap:10px">
+<div><div id="log"></div><div style="display:flex;gap:6px;margin-top:8px"><button class="btn" onclick="app.exportJSON()">Export Vergleich JSON (lokal)</button><button class="btn gold" onclick="app.swap()">A ⇄ B tauschen</button></div></div>
+<div><div class="panel" style="margin:0"><h3>◈ LEGAL CHECK</h3><div id="legal"></div></div></div>
+</div>
+</div>
+</div>
+<script>
+const FORBIDDEN_KEYS = ['name','vorname','nachname','person','email','mail','adresse','strasse','iban','bic','telefon','tel','handy','geburt','ssn','steuernummer','personalnummer'];
+const QUADS = {
+ Q1:{label:'NW · Q1', rows:[0,1,2,3], cols:[0,1,2,3], cls:'q1'},
+ Q2:{label:'NE · Q2', rows:[0,1,2,3], cols:[5,6,7,8], cls:'q2'},
+ Q3:{label:'SW · Q3', rows:[5,6,7,8], cols:[0,1,2,3], cls:'q3'},
+ Q4:{label:'SE · Q4', rows:[5,6,7,8], cols:[5,6,7,8], cls:'q4'},
+ MID:{label:'MITTE · Kreuz', rows:[0,1,2,3,4,5,6,7,8], cols:[4], extra:'center', cls:'mid'}
+};
+function makeGrid(){let arr=[];for(let r=0;r<9;r++)for(let c=0;c<9;c++){let q='-';if(r<=3&&c<=3)q='Q1';else if(r<=3&&c>=5)q='Q2';else if(r>=5&&c<=3)q='Q3';else if(r>=5&&c>=5)q='Q4';else if(r===4||c===4)q='MID';arr.push({r,c,q,val:0,has:false})}return arr;}
+const app={
+ data:{A:null,B:null},
+ grids:{A:makeGrid(),B:makeGrid()},
+ init(){
+  this.bindDrop('A'); this.bindDrop('B');
+  this.renderGrid('A'); this.renderGrid('B'); this.renderCompare();
+  setInterval(()=>document.getElementById('clock').textContent=new Date().toLocaleTimeString('de-DE'),1000);
+  this.log('◈ SPIEGEL ECONOMY · Legal Only · Local Only gestartet','ok');
+  this.log('▸ Nur aggregierte Wirtschaftsdaten. Keine personenbezogenen Daten.','warn');
+ },
+ log(m,cls=''){let l=document.getElementById('log');let d=document.createElement('div');d.innerHTML=`[${new Date().toLocaleTimeString()}] ${m}`;if(cls==='ok')d.style.color='var(--green)'; if(cls==='warn')d.style.color='var(--gold)'; l.appendChild(d); l.scrollTop=l.scrollHeight},
+ bindDrop(which){
+  let drop=document.getElementById('drop'+which), inp=document.getElementById('file'+which);
+  drop.addEventListener('click',()=>inp.click());
+  drop.addEventListener('dragover',e=>{e.preventDefault(); drop.style.borderColor='var(--green)'});
+  drop.addEventListener('dragleave',()=>drop.style.borderColor='');
+  drop.addEventListener('drop',e=>{e.preventDefault(); drop.style.borderColor=''; let f=e.dataTransfer.files[0]; if(f) this.handleFile(which,f)});
+  inp.addEventListener('change',e=>{let f=e.target.files[0]; if(f) this.handleFile(which,f)});
+ },
+ handleFile(which,file){
+  if(file.size>5*1024*1024){this.log('⚠ Datei zu groß >5MB','warn');return}
+  let reader=new FileReader();
+  reader.onload=e=>{try{let parsed=this.parse(e.target.result,file.name); this.setData(which,parsed,file.name)}catch(err){this.log('⚠ Parse Fehler: '+err.message,'warn')}};
+  reader.readAsText(file);
+ },
+ parse(text,name){
+  text=text.trim();
+  if(!text) throw new Error('leer');
+  // try JSON
+  if(text.startsWith('[')||text.startsWith('{')){
+   let j=JSON.parse(text); if(!Array.isArray(j)) j=[j]; return this.normalize(j,name);
+  }
+  // try CSV
+  let lines=text.split(/\r?\n/).filter(Boolean); let header=lines[0].toLowerCase().split(/[,;\t]/).map(s=>s.trim());
+  let rows=lines.slice(1).map(l=>{let vals=l.split(/[,;\t]/); let o={}; header.forEach((h,i)=>o[h]=(vals[i]||'').trim()); return o});
+  return this.normalize(rows,name);
+ },
+ normalize(arr,name){
+  let legalIssues=[];
+  let out=arr.map((o,i)=>{
+   let lowKeys=Object.keys(o).map(k=>k.toLowerCase());
+   let bad=lowKeys.find(k=>FORBIDDEN_KEYS.some(f=>k.includes(f)));
+   if(bad) legalIssues.push(`Zeile ${i}: verbotener Key '${bad}' ignoriert`);
+   // remove bad
+   let clean={}; for(let k in o){ let lk=k.toLowerCase(); if(!FORBIDDEN_KEYS.some(f=>lk.includes(f))) clean[k]=o[k];}
+   // extract numbers
+   let q=(clean.quadrant||clean.quad||clean.q||'').toString().toUpperCase(); if(!['Q1','Q2','Q3','Q4','MID','MITTE'].includes(q)) q=null;
+   let roh=parseFloat(clean.roh||clean.rohstoff||0)||0;
+   let zwischen=parseFloat(clean.zwischen||0)||0;
+   let fertig=parseFloat(clean.fertig||0)||0;
+   let mana=parseFloat(clean.mana||0)||0; let aura=parseFloat(clean.aura||0)||0; let zen=parseFloat(clean.zen||0)||0;
+   return {quadrant:q||this.autoQuad(i), roh, zwischen, fertig, mana, aura, zen, _raw:clean};
+  });
+  return {rows:out, issues:legalIssues, name};
+ },
+ autoQuad(i){let qs=['Q1','Q2','Q3','Q4']; return qs[i%4];},
+ setData(which, parsed, name){
+  this.data[which]=parsed;
+  document.getElementById('status'+which).textContent=`${parsed.rows.length} Zeilen · ${name}`;
+  document.getElementById('status'+which).className='pill ok';
+  this.buildGrid(which);
+  this.renderGrid(which);
+  this.renderStats(which);
+  this.renderCompare();
+  this.renderLegal();
+  this.log(`◈ Quelle ${which} geladen: ${parsed.rows.length} Zeilen aus ${name} · legal issues: ${parsed.issues.length}`,'ok');
+  if(parsed.issues.length) parsed.issues.forEach(is=>this.log('⚠ '+is,'warn'));
+ },
+ buildGrid(which){
+  let grid=makeGrid();
+  let rows=this.data[which]?.rows||[];
+  // verteile roh/zwischen/fertig auf quadranten
+  let perQuad={Q1:{c:0,sum:0},Q2:{c:0,sum:0},Q3:{c:0,sum:0},Q4:{c:0,sum:0},MID:{c:0,sum:0}};
+  rows.forEach(r=>{let q=r.quadrant; if(!perQuad[q]) q='Q1'; perQuad[q].c++; perQuad[q].sum+=r.roh+r.zwischen+r.fertig});
+  // markiere zellen je nach sum
+  grid.forEach(cell=>{
+   let pq=perQuad[cell.q]; if(pq && pq.sum>0){ cell.has=true; cell.val=Math.round(pq.sum/(pq.c||1));}
+  });
+  this.grids[which]=grid;
+ },
+ renderGrid(which){
+  let el=document.getElementById('grid'+which); let grid=this.grids[which];
+  el.innerHTML=grid.map(c=>`<div class="cell ${c.q==='MID'?'mid':c.q.toLowerCase()} ${c.has?'has':''}" title="${c.q} (${c.r},${c.c})">${c.has?c.val:''}</div>`).join('');
+ },
+ renderStats(which){
+  let data=this.data[which]; let el=document.getElementById('stats'+which); if(!data){el.innerHTML='';return}
+  let sum={roh:0,zwischen:0,fertig:0,mana:0,aura:0,zen:0};
+  data.rows.forEach(r=>{sum.roh+=r.roh; sum.zwischen+=r.zwischen; sum.fertig+=r.fertig; sum.mana+=r.mana; sum.aura+=r.aura; sum.zen+=r.zen});
+  let n=data.rows.length||1;
+  let quadCount={}; data.rows.forEach(r=>{quadCount[r.quadrant]=(quadCount[r.quadrant]||0)+1});
+  el.innerHTML=`
+   <div class="kv"><span class="k">Zeilen</span><span class="v">${data.rows.length}</span></div>
+   <div class="kv"><span class="k">roh</span><span class="v">${sum.roh}</span></div>
+   <div class="kv"><span class="k">zwischen</span><span class="v">${sum.zwischen}</span></div>
+   <div class="kv"><span class="k">fertig</span><span class="v">${sum.fertig}</span></div>
+   <div class="kv"><span class="k">MANA Ø</span><span class="v">${(sum.mana/n).toFixed(2)}</span></div>
+   <div class="kv"><span class="k">AURA Ø</span><span class="v">${(sum.aura/n).toFixed(2)}</span></div>
+   <div class="kv"><span class="k">ZEN Ø</span><span class="v">${(sum.zen/n).toFixed(2)}</span></div>
+   <div class="kv"><span class="k">Quadranten</span><span class="v">${Object.entries(quadCount).map(([k,v])=>k+':'+v).join(' ')}</span></div>
+   <div class="bar"><i style="width:${Math.min(100,(sum.roh+sum.zwischen+sum.fertig)/2)}%"></i></div>
+  `;
+ },
+ renderCompare(){
+  let a=this.data.A, b=this.data.B; let el=document.getElementById('compareGrid'); let status=document.getElementById('compareStatus');
+  if(!a||!b){ status.textContent='warte auf 2 Quellen'; el.innerHTML='<div class="panel" style="grid-column:1/-1;text-align:center;color:var(--dim)">Lade A und B um Delta zu sehen</div>'; return}
+  status.textContent='Vergleich aktiv · lokal'; status.className='pill ok';
+  let agg=(rows)=>{let m={Q1:{roh:0,zwischen:0,fertig:0,mana:0,aura:0,zen:0,c:0},Q2:{roh:0,zwischen:0,fertig:0,mana:0,aura:0,zen:0,c:0},Q3:{roh:0,zwischen:0,fertig:0,mana:0,aura:0,zen:0,c:0},Q4:{roh:0,zwischen:0,fertig:0,mana:0,aura:0,zen:0,c:0},MID:{roh:0,zwischen:0,fertig:0,mana:0,aura:0,zen:0,c:0}}; rows.forEach(r=>{let q=m[r.quadrant]||m.Q1; q.roh+=r.roh; q.zwischen+=r.zwischen; q.fertig+=r.fertig; q.mana+=r.mana; q.aura+=r.aura; q.zen+=r.zen; q.c++}); return m;};
+  let A=agg(a.rows), B=agg(b.rows);
+  el.innerHTML=Object.keys(A).map(q=>{
+   let aa=A[q], bb=B[q];
+   let sumA=aa.roh+aa.zwischen+aa.fertig, sumB=bb.roh+bb.zwischen+bb.fertig, delta=sumB-sumA;
+   let dClass=delta>0?'up':delta<0?'down':'eq'; let dSym=delta>0?'▲':delta<0?'▼':'■';
+   return `<div class="panel" style="margin:0">
+    <h3>${QUADS[q].label} <span class="delta ${dClass}">${dSym} ${delta>0?'+':''}${delta}</span></h3>
+    <div class="kv"><span class="k">A sum</span><span class="v">${sumA} (${aa.c})</span></div>
+    <div class="kv"><span class="k">B sum</span><span class="v">${sumB} (${bb.c})</span></div>
+    <div class="kv"><span class="k">roh Δ</span><span class="v">${(bb.roh-aa.roh).toFixed(1)}</span></div>
+    <div class="kv"><span class="k">zwischen Δ</span><span class="v">${(bb.zwischen-aa.zwischen).toFixed(1)}</span></div>
+    <div class="kv"><span class="k">fertig Δ</span><span class="v">${(bb.fertig-aa.fertig).toFixed(1)}</span></div>
+    <div class="kv"><span class="k">mana/aura/zen Δ</span><span class="v">${(bb.mana-aa.mana).toFixed(2)}/${(bb.aura-aa.aura).toFixed(2)}/${(bb.zen-aa.zen).toFixed(2)}</span></div>
+    <div class="bar"><i style="width:${Math.min(100,Math.abs(delta)*5+20)}%"></i></div>
+   </div>`;
+  }).join('');
+ },
+ renderLegal(){
+  let el=document.getElementById('legal'); let issues=[...(this.data.A?.issues||[]), ...(this.data.B?.issues||[])];
+  if(issues.length===0) el.innerHTML='<div style="color:var(--green)">✔ Keine verbotenen Keys erkannt.<br><br>Verarbeitet: roh, zwischen, fertig, mana, aura, zen, quadrant.<br>Abgelehnt: name, email, adresse, iban, tel, etc.<br><br>100% lokal im Browser. Kein Netzwerk-Request.</div>';
+  else el.innerHTML=issues.map(i=>`<div style="color:var(--gold)">⚠ ${i}</div>`).join('')+'<div style="margin-top:8px;color:var(--dim)">Diese Zeilen wurden bereinigt und weiterverarbeitet.</div>';
+ },
+ clear(which){this.data[which]=null; this.grids[which]=makeGrid(); document.getElementById('status'+which).textContent='leer'; document.getElementById('paste'+which).value=''; this.renderGrid(which); this.renderStats(which); this.renderCompare(); this.renderLegal(); this.log(`⟲ Quelle ${which} geleert`,'warn')},
+ loadPaste(which){let txt=document.getElementById('paste'+which).value.trim(); if(!txt){this.log('⚠ Textfeld leer','warn');return} try{let parsed=this.parse(txt,'paste'); this.setData(which,parsed,'paste')}catch(e){this.log('⚠ Fehler: '+e.message,'warn')}},
+ demo(which){
+  let base=which==='A'?0:7;
+  let rows=[{quadrant:'Q1',roh:12+base,zwischen:4,fertig:2,mana:0.8,aura:0.6,zen:0.7},{quadrant:'Q2',roh:9+base,zwischen:5,fertig:3,mana:0.6,aura:0.9,zen:0.6},{quadrant:'Q3',roh:15,zwischen:3,fertig:1,mana:0.7,aura:0.5,zen:0.8},{quadrant:'Q4',roh:8+base,zwischen:6,fertig:4,mana:0.9,aura:0.7,zen:0.9},{quadrant:'Q1',roh:11,zwischen:4,fertig:2,mana:0.75,aura:0.65,zen:0.72}];
+  this.setData(which,{rows,issues:[],name:'demo'},'demo');
+ },
+ swap(){let tmp=this.data.A; this.data.A=this.data.B; this.data.B=tmp; let gtmp=this.grids.A; this.grids.A=this.grids.B; this.grids.B=gtmp; this.renderGrid('A'); this.renderGrid('B'); this.renderStats('A'); this.renderStats('B'); this.renderCompare(); this.log('⇄ A ⇄ B getauscht','ok')},
+ exportJSON(){
+  if(!this.data.A||!this.data.B){this.log('⚠ Beide Quellen nötig für Export','warn');return}
+  let out={exportedAt:new Date().toISOString(), legalOnly:true, localOnly:true, sourceA:this.data.A.rows, sourceB:this.data.B.rows, note:'Nur legale aggregierte Daten, keine PII'};
+  let blob=new Blob([JSON.stringify(out,null,2)],{type:'application/json'}); let url=URL.createObjectURL(blob); let a=document.createElement('a'); a.href=url; a.download=`spiegel-vergleich-${Date.now()}.json`; a.click(); URL.revokeObjectURL(url); this.log('◈ Export JSON lokal erstellt · Download gestartet','ok');
+ }
+};
+document.addEventListener('DOMContentLoaded',()=>app.init());
+</script>
+</body>
+</html>

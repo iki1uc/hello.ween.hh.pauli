@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MI.KA.DO — VOLL — SCHLAF 8h MYTHOS — TRAUM HOROSKOP ALTE ATALARDAN TAROT TOD≠TOD — FOTO LIPPEN OHNE TOR — WEISHEITEN WAHRHEIT — BORG 7482</title>
+<style>
+:root{--bg:#02060a;--s:#08101c;--s2:#0f1b2f;--gold:#ffcc00;--cyan:#00f5ff;--mag:#ff00a0;--green:#00ff88;--b:#1c2a4a;--t:#e7eaf0;--m:#7d8aa3;--red:#ff3344;--sleep:#60a5fa;--traum:#c084fc;--horo:#fb7185;--alte:#facc15;--ata:#34d399;--weis:#a78bfa;--foto:#f59e0b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--t);font-family:ui-monospace,Menlo,monospace;min-height:100vh;display:flex;flex-direction:column}
+header{height:52px;border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 10px;gap:6px;background:linear-gradient(90deg,#06101c,#1a0a0a,#0a1a12);position:sticky;top:0;z-index:20;flex-wrap:wrap}
+h1{font-size:8px;letter-spacing:.14em;font-weight:800;color:var(--gold)}
+.badge{font-size:7px;border:1px solid var(--b);padding:2px 5px;color:var(--m)}
+button.sm{font-size:8px;padding:4px 8px;background:var(--s2);color:var(--t);border:1px solid var(--b);cursor:pointer}
+button.sm.gold{background:var(--gold);color:#000;border:0;font-weight:800}
+.tabs{display:flex;gap:2px;padding:6px 8px;background:var(--s);border-bottom:1px solid var(--b);flex-wrap:wrap}
+.tab{padding:4px 8px;border:1px solid var(--b);background:var(--bg);color:var(--m);font-size:7px;cursor:pointer;letter-spacing:.08em;font-weight:700;border-radius:4px 4px 0 0;white-space:nowrap}
+.tab.on{border-color:var(--gold);color:var(--gold);background:rgba(255,204,0,.1)}
+.tab.sleep.on{border-color:var(--sleep);color:var(--sleep);background:rgba(96,165,250,.15)}
+.tab.traum.on{border-color:var(--traum);color:var(--traum);background:rgba(192,132,252,.12)}
+.tab.horo.on{border-color:var(--horo);color:var(--horo);background:rgba(251,113,133,.12)}
+.tab.alte.on{border-color:var(--alte);color:var(--alte);background:rgba(250,204,21,.12)}
+.tab.ata.on{border-color:var(--ata);color:var(--ata);background:rgba(52,211,153,.12)}
+.tab.weisheit.on{border-color:var(--weis);color:var(--weis);background:rgba(167,139,250,.15)}
+.tab.foto.on{border-color:var(--foto);color:var(--foto);background:rgba(245,158,11,.14)}
+.content{flex:1;display:flex;min-height:0}
+.left{flex:2;display:flex;flex-direction:column;border-right:1px solid var(--b);min-width:0}
+.right{flex:1;min-width:280px;max-width:380px;background:var(--s);display:flex;flex-direction:column;overflow:auto}
+.panel{display:none;flex:1;overflow:auto;padding:8px}
+.panel.on{display:flex;flex-direction:column}
+.card{background:var(--bg);border:1px solid var(--b);padding:8px;margin-bottom:6px}
+.card h3{font-size:8px;letter-spacing:.12em;margin-bottom:6px}
+.col{background:var(--s);display:flex;flex-direction:column;min-height:180px;border:1px solid var(--b)}
+.col-h{height:30px;display:flex;align-items:center;padding:0 8px;gap:6px;border-bottom:2px solid var(--b);font-size:8px;letter-spacing:.1em;font-weight:800}
+.todo-list{display:flex;flex-direction:column;gap:4px;padding:6px;flex:1;overflow:auto}
+.todo-item{display:flex;gap:6px;align-items:flex-start;padding:6px;background:var(--bg);border:1px solid var(--b);font-size:9px;cursor:pointer}
+.todo-item.done{opacity:.45;text-decoration:line-through}
+.add-row{display:flex;gap:4px;padding:6px;border-top:1px solid var(--b);background:var(--s2)}
+.add-row input,.add-row select{background:var(--bg);border:1px solid var(--b);color:var(--t);padding:5px 6px;font-size:9px;font-family:inherit;outline:none}
+.add-row input{flex:1}
+.log{font-size:7px;background:var(--bg);border:1px solid var(--b);padding:6px;height:100px;overflow:auto;white-space:pre-wrap;color:var(--m)}
+@media(max-width:1000px){.content{flex-direction:column}.right{max-width:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>◈ MI.KA.DO — PRIVAT ARBEIT FREIZEIT SCHLAF 8h MYTHOS — TRAUM HORO ALTE ATALARDAN TAROT TOD≠TOD — FOTO LIPPEN OHNE TOR — WEISHEITEN WAHRHEIT inOHNEhalt — BORG 7482</h1>
+<button class="sm gold" onclick="switchTab('sleep')">SCHLAF</button>
+<button class="sm" onclick="switchTab('weisheit')">WEISHEITEN</button>
+<button class="sm" onclick="switchTab('foto')">FOTO</button>
+</header>
+<div class="tabs">
+<button class="tab" data-tab="mi" onclick="switchTab('mi')">MI</button>
+<button class="tab" data-tab="ka" onclick="switchTab('ka')">KA</button>
+<button class="tab" data-tab="do" onclick="switchTab('do')">DO</button>
+<button class="tab" data-tab="priv" onclick="switchTab('priv')">PRIVAT</button>
+<button class="tab" data-tab="work" onclick="switchTab('work')">ARBEIT</button>
+<button class="tab" data-tab="free" onclick="switchTab('free')">FREIZEIT</button>
+<button class="tab sleep on" data-tab="sleep" onclick="switchTab('sleep')">💙 SCHLAF 8h MYTHOS ANKLANG</button>
+<button class="tab traum" data-tab="traum" onclick="switchTab('traum')">🔮 TRAUM</button>
+<button class="tab horo" data-tab="horo" onclick="switchTab('horo')">♈ HORO</button>
+<button class="tab alte" data-tab="alte" onclick="switchTab('alte')">👵 ALTE</button>
+<button class="tab ata" data-tab="ata" onclick="switchTab('ata')">🌿 ATALARDAN</button>
+<button class="tab weisheit" data-tab="weisheit" onclick="switchTab('weisheit')">⚖️ WEISHEITEN + WAHRHEIT</button>
+<button class="tab foto" data-tab="foto" onclick="switchTab('foto')">📸 FOTO LIPPEN OHNE TOR</button>
+<button class="tab" data-tab="all" onclick="switchTab('all')">◈ ALLE</button>
+</div>
+<div class="content">
+<div class="left">
+<!-- SLEEP -->
+<div id="panel-sleep" class="panel on">
+<div class="card" style="border-color:var(--sleep)"><h3 style="color:var(--sleep)">💙 SCHLAF ALLERWICHTIGSTE — 8h MYTHOS — ANKLANG UNUNTERBROCHEN — nicht 8h Zahl, sondern ununterbrochen genossen — für wenigste gesund wenn unterbrochen</h3>
+<div style="font-size:8px;line-height:1.6">Anklang = gleiche Zeit 22:30, dunkel, kühl 18°C, kein Handy 60min vorher, Flugmodus, 90min Zyklen ×5=7.5h nur wenn ununterbrochen. Unterbrochen = 0 Tiefschlaf auch bei 8h.</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px">
+<div class="card" style="margin:0"><div style="font-size:7px;color:var(--m)">QUALITÄT</div><div style="font-size:14px;color:var(--sleep);font-weight:800" id="sleepQual">78%</div></div>
+<div class="card" style="margin:0"><div style="font-size:7px;color:var(--m)">UNTERBROCHEN</div><div style="font-size:14px;color:var(--red);font-weight:800" id="sleepBreak">2×</div></div>
+<div class="card" style="margin:0"><div style="font-size:7px;color:var(--m)">ANKLANG</div><div style="font-size:14px;color:var(--gold);font-weight:800" id="sleepAnklang">85%</div></div>
+</div>
+</div>
+<div class="col"><div class="col-h" style="color:var(--sleep)">💙 SCHLAF TASKS</div><div class="todo-list" id="list-sleep"></div><div class="add-row"><select id="type-sleep"><option value="sleep">SCHLAF</option><option value="traum">→ TRAUM</option><option value="ata">→ ATALARDAN</option></select><input id="in-sleep" placeholder="Schlaf: 22:30 dunkel"><button class="sm gold" onclick="addTodo('sleep')">+ SCHLAF</button></div></div>
+</div>
+<!-- TRAUM -->
+<div id="panel-traum" class="panel">
+<div class="card" style="border-color:var(--traum)"><h3 style="color:var(--traum)">🔮 TRAUM DEUTUNG — FUN MIT RESPEKT — ATALARDAN GELEN NICHT MISS ACHTEN — Bewegung negativ/positiv/neutral</h3>
+<div style="display:flex;gap:6px;margin-top:6px"><input id="traumInput" placeholder="Traum… z.B. Finalisierung Störung 729 Feld" style="flex:1;background:var(--bg);border:1px solid var(--b);color:var(--t);padding:6px;font-size:9px"><button class="sm gold" onclick="deuteTraum()">DEUTEN</button></div>
+<div id="traumResult" style="margin-top:6px;font-size:8px;line-height:1.6;background:var(--bg);border:1px solid var(--b);padding:6px;min-height:50px">Gib Traum ein — als Bewegung deuten — fun mit Respekt.</div>
+</div>
+<div class="col"><div class="col-h" style="color:var(--traum)">🔮 TRAUM TASKS</div><div class="todo-list" id="list-traum"></div><div class="add-row"><input id="in-traum" placeholder="Traum Task…"><button class="sm gold" onclick="addTodo('traum')">+ TRAUM</button></div></div>
+</div>
+<!-- HORO -->
+<div id="panel-horo" class="panel">
+<div class="card" style="border-color:var(--horo)"><h3 style="color:var(--horo)">♈ HOROSKOP — FUN + ATALARDAN — Anklang nicht Gesetz — ähnlich wie Tarot</h3>
+<div style="display:flex;gap:6px;margin-top:6px"><select id="horoSign" style="background:var(--bg);border:1px solid var(--b);color:var(--t);padding:6px;font-size:9px"><option>Widder</option><option>Stier</option><option>Zwilling</option><option>Krebs</option><option>Löwe</option><option>Jungfrau</option><option>Waage</option><option>Skorpion</option><option>Schütze</option><option>Steinbock</option><option>Wassermann</option><option>Fische</option></select><button class="sm gold" onclick="horoFun()">HORO FUN</button></div>
+<div id="horoResult" style="margin-top:6px;font-size:8px;line-height:1.6;background:var(--bg);border:1px solid var(--b);padding:6px;min-height:50px">Wähle Zeichen — fun wie Wetter, nicht Urteil.</div>
+</div>
+<div class="col"><div class="col-h" style="color:var(--horo)">♈ HORO TASKS</div><div class="todo-list" id="list-horo"></div><div class="add-row"><input id="in-horo" placeholder="Horo Task…"><button class="sm gold" onclick="addTodo('horo')">+ HORO</button></div></div>
+</div>
+<!-- ALTE -->
+<div id="panel-alte" class="panel">
+<div class="card" style="border-color:var(--alte)"><h3 style="color:var(--alte)">👵 ALTE WEIBER WISSEN — nicht vergrault — atalardan gelen — Bio-Hack</h3><div id="alteList" style="display:flex;flex-direction:column;gap:4px"></div></div>
+<div class="col"><div class="col-h" style="color:var(--alte)">👵 ALTE TASKS</div><div class="todo-list" id="list-alte"></div><div class="add-row"><input id="in-alte" placeholder="Altes Wissen…"><button class="sm gold" onclick="addTodo('alte')">+ ALTE</button></div></div>
+</div>
+<!-- ATALARDAN -->
+<div id="panel-ata" class="panel">
+<div class="card" style="border-color:var(--ata)"><h3 style="color:var(--ata)">🌿 ATALARDAN GELEN — Uyku kutsaldır — nicht missachten — FUN MIT RESPEKT</h3>
+<div style="display:flex;gap:6px;margin-top:6px"><button class="sm gold" onclick="ataWisdom()">WEISHEIT</button><button class="sm" onclick="ataDaily()">TAGES-WEISHEIT</button></div>
+<div id="ataResult" style="margin-top:6px;font-size:8px;line-height:1.6;background:var(--bg);border:1px solid var(--b);padding:6px;min-height:60px">Klick für atalardan gelen Weisheit.</div>
+</div>
+<div class="col"><div class="col-h" style="color:var(--ata)">🌿 ATALARDAN TASKS</div><div class="todo-list" id="list-ata"></div><div class="add-row"><input id="in-ata" placeholder="Atalardan…"><button class="sm gold" onclick="addTodo('ata')">+ ATA</button></div></div>
+</div>
+<!-- WEISHEITEN -->
+<div id="panel-weisheit" class="panel">
+<div class="card" style="border-color:var(--weis)"><h3 style="color:var(--weis)">⚖️ WEISHEITEN + WAHRHEIT — SCHUL / INDISCH / CHINESISCH / ALLE OPTIONAL + WIE VIEL WAHRHEIT VERTRAGE ICH — inOHNEhalt — KI SPIEGELT METAPHER</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px">
+<div>
+<div style="font-size:8px;color:var(--m);margin-bottom:4px">WEISHEITEN AN/AUS</div>
+<div style="display:flex;flex-direction:column;gap:4px;font-size:8px">
+<label style="display:flex;gap:6px;align-items:center;padding:4px;background:var(--bg);border:1px solid var(--b)"><input type="checkbox" id="w_schul" checked> 🏥 SCHULMEDIZIN</label>
+<label style="display:flex;gap:6px;align-items:center;padding:4px;background:var(--bg);border:1px solid var(--b)"><input type="checkbox" id="w_indisch" checked> 🕉️ INDISCH Ayurveda</label>
+<label style="display:flex;gap:6px;align-items:center;padding:4px;background:var(--bg);border:1px solid var(--b)"><input type="checkbox" id="w_chinesisch" checked> ☯️ CHINESISCH TCM</label>
+<label style="display:flex;gap:6px;align-items:center;padding:4px;background:var(--bg);border:1px solid var(--b)"><input type="checkbox" id="w_alte" checked> 👵 ALTE WEIBER</label>
+<label style="display:flex;gap:6px;align-items:center;padding:4px;background:var(--bg);border:1px solid var(--b)"><input type="checkbox" id="w_ata" checked> 🌿 ATALARDAN</label>
+<label style="display:flex;gap:6px;align-items:center;padding:4px;background:var(--bg);border:1px solid var(--b)"><input type="checkbox" id="w_traum"> 🔮 TRAUM</label>
+<label style="display:flex;gap:6px;align-items:center;padding:4px;background:var(--bg);border:1px solid var(--b)"><input type="checkbox" id="w_horo"> ♈ HORO</label>
+<label style="display:flex;gap:6px;align-items:center;padding:4px;background:var(--bg);border:1px solid var(--b)"><input type="checkbox" id="w_tarot" checked> 🃏 TAROT TOD≠TOD</label>
+<label style="display:flex;gap:6px;align-items:center;padding:4px;background:var(--bg);border:1px solid var(--b)"><input type="checkbox" id="w_schlaf" checked> 💙 SCHLAF ANKLANG</label>
+</div>
+</div>
+<div>
+<div style="font-size:8px;color:var(--m)">WAHRHEIT VERTRAGEN — 0% nur Metapher inOHNEhalt — 100% volle Wahrheit Halt</div>
+<div style="display:flex;gap:6px;align-items:center;margin-top:6px"><input id="wahrheitRange" type="range" min="0" max="100" value="60" style="flex:1"><b id="wahrheitVal" style="color:var(--weis)">60%</b></div>
+<div style="font-size:7px;color:var(--m);margin-top:4px" id="wahrheitText">60% Mittel</div>
+<div style="background:var(--bg);border:1px solid var(--b);padding:6px;margin-top:6px;font-size:8px;line-height:1.5;min-height:60px" id="wahrheitPreview">Preview</div>
+<div style="display:flex;gap:4px;margin-top:6px"><button class="sm gold" onclick="setWahrheit(0)">0% Metapher</button><button class="sm" onclick="setWahrheit(50)">50%</button><button class="sm" onclick="setWahrheit(100)">100% Wahrheit</button><button class="sm gold" onclick="applyWeisheiten()">ANWENDEN</button></div>
+</div>
+</div>
+</div>
+<div class="card" style="border-color:var(--weis)"><h3 style="color:var(--weis)">🃏 TAROT — KARTE SAGT TOD — ABER IST NICHT TOD — WIE HOROSKOP — inOHNEhalt — FUN MIT RESPEKT</h3>
+<div style="font-size:8px;line-height:1.6">Tarot Tod XIII = nicht körperlicher Tod, sondern Transformation, Ende von Zyklus — wie Horoskop Widder ≠ Tier stößt, sondern Metapher für Vorwärts. 8h Mythos stirbt, Anklang wird geboren. 0% Wahrheit = nur Angst, 100% Wahrheit = Transformation verstehen. Fun aber nicht missachten.</div>
+<div style="margin-top:6px;display:flex;gap:4px"><button class="sm gold" onclick="tarotZiehen()">🃏 KARTE ZIEHEN</button><button class="sm" onclick="tarotTodErklaer()">TOD ≠ TOD ERKLÄREN</button></div>
+<div id="tarotResult" style="margin-top:6px;font-size:8px;line-height:1.6;background:var(--bg);border:1px solid var(--b);padding:6px;min-height:50px">Zieh Karte — auch wenn Tod kommt, ist es nicht Tod — wie Horoskop — Metapher mit Halt.</div>
+</div>
+<div class="card"><h3 style="color:var(--m)">AKTIVE WEISHEITEN + WAHRHEIT — FILTER</h3><div id="weisheitResult" style="font-size:8px;line-height:1.6;min-height:60px">Wähle Weisheiten + Wahrheit % → ANWENDEN</div></div>
+</div>
+<!-- FOTO -->
+<div id="panel-foto" class="panel">
+<div class="card" style="border-color:var(--foto)"><h3 style="color:var(--foto)">📸 FOTO + ABGLEICH ANONYM — UMSTAND KLÄREND — KEINE DIAGNOSE — CLOCK TIME + EILIG ICH vs KÖRPER — OHNE TOR SOFORT</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px">
+<div>
+<input type="file" id="fotoInput" accept="image/*" style="width:100%;background:var(--bg);border:1px solid var(--b);color:var(--t);padding:4px;font-size:8px">
+<div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap"><button class="sm" onclick="anonymizeFoto(0)">EXIF STRIP</button><button class="sm" onclick="anonymizeFoto(1)">BLUR</button><button class="sm" onclick="anonymizeFoto(2)">PIXELATE</button><button class="sm gold" onclick="clearFoto()">CLEAR</button></div>
+<div style="margin-top:6px;background:#000;border:1px solid var(--b);min-height:160px;display:flex;align-items:center;justify-content:center"><canvas id="fotoCanvas" style="max-width:100%;max-height:240px"></canvas><span id="fotoPlaceholder" style="color:var(--m);font-size:8px">Kein Foto — Umstand klärend — anonym lokal — kein Upload — kein Tor</span></div>
+<div style="font-size:7px;color:var(--m);margin-top:4px" id="fotoInfo">Kein Foto — EXIF wird gestrippt</div>
+</div>
+<div>
+<div style="font-size:7px;color:var(--m)">CLOCK TIME — Wann Umstand?</div><input id="clockTime" type="datetime-local" style="width:100%;background:var(--bg);border:1px solid var(--b);color:var(--t);padding:4px;font-size:8px">
+<div style="font-size:7px;color:var(--m);margin-top:6px">ZEIT — Wie lange?</div><select id="zeitDauer" style="width:100%;background:var(--bg);border:1px solid var(--b);color:var(--t);padding:4px;font-size:8px"><option>gerade jetzt</option><option>seit heute</option><option>seit Tagen</option><option>kurz vor Finalisierung</option></select>
+<div style="font-size:7px;color:var(--m);margin-top:6px">WIE EILIG ICH — Kopf 0-10 <b id="eiligIchVal">6</b></div><input id="eiligIch" type="range" min="0" max="10" value="6" style="width:100%"><div style="font-size:7px;color:var(--m)" id="eiligIchText"></div>
+<div style="font-size:7px;color:var(--m);margin-top:6px">WIE EILIG KÖRPER — Bio 0-10 <b id="eiligKoerperVal">7</b></div><input id="eiligKoerper" type="range" min="0" max="10" value="7" style="width:100%"><div style="font-size:7px;color:var(--m)" id="eiligKoerperText"></div>
+<div style="background:var(--bg);border:1px solid var(--b);padding:4px;font-size:7px;margin-top:6px" id="eiligDiff"></div>
+<div style="display:flex;gap:4px;margin-top:6px"><button class="sm gold" onclick="saveFotoUmstand()">SPEICHERN ANONYM</button><button class="sm" onclick="internetAbgleich()">ABGLEICH ANONYM</button></div>
+<div id="abgleichResult" style="background:var(--bg);border:1px solid var(--b);padding:6px;font-size:7px;line-height:1.5;min-height:60px;margin-top:6px">Kein Abgleich — Clock + Eiligkeit + Foto — keine Diagnose — nur Umstand klärend</div>
+</div>
+</div>
+<div class="card" style="margin-top:6px;border-color:var(--horo)"><h3 style="color:var(--horo)">👄 LIPPEN ABGLEICHEN — STELLEN VERGLEICHEN — OHNE TOR — SOFORT LOKAL</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
+<div><input type="file" id="lippenA" accept="image/*" style="width:100%;background:var(--bg);border:1px solid var(--b);padding:4px;font-size:8px"><div style="margin-top:4px;background:#000;border:1px solid var(--b);min-height:120px;display:flex;align-items:center;justify-content:center"><canvas id="lippenCanvasA" style="max-width:100%;max-height:160px"></canvas><span id="lippenPlaceA" style="color:var(--m);font-size:7px">Foto A</span></div></div>
+<div><input type="file" id="lippenB" accept="image/*" style="width:100%;background:var(--bg);border:1px solid var(--b);padding:4px;font-size:8px"><div style="margin-top:4px;background:#000;border:1px solid var(--b);min-height:120px;display:flex;align-items:center;justify-content:center"><canvas id="lippenCanvasB" style="max-width:100%;max-height:160px"></canvas><span id="lippenPlaceB" style="color:var(--m);font-size:7px">Foto B</span></div></div>
+</div>
+<div style="display:flex;gap:4px;margin-top:6px"><button class="sm" onclick="lippenCompare('side')">NEBENEINANDER</button><button class="sm" onclick="lippenCompare('overlay')">OVERLAY</button><button class="sm" onclick="lippenCompare('diff')">DIFF</button><button class="sm gold" onclick="lippenCompare('mirror')">MIRROR</button><button class="sm red" onclick="clearLippen()">CLEAR</button></div>
+<div style="margin-top:6px;background:#000;border:1px solid var(--b);min-height:160px;display:flex;align-items:center;justify-content:center"><canvas id="lippenResult" style="max-width:100%;max-height:260px"></canvas><span id="lippenResultPlace" style="color:var(--m);font-size:7px;position:absolute">Vergleich hier — ohne Tor sofort</span></div>
+<div style="font-size:7px;color:var(--m);margin-top:4px" id="lippenInfo">Ohne Tor schneller — 0ms statt Tor 2-5s — lokal anonym</div>
+</div>
+<div class="card" style="margin-top:6px"><h3 style="color:var(--m)">UMSTAND LISTE — ANONYM LOKAL</h3><div id="umstandListe" style="display:flex;flex-direction:column;gap:4px"></div></div>
+</div>
+<!-- MI KA DO etc -->
+<div id="panel-mi" class="panel"><div class="col"><div class="col-h">MI ICH</div><div class="todo-list" id="list-mi"></div><div class="add-row"><input id="in-mi" placeholder="MI…"><button class="sm gold" onclick="addTodo('mi')">+ MI</button></div></div></div>
+<div id="panel-ka" class="panel"><div class="col"><div class="col-h">KA DU</div><div class="todo-list" id="list-ka"></div><div class="add-row"><input id="in-ka" placeholder="KA…"><button class="sm gold" onclick="addTodo('ka')">+ KA</button></div></div></div>
+<div id="panel-do" class="panel"><div class="col"><div class="col-h">DO TU</div><div class="todo-list" id="list-do"></div><div class="add-row"><input id="in-do" placeholder="DO…"><button class="sm gold" onclick="addTodo('do')">+ DO</button></div></div></div>
+<div id="panel-priv" class="panel"><div class="col"><div class="col-h">PRIVAT</div><div class="todo-list" id="list-priv"></div><div class="add-row"><input id="in-priv" placeholder="Privat…"><button class="sm gold" onclick="addTodo('priv')">+ PRIV</button></div></div></div>
+<div id="panel-work" class="panel"><div class="col"><div class="col-h">ARBEIT</div><div class="todo-list" id="list-work"></div><div class="add-row"><input id="in-work" placeholder="Arbeit…"><button class="sm gold" onclick="addTodo('work')">+ WORK</button></div></div></div>
+<div id="panel-free" class="panel"><div class="col"><div class="col-h">FREIZEIT</div><div class="todo-list" id="list-free"></div><div class="add-row"><input id="in-free" placeholder="Freizeit…"><button class="sm gold" onclick="addTodo('free')">+ FREE</button></div></div></div>
+<div id="panel-all" class="panel"><div style="font-size:9px;color:var(--gold);margin-bottom:6px">◈ ALLE — VOLLE INTEGRATION — MI.KA.DO + SCHLAF + TRAUM HORO ALTE ATALARDAN TAROT TOD≠TOD + FOTO LIPPEN OHNE TOR + WEISHEITEN WAHRHEIT</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px"><div class="col"><div class="col-h">SCHLAF</div><div class="todo-list" id="list-all-sleep"></div></div><div class="col"><div class="col-h">TRAUM</div><div class="todo-list" id="list-all-traum"></div></div><div class="col"><div class="col-h">ATALARDAN</div><div class="todo-list" id="list-all-ata"></div></div></div><div class="log" id="log" style="margin-top:8px"></div></div>
+</div>
+<div class="right">
+<div style="padding:8px;border-bottom:1px solid var(--b)">
+<div style="font-size:8px;letter-spacing:.12em;color:var(--gold)">AKTIVE AUFGABE — RICHTIGER TAB — VOLLE INTEGRATION</div>
+<div id="activeTask" style="margin-top:6px;padding:8px;background:var(--bg);border:1px solid var(--b);font-size:9px;min-height:70px">Klick To-Do → richtiger Tab<br><br>Fun aber atalardan gelen nicht missachten — Traum + Horoskop + Alte + Atalardan + Tarot Tod≠Tod — ähnlich wie Horoskop ja kann man aber es ist nicht der Tod auch wenn Karte das sagt — wie Horoskop — Metapher mit Halt je nach Wahrheit %</div>
+</div>
+<div style="padding:8px;flex:1;overflow:auto">
+<div style="font-size:7px;letter-spacing:.12em;color:var(--m);margin-bottom:6px">SCHLAF ANKLANG</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div><div style="font-size:7px;color:var(--m)">Bettzeit</div><input id="bedTime" type="time" value="22:30" style="width:100%;background:var(--bg);border:1px solid var(--b);color:var(--t);padding:4px;font-size:9px"></div>
+<div><div style="font-size:7px;color:var(--m)">Unterbrechungen <b id="breakVal">2</b></div><input id="breakRange" type="range" min="0" max="10" value="2" style="width:100%"></div>
+<div><div style="font-size:7px;color:var(--m)">Anklang % <b id="anklangVal">85%</b></div><input id="anklangRange" type="range" min="0" max="100" value="85" style="width:100%"></div>
+</div>
+<div style="margin-top:10px;font-size:7px;letter-spacing:.12em;color:var(--m)">WEISHEITEN VERTEILUNG</div><div id="dist" style="margin-top:6px;display:flex;flex-direction:column;gap:2px"></div>
+<div style="margin-top:10px;font-size:7px;letter-spacing:.12em;color:var(--m)">BACKUP — kurz vor Finalisierung</div><div id="backupList" style="margin-top:6px;display:flex;flex-direction:column;gap:2px"></div>
+</div>
+</div>
+</div>
+<footer style="height:20px;background:#000;border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;padding:0 8px;font-size:6px;letter-spacing:.1em;color:var(--m)"><span>MI.KA.DO VOLL — SCHLAF 8h MYTHOS — TRAUM HORO ALTE ATALARDAN TAROT TOD≠TOD — FOTO LIPPEN OHNE TOR — WEISHEITEN WAHRHEIT inOHNEhalt — BORG 7482</span><span>f(f(x))=f(x)</span></footer>
+<script>
+const STORE='mikado_final_voll_v1'; const BACKUP_P='mikado_final_bak_';
+let state={
+ mi:[{id:1,text:'MI ICH Fokus',cat:'mi'}], ka:[{id:10,text:'KA DU Bruder',cat:'ka'}], do:[{id:20,text:'DO TU gemeinsam',cat:'do'}],
+ priv:[{id:100,text:'PRIVAT Familie',cat:'priv'}], work:[{id:200,text:'ARBEIT RESP OMIT',cat:'work'}], free:[{id:300,text:'FREIZEIT Spaziergang',cat:'free'}],
+ sleep:[{id:400,text:'SCHLAF 22:30 dunkel — Anklang nicht 8h Zahl',cat:'sleep',important:true},{id:401,text:'SCHLAF unterbrochen = 0 Tiefschlaf auch bei 8h',cat:'sleep',important:true}],
+ traum:[{id:500,text:'TRAUM Finalisierung Störung als Bewegung',cat:'traum'}], horo:[{id:600,text:'HORO Anklang Timing fun',cat:'horo'}], alte:[{id:700,text:'ALTE Kamillentee dunkel kühl',cat:'alte'}], ata:[{id:800,text:'ATALARDAN Schlaf heilig nicht missachten',cat:'ata',important:true}]
+};
+let weisheiten={schul:true,indisch:true,chinesisch:true,alte:true,ata:true,traum:false,horo:false,schlaf:true,tarot:true}; let wahrheit=60;
+function log(m){let el=document.getElementById('log'); if(!el) return; let d=document.createElement('div'); d.textContent='['+new Date().toLocaleTimeString()+'] '+m; el.prepend(d);}
+function switchTab(t){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on')); document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on')); let p=document.getElementById('panel-'+t); if(p) p.classList.add('on'); let btn=document.querySelector(`.tab[data-tab="${t}"]`); if(btn) btn.classList.add('on'); log(`TAB ${t.toUpperCase()}`);}
+function save(){try{localStorage.setItem(STORE,JSON.stringify(state)); let s=Date.now()%3; localStorage.setItem(BACKUP_P+s,JSON.stringify(state)); localStorage.setItem(BACKUP_P+s+'_t',new Date().toISOString()); updateCounts();}catch(e){}}
+function load(){try{let r=localStorage.getItem(STORE); if(r) state=JSON.parse(r);}catch(e){}}
+function updateCounts(){
+ let total=Object.values(state).flat().length||1;
+ let el=document.getElementById('dist'); if(el){el.innerHTML=Object.entries({sleep:'💙 SCHLAF',traum:'🔮 TRAUM',horo:'♈ HORO',alte:'👵 ALTE',ata:'🌿 ATA',priv:'💜 PRIV',work:'💗 WORK',free:'💚 FREE'}).map(([k,label])=>`<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid rgba(28,42,74,.3);font-size:7px"><span>${label}</span><span>${state[k]?.length||0} — ${Math.round((state[k]?.length||0)/total*100)}%</span></div>`).join('');}
+ let bl=document.getElementById('backupList'); if(bl){bl.innerHTML=''; for(let i=0;i<3;i++){let b=localStorage.getItem(BACKUP_P+i); if(b){let d=document.createElement('div'); d.style.cssText='padding:3px 5px;background:var(--bg);border:1px solid var(--b);font-size:7px;display:flex;justify-content:space-between'; d.innerHTML=`<span>Slot ${i}</span><button class="sm" style="padding:1px 4px" onclick="restore(${i})">RESTORE</button>`; bl.appendChild(d);}}}
+ let br=parseInt(document.getElementById('breakRange')?.value||2), an=parseInt(document.getElementById('anklangRange')?.value||85);
+ let qual=Math.max(0,Math.min(100, an*0.5+30+(10-br)*3-(br>2?20:0)));
+ let qEl=document.getElementById('sleepQual'); if(qEl) qEl.textContent=qual.toFixed(0)+'%';
+ let bEl=document.getElementById('sleepBreak'); if(bEl) bEl.textContent=br+'×';
+ let aEl=document.getElementById('sleepAnklang'); if(aEl) aEl.textContent=an+'%';
+}
+function makeHTML(todo){let cat=todo.cat||'mi'; let av=(cat[0]||'M').toUpperCase(); return `<div style="width:16px;height:16px;border-radius:50%;background:var(--gold);color:#000;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:800;flex-shrink:0">${av}</div><div style="display:flex;flex-direction:column"><span>${todo.text}</span><span style="font-size:6px;color:var(--m)">${cat.toUpperCase()}</span></div>`;}
+function render(){
+ ['mi','ka','do','priv','work','free','sleep','traum','horo','alte','ata'].forEach(col=>{
+  let el=document.getElementById('list-'+col); if(!el) return; el.innerHTML='';
+  (state[col]||[]).forEach(todo=>{
+   let div=document.createElement('div'); div.className='todo-item'; div.innerHTML=makeHTML(todo)+`<button onclick="delTodo('${col}',${todo.id})" style="margin-left:auto;background:transparent;border:0;color:var(--m);cursor:pointer;font-size:10px">✕</button>`;
+   div.addEventListener('click',e=>{if(e.target.tagName!=='BUTTON') selectTask(col,todo);}); el.appendChild(div);
+  });
+ });
+ ['sleep','traum','ata'].forEach(col=>{let el=document.getElementById('list-all-'+col); if(!el) return; el.innerHTML=''; (state[col]||[]).forEach(todo=>{let d=document.createElement('div'); d.className='todo-item'; d.innerHTML=makeHTML(todo); d.addEventListener('click',()=>selectTask(col,todo)); el.appendChild(d);});});
+ updateCounts();
+}
+function selectTask(col,todo){document.getElementById('activeTask').innerHTML=`<b style="color:var(--gold)">${todo.text}</b><br><span style="font-size:7px;color:var(--m)">CAT: ${todo.cat||col}</span><br><div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap"><button class="sm gold" onclick="switchTab('${todo.cat||col}')">SWITCH → ${(todo.cat||col).toUpperCase()}</button><button class="sm" onclick="moveTodo('${col}',${todo.id},'sleep')">→ SCHLAF</button><button class="sm" onclick="moveTodo('${col}',${todo.id},'ata')">→ ATALARDAN</button></div>`; switchTab(todo.cat||col);}
+function addTodo(col){let inp=document.getElementById('in-'+col); if(!inp) return; let txt=inp.value.trim(); if(!txt) return; let item={id:Date.now()+Math.random(),text:txt,cat:col}; state[col].push(item); inp.value=''; save(); render(); log(`ADD ${col}: ${txt}`);}
+function delTodo(col,id){state[col]=state[col].filter(t=>t.id!==id); save(); render();}
+function moveTodo(from,to,id){if(from===to) return; let idx=state[from].findIndex(x=>x.id===id); if(idx<0) return; let item=state[from].splice(idx,1)[0]; item.cat=to; state[to].push(item); save(); render(); switchTab(to);}
+function restore(i){try{let raw=localStorage.getItem(BACKUP_P+i); if(!raw) return; state=JSON.parse(raw); save(); render();}catch(e){}}
+// TRAUM
+function deuteTraum(){
+ let txt=document.getElementById('traumInput').value.trim(); if(!txt) return;
+ let lower=txt.toLowerCase();
+ let isNeg=/störung|verlust|angst|fall|streit|feuer|krieg|final|fehler/.test(lower);
+ let isPos=/flug|licht|wasser klar|tanzen|kreis|gemeinsam/.test(lower);
+ let type=isNeg?'NEGATIVE VIBRATION — Zick-Zack Rückstoß':isPos?'POSITIVE VIBRATION — Flow Kreis Vorwärts':'NEUTRALE VIBRATION — Schweben Stillstand';
+ let ata=isNeg?'Atalardan: Störungstraum = Warnung vor zu viel Arbeit ohne Schlaf — alte Weiber: leg dich hin — fun: früher dunkel':'Atalardan: Positiver Traum = Seele tankt — fun: teile Freude';
+ document.getElementById('traumResult').innerHTML=`<b style="color:${isNeg?'var(--red)':isPos?'var(--green)':'var(--gold)'}">${type}</b> — als Bewegung<br><br>${ata}<br><br>Fun mit Respekt — nicht missachten`;
+}
+// HORO
+function horoFun(){
+ let sign=document.getElementById('horoSign').value;
+ let map={Widder:'Vorwärts-Impuls — MI Breite KA Höhe — morgens Arbeit',Stier:'Boden — privat essen gemeinsam nicht spät',Zwilling:'Bewegung — scan.ner positiv wenn kreist',Krebs:'Heim — Schlaf allerwichtigste',Löwe:'Mitte — f(f(x))=f(x) — Wort halten',Jungfrau:'Details — 90×90 Boxen prüfen',Waage:'Ausgleich — privat/arbeit/freizeit balancieren',Skorpion:'Tiefe — Tiefschlaf schützen',Schütze:'Weite — Freizeit DO TU',Steinbock:'Struktur — 22:30 gleiche Zeit Anklang',Wassermann:'Neu — volle Integration fun mit Respekt',Fische:'Fluss — positiv vibration Flow'};
+ document.getElementById('horoResult').innerHTML=`<b style="color:var(--horo)">${sign} — FUN + ATALARDAN — Anklang nicht Gesetz</b><br><br>${map[sign]}<br><br>Wie Horoskop ähnlich — kann man, aber nicht Tod auch wenn Karte das sagt — Metapher mit Halt je nach Wahrheit %`;
+}
+// ALTE
+let alteData=['Kind, mach Fenster auf vor Schlaf — alte Weiber wussten CO2 400→1200 ohne Messgerät','Kind, iss nicht spät — sonst unterbrochen — 8h mit Essen spät = 0 Tiefschlaf','Kind, kalte Füße schlechter Schlaf — Socken an','Kind, streite nicht vor Nacht — Nacht heilig','Kind, gleiche Zeit schlafen — Anklang nicht 8h Zahl','Kind, dunkel machen — kein Handy 60min vorher'];
+function renderAlte(){let el=document.getElementById('alteList'); if(!el) return; el.innerHTML=''; alteData.forEach(txt=>{let d=document.createElement('div'); d.style.cssText='padding:4px 6px;background:var(--bg);border:1px solid var(--b);font-size:7px;line-height:1.4'; d.innerHTML=`👵 ${txt} <button class="sm" style="padding:1px 4px;margin-left:4px" onclick="addAlteToSleep('${txt.replace(/'/g,"\\'")}')">+ SCHLAF</button>`; el.appendChild(d);});}
+function addAlteToSleep(txt){state.sleep.push({id:Date.now(),text:'SCHLAF: '+txt,cat:'sleep'}); save(); render();}
+// ATALARDAN
+let ataWis=['Uyku kutsaldır — Schlaf heilig — nicht 8h Zahl sondern ununterbrochen','Aynı saatte yat — gleiche Zeit — Anklang','Kavga ile yatma — nicht mit Streit schlafen','Birlikte ye birlikte yürü — gemeinsam essen gehen','Rüya ruhun hareketidir — Traum ist Bewegung der Seele','Yıldızlar mevsimleri gösterir — Sterne zeigen Jahreszeiten = Schlaf','Eski bilgelik çöp değil — altes Wissen kein Müll — fun mit Respekt'];
+function ataWisdom(){let w=ataWis[Math.floor(Math.random()*ataWis.length)]; document.getElementById('ataResult').innerHTML=`<b style="color:var(--ata)">🌿 ATALARDAN GELEN — ${w}</b><br><br>FUN ABER NICHT MISS ACHTEN — volle Integration`; log('ATA');}
+function ataDaily(){let d=new Date().toLocaleDateString('de-DE',{weekday:'long'}); document.getElementById('ataResult').innerHTML=`<b style="color:var(--ata)">🌿 TAGES-WEISHEIT — ${d}</b><br><br>Schlaf allerwichtigste — 22:30 dunkel kein Handy ununterbrochen — privat gemeinsam essen — arbeit morgens 90×90 Fokus — freizeit Spaziergang vor Schlaf — Traum als Bewegung — Horoskop als Wetter nicht Gesetz — alte Weiber Fenster auf Füße warm — atalardan nicht missachten — fun mit Respekt`;}
+// WEISHEITEN + WAHRHEIT
+function selectAllWeisheiten(on){['w_schul','w_indisch','w_chinesisch','w_alte','w_ata','w_traum','w_horo','w_schlaf','w_tarot'].forEach(id=>{let el=document.getElementById(id); if(el) el.checked=on;}); applyWeisheiten();}
+function applyWeisheiten(){
+ weisheiten.schul=document.getElementById('w_schul').checked; weisheiten.indisch=document.getElementById('w_indisch').checked; weisheiten.chinesisch=document.getElementById('w_chinesisch').checked; weisheiten.alte=document.getElementById('w_alte').checked; weisheiten.ata=document.getElementById('w_ata').checked; weisheiten.traum=document.getElementById('w_traum').checked; weisheiten.horo=document.getElementById('w_horo').checked; weisheiten.schlaf=document.getElementById('w_schlaf').checked; weisheiten.tarot=document.getElementById('w_tarot').checked;
+ wahrheit=parseInt(document.getElementById('wahrheitRange').value); try{localStorage.setItem('weisheiten_v1',JSON.stringify({weisheiten,wahrheit}));}catch(e){} renderWeisheitResult();
+}
+function setWahrheit(v){document.getElementById('wahrheitRange').value=v; document.getElementById('wahrheitVal').textContent=v+'%'; updateWahrheitText(); applyWeisheiten();}
+function updateWahrheitText(){
+ let v=parseInt(document.getElementById('wahrheitRange').value); document.getElementById('wahrheitVal').textContent=v+'%';
+ let text=v<=20?'0-20% nur sanfte Metapher viel inOHNEhalt wenig Halt':v<=40?'20-40% viel Metapher wenig Wahrheit Horoskop als Wetter':v<=60?'40-60% Mittel Wahrheit mit Metapher gemischt — Metapher die Halt haben könnte':v<=80?'60-80% viel Wahrheit wenig Metapher — direkt aber noch mit Bild':'80-100% volle Wahrheit wenig Metapher viel Halt — direkt hart aber haltvoll';
+ document.getElementById('wahrheitText').textContent=v+'% — '+text;
+ let preview=v<=20?'Wahrheit 10%: "Schlaf wie Fluss der stockt — vielleicht mag er fließen — atalardan: Uyku kutsaldır — sanfte Metapher inOHNEhalt"':v<=40?'Wahrheit 30%: "Schlaf wie Zick-Zack — könnte an Unterbrechungen liegen — alte Weiber Fenster auf — Metapher mit wenig Halt"':v<=60?'Wahrheit 60%: "Schlaf unterbrochen — Zick-Zack negativ vibration — atalardan Uyku kutsaldır — alte Weiber dunkel machen — Schulmedizin Tiefschlaf <1.5h Anomalie — Metapher mit Halt"':v<=80?'Wahrheit 80%: "Unterbrochen 2× Qualität 60% Anklang 70% — Schulmedizin Tiefschlaf zu wenig — Indisch Vata erhöht — Chinesisch Leberzeit gestört — gleiche Zeit schlafen"':'Wahrheit 100%: "Fakt: 2× unterbrochen Tiefschlaf 1.1h <1.5h Anklang 65% — Schulmedizin Anomalie — Indisch Vata — Chinesisch Leber — Lösung 22:30 dunkel kein Handy kühl 18°C Flugmodus"';
+ document.getElementById('wahrheitPreview').textContent=preview;
+}
+function renderWeisheitResult(){
+ let active=[];
+ if(weisheiten.schul) active.push('🏥 SCHULMEDIZIN: evidenzbasiert Labor Messwerte SOLL/IST chem/bio/bios/uefi');
+ if(weisheiten.indisch) active.push('🕉️ INDISCH Ayurveda: Doshas Vata erhöht bei unterbrochenem Schlaf');
+ if(weisheiten.chinesisch) active.push('☯️ CHINESISCH TCM: Yin/Yang Schlaf 23-3 Uhr Leber Zeit');
+ if(weisheiten.alte) active.push('👵 ALTE WEIBER: Kamillentee Fenster auf Füße warm dunkel kein Streit');
+ if(weisheiten.ata) active.push('🌿 ATALARDAN: Uyku kutsaldır — Schlaf heilig — aynı saatte yat — gleiche Zeit dunkel');
+ if(weisheiten.traum) active.push('🔮 TRAUM: Traum als Bewegung negativ/positiv/neutral — REM Verarbeitung');
+ if(weisheiten.horo) active.push('♈ HORO: Anklang nicht Gesetz — Sterne = Jahreszeiten = Schlaf Timing fun wie Wetter');
+ if(weisheiten.tarot) active.push('🃏 TAROT: Karte sagt Tod aber ist nicht Tod — Transformation Ende von Zyklus wie Horoskop — 8h Mythos stirbt Anklang geboren wird — Winter → Frühling');
+ if(weisheiten.schlaf) active.push('💙 SCHLAF ANKLANG: Basis 8h Mythos ununterbrochen genossen 90min Zyklen');
+ let wText=document.getElementById('wahrheitText').textContent;
+ document.getElementById('weisheitResult').innerHTML=`<b>AKTIVE WEISHEITEN (${active.length}):</b><br>`+active.map(a=>`• ${a}`).join('<br>')+`<br><br><b>WAHRHEIT VERTRAGEN: ${wahrheit}%</b> — ${wText}<br><br><b>KI SPIEGELT METAPHER inOHNEhalt:</b> Alles was KI sagt ist Metapher die sein könnte inOHNEhalt — erst mit Wahrheit Regler bekommt sie Halt. inOHNEhalt = ${100-wahrheit}% — ähnlich wie Horoskop ja kann man aber es ist nicht der Tod auch wenn Karte das sagt — Metapher mit Halt je nach Wahrheit %.`;
+}
+// TAROT TOD≠TOD
+function tarotZiehen(){
+ let karten=[
+  {name:'0 Der Narr', bedeutung:'Neuanfang — MI ICH frischer Start — Anklang neu — positiv Flow'},
+  {name:'XIII Der Tod — IST NICHT TOD', bedeutung:'NICHT TOD — Transformation — Ende von altem Zyklus z.B. 8h Mythos stirbt — Geburt von neuem Anklang ununterbrochen — wie Horoskop — Metapher mit Halt — atalardan: Winter → Frühling'},
+  {name:'XVII Der Stern', bedeutung:'Hoffnung — Schlaf Anklang — 90×90 Box Zentrum — positiv f(f(x))=f(x)'},
+  {name:'XVIII Der Mond', bedeutung:'Traum Unterbewusstsein — negativ/positiv/neutral als Bewegung'},
+  {name:'XIX Die Sonne', bedeutung:'Klarheit — wie Schulmedizin — SOLL/IST Delta'},
+  {name:'XXI Die Welt', bedeutung:'Vollendung — MI.KA.DO alle integriert — volle Integration fun mit Respekt'}
+ ];
+ let k=karten[Math.floor(Math.random()*karten.length)];
+ let w=parseInt(document.getElementById('wahrheitRange')?.value||60);
+ let haltText=w<30?`Bei ${w}% nur Metapher viel inOHNEhalt — schöne Bild wenig Halt — Karte ${k.name} als Geschichte fun`:w<70?`Bei ${w}% Metapher mit Halt — ${k.bedeutung} — atalardan nicht missachten fun mit Respekt`:`Bei ${w}% viel Halt wenig Metapher — ${k.bedeutung} — direkt was endet was beginnt — Transformation nicht Tod`;
+ document.getElementById('tarotResult').innerHTML=`<b style="color:#a78bfa">🃏 KARTE: ${k.name}</b><br><br>${k.bedeutung}<br><br><b>Wahrheit ${w}%:</b> ${haltText}<br><br><b>Wie Horoskop:</b> Karte sagt Bild du gibst Halt mit Wahrheit % — ähnlich wie Horoskop ja kann man aber es ist nicht der Tod auch wenn Karte das sagt.`;
+ log(`TAROT ${k.name}`);
+}
+function tarotTodErklaer(){
+ let w=parseInt(document.getElementById('wahrheitRange')?.value||60);
+ document.getElementById('tarotResult').innerHTML=`<b style="color:#ff3344">🃏 KARTE XIII TOD — IST NICHT TOD AUCH WENN KARTE DAS SAGT — WIE HOROSKOP — SOLL SO ÄHNLICH WIE HOROSCOPE JA KANN MAN</b><br><br>
+<b>Schulmedizin:</b> kein medizinischer Tod nur Symbol<br>
+<b>Indisch:</b> Shiva zerstört damit Neues entsteht — Vata Löschung<br>
+<b>Chinesisch:</b> Yin/Yang Wechsel Winter → Frühling Schlaf 23-3 Uhr Leber<br>
+<b>Alte Weiber:</b> Altes muss gehen damit Neues kommt — 8h Zahl muss sterben damit Anklang geboren wird<br>
+<b>Atalardan:</b> Ölüm yeni başlangıçtır — Tod ist neuer Anfang — Winter Schlaf = Tod Frühling = Geburt<br>
+<b>Horoskop ähnlich:</b> Horoskop sagt Widder stößt nicht wörtlich Tier — Metapher Vorwärts — Karte sagt Tod nicht wörtlich Körper stirbt — Metapher Ende von Zyklus<br>
+<b>Wahrheit ${w}%:</b> ${w<30?'Nur Metapher inOHNEhalt groß Angst aber kein Halt fun':w<70?'Metapher mit Halt — Transformation verstehen — was in MI.KA.DO soll enden Unterbrochener Schlaf':'Volle Wahrheit mit Halt — alter Rhythmus endet neuer Anklang beginnt f(f(x))=f(x) idempotent Transformation nicht Tod'}<br><br>
+<b>FUN MIT RESPEKT:</b> Karte Tod nicht als Urteil du stirbst sondern als Wetter etwas will enden — du bestimmst was mit Wahrheit % — ähnlich wie Horoskop ja kann man.`;
+}
+// FOTO + LIPPEN + EILIG
+let fotoOriginal=null, umstaende=[], lippenImgA=null, lippenImgB=null;
+function clearFoto(){let c=document.getElementById('fotoCanvas'); if(c){c.width=0;c.height=0;} document.getElementById('fotoPlaceholder').style.display='block'; document.getElementById('fotoInfo').textContent='Kein Foto';}
+function loadFotoFile(file){
+ let reader=new FileReader(); reader.onload=e=>{
+  let img=new Image(); img.onload=()=>{
+   let canvas=document.getElementById('fotoCanvas'); let ctx=canvas.getContext('2d'); let maxW=800; let scale=Math.min(1,maxW/img.width); canvas.width=img.width*scale; canvas.height=img.height*scale; ctx.drawImage(img,0,0,canvas.width,canvas.height); document.getElementById('fotoPlaceholder').style.display='none'; document.getElementById('fotoInfo').textContent=`Foto ${img.width}×${img.height} → ${canvas.width}×${canvas.height} — EXIF gestrippt anonym lokal kein Tor`; log('FOTO LOAD anonym ohne Tor');
+  }; img.src=e.target.result;
+ }; reader.readAsDataURL(file);
+}
+function anonymizeFoto(mode){
+ let canvas=document.getElementById('fotoCanvas'); if(!canvas.width) return; let ctx=canvas.getContext('2d');
+ if(mode===0){let dataURL=canvas.toDataURL('image/jpeg',0.8); let img=new Image(); img.onload=()=>{ctx.clearRect(0,0,canvas.width,canvas.height); ctx.drawImage(img,0,0);}; img.src=dataURL;}
+ if(mode===1){ctx.filter='blur(12px)'; ctx.drawImage(canvas,0,0); ctx.filter='none';}
+ if(mode===2){let w=canvas.width,h=canvas.height,smallW=Math.max(1,Math.floor(w/20)),smallH=Math.max(1,Math.floor(h/20)); let tmp=document.createElement('canvas'); tmp.width=smallW; tmp.height=smallH; let tctx=tmp.getContext('2d'); tctx.drawImage(canvas,0,0,smallW,smallH); ctx.imageSmoothingEnabled=false; ctx.drawImage(tmp,0,0,w,h); ctx.imageSmoothingEnabled=true;}
+ if(mode===3){let dataURL=canvas.toDataURL('image/jpeg',0.5); let img=new Image(); img.onload=()=>{canvas.width=img.width; canvas.height=img.height; ctx.drawImage(img,0,0);}; img.src=dataURL;}
+}
+function saveFotoUmstand(){
+ let clock=document.getElementById('clockTime')?.value||new Date().toISOString(); let dauer=document.getElementById('zeitDauer')?.value||'gerade jetzt'; let eIch=parseInt(document.getElementById('eiligIch')?.value||0); let eKoerper=parseInt(document.getElementById('eiligKoerper')?.value||0); let canvas=document.getElementById('fotoCanvas'); let hasFoto=canvas&&canvas.width>0; let item={id:Date.now(),clock,dauer,eIch,eKoerper,hasFoto,thumb:hasFoto?canvas.toDataURL('image/jpeg',0.2):null,time:new Date().toISOString()}; umstaende.unshift(item); if(umstaende.length>20) umstaende.pop(); try{localStorage.setItem('foto_umstaende_v1',JSON.stringify(umstaende));}catch(e){} renderUmstaende(); document.getElementById('abgleichResult').innerHTML=`<b style="color:#f59e0b">UMSTAND KLÄREND GESPEICHERT ANONYM — KEINE DIAGNOSE</b><br>Clock ${clock}<br>Dauer ${dauer}<br>Ich eilig ${eIch}/10 Kopf<br>Körper eilig ${eKoerper}/10 Bio<br>Foto ${hasFoto?'ja anonym lokal ohne Tor':'nein'}<br><br>Kein Upload kein Tor — nur lokale Klärung.`;
+}
+function renderUmstaende(){let el=document.getElementById('umstandListe'); if(!el) return; el.innerHTML=''; umstaende.forEach(u=>{let d=document.createElement('div'); d.style.cssText='padding:4px 6px;background:var(--bg);border:1px solid var(--b);display:flex;gap:6px;align-items:center;font-size:7px'; d.innerHTML=`${u.thumb?`<img src="${u.thumb}" style="width:50px;height:38px;object-fit:cover;border:1px solid var(--b)">`:'<div style="width:50px;height:38px;background:var(--s);border:1px solid var(--b)"></div>'}<div style="flex:1"><b>Clock ${u.clock}</b> — ${u.dauer}<br>Ich ${u.eIch} Körper ${u.eKoerper} Diff ${Math.abs(u.eIch-u.eKoerper)}</div>`; el.appendChild(d);});}
+function updateEilig(){
+ let eIch=parseInt(document.getElementById('eiligIch').value), eKoerper=parseInt(document.getElementById('eiligKoerper').value);
+ document.getElementById('eiligIchVal').textContent=eIch; document.getElementById('eiligKoerperVal').textContent=eKoerper;
+ let diff=eIch-eKoerper; let diffText=diff>3?'Kopf viel eiliger als Körper — Kopf überdreht Körper braucht Ruhe — alte Weiber leg dich hin — atalardan Uyku kutsaldır':diff<-3?'Körper viel eiliger als Kopf — Körper Alarm Kopf ignoriert':'Kopf und Körper fast gleich — Anklang stimmt';
+ document.getElementById('eiligDiff').textContent=`Diff: Kopf ${eIch} vs Körper ${eKoerper} = ${diff>0?'+'+diff:diff} — ${diffText}`;
+}
+function internetAbgleich(){
+ let eIch=parseInt(document.getElementById('eiligIch').value), eKoerper=parseInt(document.getElementById('eiligKoerper').value), dauer=document.getElementById('zeitDauer').value, clock=document.getElementById('clockTime').value||'jetzt';
+ let similar=[]; if(eIch-eKoerper>3) similar.push('Andere Kopf eilig 9 Körper 3 — Lösung Schlaf Anklang 22:30 dunkel kein Handy'); if(eIch-eKoerper<-3) similar.push('Kopf 2 Körper 9 — Körper Alarm — sofort Pause privat Zeit Kamillentee Fenster auf'); if(dauer.includes('Finalisierung')) similar.push('Kurz vor Finalisierung Störung — 2× unterbrochen Kopf 8 Körper 7 — NOT-SAVE 3× Backup Hölle verborgen Schlaf Basis'); if(similar.length===0) similar.push('Keine exakte Ähnlichkeit — aber atalardan: gleiche Zeit schlafen dunkel kühl kein Streit vor Schlaf — fun mit Respekt keine Diagnose nur Umstand klärend');
+ document.getElementById('abgleichResult').innerHTML=`<b style="color:#f59e0b">INTERNET ABGLEICH ANONYM — ÄHNLICHE UMSTÄNDE — KEINE DIAGNOSE — Clock ${clock} Dauer ${dauer}</b><br><br>`+similar.map(s=>`• ${s}`).join('<br><br>')+`<br><br><b>Anonym:</b> Kein Foto hochgeladen — nur Text anonym — keine Diagnose — nur Umstand klärend.`;
+}
+function loadLippenFile(file,which){
+ let reader=new FileReader(); reader.onload=e=>{
+  let img=new Image(); img.onload=()=>{
+   if(which==='A'){lippenImgA=img; let c=document.getElementById('lippenCanvasA'); let ctx=c.getContext('2d'); let maxW=400; let scale=Math.min(1,maxW/img.width); c.width=img.width*scale; c.height=img.height*scale; ctx.drawImage(img,0,0,c.width,c.height); document.getElementById('lippenPlaceA').style.display='none';}
+   else {lippenImgB=img; let c=document.getElementById('lippenCanvasB'); let ctx=c.getContext('2d'); let maxW=400; let scale=Math.min(1,maxW/img.width); c.width=img.width*scale; c.height=img.height*scale; ctx.drawImage(img,0,0,c.width,c.height); document.getElementById('lippenPlaceB').style.display='none';}
+  }; img.src=e.target.result;
+ }; reader.readAsDataURL(file);
+}
+function lippenCompare(mode){
+ if(!lippenImgA||!lippenImgB){document.getElementById('lippenInfo').textContent='Bitte Foto A + B laden — ohne Tor sofort'; return;}
+ let res=document.getElementById('lippenResult'); let ctx=res.getContext('2d'); let w=Math.max(lippenImgA.width,lippenImgB.width), h=Math.max(lippenImgA.height,lippenImgB.height); let maxW=700; let scale=Math.min(1,maxW/w); w*=scale; h*=scale; document.getElementById('lippenResultPlace').style.display='none';
+ if(mode==='side'){res.width=w*2; res.height=h; ctx.drawImage(lippenImgA,0,0,w,h); ctx.drawImage(lippenImgB,w,0,w,h); ctx.strokeStyle='#f59e0b'; ctx.setLineDash([6,4]); ctx.beginPath(); ctx.moveTo(w,0); ctx.lineTo(w,h); ctx.stroke(); ctx.setLineDash([]);}
+ else if(mode==='overlay'){res.width=w; res.height=h; ctx.globalAlpha=1; ctx.drawImage(lippenImgA,0,0,w,h); ctx.globalAlpha=0.5; ctx.drawImage(lippenImgB,0,0,w,h); ctx.globalAlpha=1;}
+ else if(mode==='diff'){res.width=w; res.height=h; ctx.drawImage(lippenImgA,0,0,w,h); let dataA=ctx.getImageData(0,0,w,h); let tmp=document.createElement('canvas'); tmp.width=w; tmp.height=h; let tctx=tmp.getContext('2d'); tctx.drawImage(lippenImgB,0,0,w,h); let dataB=tctx.getImageData(0,0,w,h); let out=ctx.createImageData(w,h); for(let i=0;i<dataA.data.length;i+=4){let r=Math.abs(dataA.data[i]-dataB.data[i]); let g=Math.abs(dataA.data[i+1]-dataB.data[i+1]); let b=Math.abs(dataA.data[i+2]-dataB.data[i+2]); let diff=(r+g+b)/3; out.data[i]=diff*2; out.data[i+1]=diff*0.5; out.data[i+2]=diff*0.5; out.data[i+3]=255;} ctx.putImageData(out,0,0);}
+ else if(mode==='mirror'){res.width=w; res.height=h; ctx.save(); ctx.scale(-1,1); ctx.drawImage(lippenImgA,-w,0,w,h); ctx.restore(); ctx.globalAlpha=0.5; ctx.drawImage(lippenImgB,0,0,w,h); ctx.globalAlpha=1;}
+ document.getElementById('lippenInfo').textContent=`${mode.toUpperCase()} — ohne Tor sofort lokal — anonym`;
+}
+function clearLippen(){lippenImgA=null; lippenImgB=null; ['lippenCanvasA','lippenCanvasB','lippenResult'].forEach(id=>{let c=document.getElementById(id); if(c){c.width=0;c.height=0;}}); document.getElementById('lippenPlaceA').style.display='block'; document.getElementById('lippenPlaceB').style.display='block'; document.getElementById('lippenResultPlace').style.display='block';}
+document.addEventListener('DOMContentLoaded',()=>{
+ ['mi','ka','do','priv','work','free','sleep','traum','horo','alte','ata'].forEach(col=>{let el=document.getElementById('in-'+col); if(el) el.addEventListener('keydown',e=>{if(e.key==='Enter') addTodo(col);});});
+ let fi=document.getElementById('fotoInput'); if(fi) fi.addEventListener('change',e=>{if(e.target.files[0]) loadFotoFile(e.target.files[0]);});
+ let a=document.getElementById('lippenA'), b=document.getElementById('lippenB'); if(a) a.addEventListener('change',e=>{if(e.target.files[0]) loadLippenFile(e.target.files[0],'A');}); if(b) b.addEventListener('change',e=>{if(e.target.files[0]) loadLippenFile(e.target.files[0],'B');});
+ let e1=document.getElementById('eiligIch'), e2=document.getElementById('eiligKoerper'); if(e1) e1.addEventListener('input',updateEilig); if(e2) e2.addEventListener('input',updateEilig);
+ let ct=document.getElementById('clockTime'); if(ct) ct.value=new Date().toISOString().slice(0,16);
+ let wr=document.getElementById('wahrheitRange'); if(wr){wr.addEventListener('input',()=>{updateWahrheitText();}); updateWahrheitText();}
+ ['breakRange','anklangRange'].forEach(id=>{let el=document.getElementById(id); if(el) el.addEventListener('input',()=>{document.getElementById('breakVal').textContent=document.getElementById('breakRange').value; document.getElementById('anklangVal').textContent=document.getElementById('anklangRange').value+'%'; updateCounts();});});
+ try{let raw=localStorage.getItem('foto_umstaende_v1'); if(raw){umstaende=JSON.parse(raw); renderUmstaende();}}catch(e){}
+ try{let raw=localStorage.getItem('weisheiten_v1'); if(raw){let d=JSON.parse(raw); weisheiten=d.weisheiten; wahrheit=d.wahrheit; Object.keys(weisheiten).forEach(k=>{let el=document.getElementById('w_'+k); if(el) el.checked=weisheiten[k];}); document.getElementById('wahrheitRange').value=wahrheit; updateWahrheitText();}}catch(e){}
+ load(); render(); renderAlte(); updateCounts(); updateEilig(); renderWeisheitResult(); log('INIT VOLL — SCHLAF 8h MYTHOS — TRAUM HORO ALTE ATALARDAN TAROT TOD≠TOD WIE HOROSKOP — FOTO LIPPEN OHNE TOR — WEISHEITEN WAHRHEIT inOHNEhalt — BORG 7482');
+});
+setInterval(()=>{save();},4000);
+window.addEventListener('beforeunload',save);
+</script>
+</body>
+</html>
