@@ -1,0 +1,507 @@
+{
+  "format": "WGEN-2-NUTZRAUM",
+  "v": "WURZELMATIC-ALL-IN-V6",
+  "timestamp": "2026-10-30T17:48:13.005Z",
+  "zoll": {
+    "q9": 19683,
+    "achsen": [
+      {
+        "id": "X",
+        "label": "Breite",
+        "tag": "AXIS",
+        "dr": 81,
+        "deg": 0,
+        "on": true,
+        "wert": 0.08333333333333333
+      },
+      {
+        "id": "Y",
+        "label": "Höhe",
+        "tag": "TMP",
+        "dr": 81,
+        "deg": 30,
+        "on": true,
+        "wert": 0.08333333333333333
+      },
+      {
+        "id": "Z",
+        "label": "Tiefe",
+        "tag": "LAGE",
+        "dr": 81,
+        "deg": 60,
+        "on": true,
+        "wert": 0.08333333333333333
+      },
+      {
+        "id": "oi",
+        "label": "outside-in",
+        "tag": "rotX",
+        "dr": 27,
+        "deg": 90,
+        "on": true,
+        "wert": 0.08333333333333333
+      },
+      {
+        "id": "io",
+        "label": "inside-out",
+        "tag": "rotY",
+        "dr": 27,
+        "deg": 120,
+        "on": true,
+        "wert": 0.08333333333333333
+      },
+      {
+        "id": "ix",
+        "label": "innen-x",
+        "tag": "rotZ",
+        "dr": 27,
+        "deg": 150,
+        "on": true,
+        "wert": 0.08333333333333333
+      },
+      {
+        "id": "xi",
+        "label": "x-innen",
+        "tag": "scale",
+        "dr": 3,
+        "deg": 180,
+        "on": true,
+        "wert": 0.08333333333333333
+      },
+      {
+        "id": "ax",
+        "label": "a→x",
+        "tag": "time t",
+        "dr": 3,
+        "deg": 210,
+        "on": true,
+        "wert": 0.08333333333333333
+      },
+      {
+        "id": "xa",
+        "label": "x→a",
+        "tag": "gamma",
+        "dr": 72,
+        "deg": 240,
+        "on": true,
+        "wert": 0.08333333333333333
+      },
+      {
+        "id": "ay",
+        "label": "a→y",
+        "tag": "bio",
+        "dr": 27,
+        "deg": 270,
+        "on": true,
+        "wert": 0.08333333333333333
+      },
+      {
+        "id": "ya",
+        "label": "y→a",
+        "tag": "atom",
+        "dr": 27,
+        "deg": 300,
+        "on": true,
+        "wert": 0.08333333333333333
+      },
+      {
+        "id": "az/za",
+        "label": "Atem",
+        "tag": "co2",
+        "dr": 3,
+        "deg": 330,
+        "on": true,
+        "wert": 0.08333333333333333
+      }
+    ],
+    "aktiv": 12,
+    "summe": 1,
+    "drKette": [
+      81,
+      27,
+      3,
+      0
+    ],
+    "drAktiv": 81,
+    "omega": 1,
+    "wert": 1640.25,
+    "wahrheit": 26.032355555555554
+  },
+  "wurzel": {
+    "W": "W(a(s(d)))",
+    "d": "innen",
+    "tmp": 312,
+    "rar": 72,
+    "sein": 96,
+    "leben": 88
+  },
+  "rohstoffe": [
+    {
+      "id": "atlantis",
+      "name": "Atlantis V112",
+      "sym": "◈",
+      "tiefe": 0.9,
+      "kat": "MYTHOS",
+      "correct": false,
+      "wrong": false
+    },
+    {
+      "id": "borg",
+      "name": "BORG-Collective",
+      "sym": "⬢",
+      "tiefe": 0.85,
+      "kat": "SYSTEM",
+      "correct": false,
+      "wrong": false
+    },
+    {
+      "id": "massiert",
+      "name": "Massiert v82",
+      "sym": "⧉",
+      "tiefe": 0.75,
+      "kat": "MONOREPO",
+      "correct": false,
+      "wrong": false
+    },
+    {
+      "id": "mind",
+      "name": "Mind ROM",
+      "sym": "◉",
+      "tiefe": 0.8,
+      "kat": "GEIST",
+      "correct": false,
+      "wrong": false
+    },
+    {
+      "id": "omega",
+      "name": "Omega API",
+      "sym": "Ω",
+      "tiefe": 0.7,
+      "kat": "API",
+      "correct": false,
+      "wrong": false
+    },
+    {
+      "id": "vehicle",
+      "name": "Vehicle Atlantis",
+      "sym": "◆",
+      "tiefe": 0.65,
+      "kat": "FAHRZEUG",
+      "correct": true,
+      "wrong": false
+    },
+    {
+      "id": "neutral",
+      "name": "Neutral-Begleiter",
+      "sym": "N",
+      "tiefe": 0.6,
+      "kat": "WAHRNEHMUNG",
+      "correct": false,
+      "wrong": true
+    },
+    {
+      "id": "bios",
+      "name": "BIOS Atem",
+      "sym": "◐",
+      "tiefe": 0.95,
+      "kat": "ATEM",
+      "correct": false,
+      "wrong": false
+    },
+    {
+      "id": "indexer",
+      "name": "CTRL.LER Indexer",
+      "sym": "◫",
+      "tiefe": 0.8,
+      "kat": "INDEX",
+      "correct": false,
+      "wrong": false
+    },
+    {
+      "id": "icefeuer",
+      "name": "IceFeuer-729",
+      "sym": "❄",
+      "tiefe": 0.7,
+      "kat": "PHYSIK",
+      "correct": false,
+      "wrong": false
+    },
+    {
+      "id": "morph",
+      "name": "MORPH-EDIT",
+      "sym": "⬡",
+      "tiefe": 0.75,
+      "kat": "MORPH",
+      "correct": false,
+      "wrong": false
+    },
+    {
+      "id": "hbt",
+      "name": "HBT-Editor",
+      "sym": "◬",
+      "tiefe": 0.65,
+      "kat": "EDITOR",
+      "correct": false,
+      "wrong": false
+    },
+    {
+      "id": "wbp",
+      "name": "WBP BESSER V3",
+      "sym": "⬔",
+      "tiefe": 0.55,
+      "kat": "BUILD",
+      "correct": false,
+      "wrong": false
+    }
+  ],
+  "produzenten": [
+    {
+      "id": "ice",
+      "name": "IceFeuer",
+      "sym": "❄",
+      "konv": 1,
+      "roh": [
+        "icefeuer"
+      ],
+      "live": false
+    },
+    {
+      "id": "morph",
+      "name": "MORPH",
+      "sym": "⬡",
+      "konv": 0.95,
+      "roh": [
+        "morph"
+      ],
+      "live": false
+    },
+    {
+      "id": "hbt",
+      "name": "HBT",
+      "sym": "◬",
+      "konv": 0.85,
+      "roh": [
+        "hbt",
+        "vehicle"
+      ],
+      "live": true
+    },
+    {
+      "id": "cyc",
+      "name": "CycOS",
+      "sym": "◎",
+      "konv": 0.9,
+      "roh": [
+        "icefeuer",
+        "massiert"
+      ],
+      "live": false
+    },
+    {
+      "id": "nutz",
+      "name": "Nutzraum",
+      "sym": "⬣",
+      "konv": 0.88,
+      "roh": [
+        "borg",
+        "omega"
+      ],
+      "live": false
+    },
+    {
+      "id": "will",
+      "name": "Willklick",
+      "sym": "◍",
+      "konv": 0.75,
+      "roh": [
+        "neutral"
+      ],
+      "live": false
+    },
+    {
+      "id": "bios",
+      "name": "BIOS",
+      "sym": "◐",
+      "konv": 0.92,
+      "roh": [
+        "bios"
+      ],
+      "live": false
+    },
+    {
+      "id": "indexer",
+      "name": "Indexer",
+      "sym": "◫",
+      "konv": 0.94,
+      "roh": [
+        "indexer",
+        "mind"
+      ],
+      "live": false
+    },
+    {
+      "id": "wbp",
+      "name": "WBP",
+      "sym": "⬔",
+      "konv": 1,
+      "roh": [
+        "wbp",
+        "omega",
+        "hbt"
+      ],
+      "live": false
+    },
+    {
+      "id": "atlantis",
+      "name": "Atlantis",
+      "sym": "◈",
+      "konv": 0.96,
+      "roh": [
+        "atlantis",
+        "mind",
+        "vehicle"
+      ],
+      "live": true
+    },
+    {
+      "id": "neutral",
+      "name": "Neutral",
+      "sym": "N",
+      "konv": 0.7,
+      "roh": [
+        "neutral"
+      ],
+      "live": false
+    }
+  ],
+  "lernweise": {
+    "tempo": 1,
+    "tiefe": 0.5,
+    "rhythmus": 0.5,
+    "feedback": "verzoegert",
+    "ziel": "tun"
+  },
+  "klausur": {
+    "atlantis": {
+      "frage": "Zu welcher Kategorie gehört \"Atlantis V112\"?",
+      "optionen": [
+        "API",
+        "SYSTEM",
+        "MYTHOS"
+      ],
+      "richtig": 2
+    },
+    "borg": {
+      "frage": "Zu welcher Kategorie gehört \"BORG-Collective\"?",
+      "optionen": [
+        "SYSTEM",
+        "MONOREPO",
+        "FAHRZEUG"
+      ],
+      "richtig": 0
+    },
+    "massiert": {
+      "frage": "Zu welcher Kategorie gehört \"Massiert v82\"?",
+      "optionen": [
+        "MONOREPO",
+        "GEIST",
+        "WAHRNEHMUNG"
+      ],
+      "richtig": 0
+    },
+    "mind": {
+      "frage": "Zu welcher Kategorie gehört \"Mind ROM\"?",
+      "optionen": [
+        "ATEM",
+        "API",
+        "GEIST"
+      ],
+      "richtig": 2
+    },
+    "omega": {
+      "frage": "Zu welcher Kategorie gehört \"Omega API\"?",
+      "optionen": [
+        "API",
+        "FAHRZEUG",
+        "INDEX"
+      ],
+      "richtig": 0
+    },
+    "vehicle": {
+      "frage": "Zu welcher Kategorie gehört \"Vehicle Atlantis\"?",
+      "optionen": [
+        "FAHRZEUG",
+        "WAHRNEHMUNG",
+        "PHYSIK"
+      ],
+      "richtig": 0
+    },
+    "neutral": {
+      "frage": "Zu welcher Kategorie gehört \"Neutral-Begleiter\"?",
+      "optionen": [
+        "MORPH",
+        "ATEM",
+        "WAHRNEHMUNG"
+      ],
+      "richtig": 2
+    },
+    "bios": {
+      "frage": "Zu welcher Kategorie gehört \"BIOS Atem\"?",
+      "optionen": [
+        "ATEM",
+        "INDEX",
+        "EDITOR"
+      ],
+      "richtig": 0
+    },
+    "indexer": {
+      "frage": "Zu welcher Kategorie gehört \"CTRL.LER Indexer\"?",
+      "optionen": [
+        "INDEX",
+        "PHYSIK",
+        "BUILD"
+      ],
+      "richtig": 0
+    },
+    "icefeuer": {
+      "frage": "Zu welcher Kategorie gehört \"IceFeuer-729\"?",
+      "optionen": [
+        "MYTHOS",
+        "MORPH",
+        "PHYSIK"
+      ],
+      "richtig": 2
+    },
+    "morph": {
+      "frage": "Zu welcher Kategorie gehört \"MORPH-EDIT\"?",
+      "optionen": [
+        "MORPH",
+        "EDITOR",
+        "SYSTEM"
+      ],
+      "richtig": 0
+    },
+    "hbt": {
+      "frage": "Zu welcher Kategorie gehört \"HBT-Editor\"?",
+      "optionen": [
+        "EDITOR",
+        "BUILD",
+        "MONOREPO"
+      ],
+      "richtig": 0
+    },
+    "wbp": {
+      "frage": "Zu welcher Kategorie gehört \"WBP BESSER V3\"?",
+      "optionen": [
+        "GEIST",
+        "MYTHOS",
+        "BUILD"
+      ],
+      "richtig": 2
+    }
+  },
+  "totalWert": 1725.5840062500004,
+  "stars": 0,
+  "totalRuns": 0,
+  "formula": "WERT = Σ(tiefe × Q9/3 × accuracy × breath) · Ω = Σ(Achse×Wert) × Dr/81 × Q9/12"
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>729 AUTO.ZOOM MINI MAXI · )q( · V2</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap');
+:root{--bg:#060806;--surf:#101410;--line:#243022;--gold:#e0a81c;--cyan:#00ccff;--mut:#8a9a7a;--leben:#4ade80;--unleben:#6b7280;--mann:#e0a81c}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:#e8ecd8;font-family:'Space Grotesk',sans-serif}
+.mono{font-family:'JetBrains Mono',monospace}
+header{position:sticky;top:0;z-index:5;border-bottom:1px solid var(--line);background:rgba(6,8,6,.97);padding:10px 14px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+header h1{margin:0;font-size:14px;letter-spacing:.1em}header h1 span{color:var(--gold)}
+.hud{margin-left:auto;display:flex;gap:12px;font-size:11px;flex-wrap:wrap}
+main{max-width:1720px;margin:auto;padding:12px;display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:12px}
+@media(max-width:1050px){main{grid-template-columns:1fr}}
+.panel{border:1px solid var(--line);background:var(--surf);border-radius:6px;padding:10px;min-width:0}
+.panel h2{margin:0 0 8px;font-size:11px;color:var(--gold);letter-spacing:.12em}
+canvas{width:100%;background:#050805;border-radius:4px;display:block;cursor:crosshair}
+#zoomCanvas{aspect-ratio:1}button{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:7px 10px;border:1px solid var(--line);background:#171c16;color:#e8ecd8;border-radius:3px;cursor:pointer}
+button:hover{border-color:var(--gold)}button.active{background:var(--gold);color:#000;border-color:var(--gold)}button.cyan.active{background:var(--cyan)}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.bar{height:8px;background:#000;border-radius:3px;overflow:hidden;margin:3px 0 8px;display:flex}
+.bar>div{height:100%;transition:width .2s}
+.stat{display:flex;justify-content:space-between;font-size:11px;padding:2px 0}
+.log{font:10px/1.45 'JetBrains Mono',monospace;color:#b7f0c0;background:#000;border:1px solid var(--line);border-radius:3px;height:155px;overflow:auto;padding:6px;white-space:pre-wrap}
+.muted{font-size:10px;color:var(--mut);line-height:1.6}
+input[type=text]{min-width:0;background:#000;border:1px solid var(--line);color:#e8ecd8;padding:7px;border-radius:3px}
+input[type=file]{display:none}
+</style>
+</head>
+<body>
+<header>
+ <div><h1><span>729 AUTO.ZOOM</span> MINI MAXI · )q( · V2</h1><div class="mono muted">MINI 3 · 9 · MIDI 81 · 243 · MAXI 729 · 81 Zellen × 3 Ebenen × 9 Wurzeln</div></div>
+ <div class="hud mono"><span>Zoom <b id="hudZoom">81</b></span><span>Zelle <b id="hudCell">40</b></span><span>Erfüllung <b id="hudErf">0/6</b></span><span>Δ <b id="hudDelta">0.00</b></span></div>
+</header>
+<main>
+ <section style="display:flex;flex-direction:column;gap:12px">
+  <div class="panel">
+   <h2>ZOOM-ANSICHT · MAXI 729 = 27×27 WURZELN</h2>
+   <canvas id="zoomCanvas"></canvas>
+   <div class="row">
+    <button data-zoom="3">MINI 3 H/B/T</button><button data-zoom="9">9 = 3×3</button><button data-zoom="81" class="active">MIDI 81</button><button data-zoom="243">243 = 81×3</button><button data-zoom="729">MAXI 729</button><button id="btnAuto" class="cyan">AUTO.ZOOM ▶</button>
+   </div>
+   <div class="row">
+    <button id="btnRad">√q RADIKALISIEREN (aktiv)</button><button id="btnRadAll">√q ALLE</button><button id="btnReset">NIRWANA RESET</button>
+    <span class="muted">Scroll = Zoom · Klick = Auswahl · Doppelklick = Ebene auf Mehrheitswert · Shift+Klick = Ebene wechseln</span>
+   </div>
+  </div>
+  <div class="panel"><h2>ERFÜLLUNG · 81 ZELLEN · H/B/T</h2><canvas id="barCanvas" style="height:60px;aspect-ratio:9/1"></canvas></div>
+ </section>
+ <aside style="display:flex;flex-direction:column;gap:12px">
+  <div class="panel">
+   <h2>ZOOM-THEOREM · 3ⁿ</h2>
+   <div class="mono muted">
+    <div>3¹ = 3 MINI · H/B/T</div><div>3² = 9 · 3×3 Auswahl</div><div>3³ = 27 · Teilraum</div>
+    <div style="color:var(--gold)"><b>3⁴ = 81 MIDI · 9×9 Zellen</b></div><div>3⁵ = 243 · 81×3 Ebenen</div>
+    <div style="color:var(--gold)"><b>3⁶ = 729 MAXI · 27×27 Wurzeln</b></div><div>3⁸ = 6561 · Erweiterungsraum</div>
+   </div>
+   <div class="mono" style="margin-top:8px;border-top:1px solid var(--line);padding-top:6px">
+    <div class="stat"><span>Zoom</span><span id="zoomLevel">81</span></div><div class="stat"><span>Voll erfüllt</span><span id="cntFull">0/81</span></div><div class="stat"><span>Auto</span><span id="autoState">OFF</span></div><div class="stat"><span>Werte geprüft</span><span id="validCount">2187/2187</span></div>
+   </div>
+  </div>
+  <div class="panel"><h2>KARTOR v4</h2><div class="mono" style="font-size:11px;color:var(--cyan);word-break:break-all" id="kartor">---</div><div class="mono muted" id="sig" style="margin-top:6px"></div>
+   <div class="bar"><div id="barLeben" style="width:33%;background:var(--leben)"></div><div id="barUnleben" style="width:33%;background:var(--unleben)"></div><div id="barMann" style="width:34%;background:var(--mann)"></div></div>
+  </div>
+  <div class="panel"><h2>DATEN · JSON</h2><div class="row"><button id="btnExport">EXPORT JSON</button><button id="btnImport">IMPORT JSON</button><input id="fileImport" type="file" accept=".json,application/json"></div><div class="muted" style="margin-top:6px">Export enthält Version, 81 Zellen, alle 2.187 Zustandswerte und Auswahl. Import validiert die Struktur vor dem Übernehmen.</div></div>
+  <div class="panel"><h2>CLI · 729 AUTO.ZOOM</h2><div class="log" id="log"></div><form id="cliForm" class="row"><input id="cliInput" type="text" placeholder="mini · 81 · zoom 729 · auto · √q · reset · help" style="flex:1"><button type="submit" style="background:var(--gold);color:#000">RUN</button></form></div>
+ </aside>
+</main>
+<script>
+(()=>{
+'use strict';
+const STATES=['LEBEN','UNLEBEN','MANN'], LAYERS=['H )sys(','B )syn(','T =)quant('];
+const COLOR={LEBEN:'#4ade80',UNLEBEN:'#6b7280',MANN:'#e0a81c'}, WEIGHT={LEBEN:1,UNLEBEN:2,MANN:0}, EMOJI={LEBEN:'🌱',UNLEBEN:'🪨',MANN:'🔥'};
+const ZOOMS=[3,9,81,243,729], LABEL={3:'MINI 3',9:'9',81:'MIDI 81',243:'243',729:'MAXI 729'};
+const $=id=>document.getElementById(id);
+let roots=makeInitial(),activeCell=40,activeLayer=0,hoverCell=-1,zoom=81,autoTimer=null;
+function makeInitial(){return Array.from({length:81},(_,i)=>{const n=(i*2654435761>>>9)%3,b=STATES[n];return [Array(9).fill(b),Array(9).fill(b),Array(9).fill(b)];});}
+function assertState(data){
+ if(!Array.isArray(data)||data.length!==81) throw Error('Es müssen genau 81 Zellen vorhanden sein.');
+ data.forEach((cell,i)=>{if(!Array.isArray(cell)||cell.length!==3)throw Error(`Zelle ${i}: genau 3 Ebenen erforderlich.`);
+ cell.forEach((layer,L)=>{if(!Array.isArray(layer)||layer.length!==9)throw Error(`Zelle ${i}, Ebene ${L}: genau 9 Wurzeln erforderlich.`);
+ layer.forEach((v,j)=>{if(!STATES.includes(v))throw Error(`Ungültiger Zustand bei Z${i}/L${L}/W${j}: ${v}`);});});});
+}
+function layerDepth(layer){
+ const groups=[layer.slice(0,3),layer.slice(3,6),layer.slice(6,9)];
+ const heads=groups.map(g=>g.every(v=>v===g[0])?g[0]:null);
+ if(heads.every(h=>h===null))return 0;
+ if(heads.every(h=>h!==null&&h===heads[0]))return 2;
+ if(heads.every(h=>h!==null))return 1;
+ return 0;
+}
+function majority(group){
+ const count=Object.fromEntries(STATES.map(s=>[s,group.filter(v=>v===s).length]));
+ return STATES.reduce((best,s)=>count[s]>count[best]?s:best,STATES[0]);
+}
+function radicalize(layer){
+ const heads=[0,1,2].map(g=>majority(layer.slice(g*3,g*3+3)));
+ return heads.every(v=>v===heads[0])?Array(9).fill(heads[0]):heads.flatMap(v=>[v,v,v]);
+}
+function fulfillment(cell){return cell.reduce((sum,l)=>sum+layerDepth(l),0);}
+function delta(cell){const m=cell.map(l=>l.reduce((s,v)=>s+WEIGHT[v],0)/9);return Math.max(Math.abs(m[0]-m[1]),2*Math.abs(m[1]-m[2]),2*Math.abs(m[2]-m[0]));}
+function score(cell){return cell.flat().reduce((s,v)=>s+WEIGHT[v],0);}
+function kartor(idx,cell){return `√${cell.map(layerDepth).join('')}.${String((idx*37+score(cell))%1000).padStart(3,'0')}·Z${zoom}·${LABEL[zoom]}`;}
+const zc=$('zoomCanvas'),zctx=zc.getContext('2d'),bc=$('barCanvas'),bctx=bc.getContext('2d');
+function fit(c,ctx,h){const dpr=Math.min(devicePixelRatio||1,2),r=c.getBoundingClientRect(),w=Math.floor(r.width*dpr),hh=Math.floor((h||r.width)*dpr);if(c.width!==w||c.height!==hh){c.width=w;c.height=hh;}ctx.setTransform(dpr,0,0,dpr,0,0);return r.width;}
+function fillRoot(ctx,x,y,w,h,v){ctx.fillStyle=COLOR[v];ctx.fillRect(x,y,w,h);}
+function drawZoom(){
+ const size=fit(zc,zctx),gap=2;zctx.fillStyle='#050805';zctx.fillRect(0,0,size,size);
+ if(zoom===729){
+  const cs=size/27;
+  for(let cell=0;cell<81;cell++){const cr=Math.floor(cell/9),cc=cell%9,layer=roots[cell][activeLayer];
+   for(let r=0;r<9;r++){const rr=Math.floor(r/3),rc=r%3;fillRoot(zctx,(cc*3+rc)*cs+.3,(cr*3+rr)*cs+.3,cs-.6,cs-.6,layer[r]);}
+  }
+  const x=(activeCell%9)*3*cs,y=Math.floor(activeCell/9)*3*cs;zctx.strokeStyle='#fff';zctx.lineWidth=2;zctx.strokeRect(x+1,y+1,3*cs-2,3*cs-2);
+ }else if(zoom===81||zoom===243){
+  const cs=(size-gap*10)/9;
+  for(let i=0;i<81;i++){const x=gap+(i%9)*(cs+gap),y=gap+Math.floor(i/9)*(cs+gap),cell=roots[i];
+   zctx.fillStyle='#151b13';zctx.fillRect(x,y,cs,cs);
+   for(let L=0;L<3;L++){const d=layerDepth(cell[L]);if(zoom===81){const bx=x+cs-((3-L)*Math.max(3,cs*.12));zctx.fillStyle=d===2?'#e0a81c':d===1?'#4ade80':'#333';zctx.fillRect(bx,y+2,Math.max(2,cs*.09),Math.max(2,cs*.75));}
+    else{const lh=cs/3;zctx.fillStyle=COLOR[majority(cell[L])];zctx.fillRect(x,y+L*lh,cs,lh-1);zctx.fillStyle=d===2?'#e0a81c':d===1?'#4ade80':'#222';zctx.fillRect(x,y+L*lh+lh-3,cs*(d===0?.2:d===1?.6:1),2);}
+   }
+   zctx.fillStyle='#000';zctx.font=`bold ${Math.max(7,cs*.22)}px monospace`;zctx.textAlign='center';zctx.fillText(String(i),x+cs/2,y+cs*.3);
+   if(i===activeCell||i===hoverCell){zctx.strokeStyle=i===activeCell?'#e0a81c':'#ffffff88';zctx.lineWidth=2;zctx.strokeRect(x,y,cs,cs);}
+   if(fulfillment(cell)===6&&zoom===81){zctx.fillStyle='#e0a81c';zctx.fillText('≡6',x+cs/2,y+cs*.88);}
+  }
+ }else if(zoom===9){
+  const cs=(size-gap*4)/3,ar=Math.floor(activeCell/9),ac=activeCell%9;
+  for(let k=0;k<9;k++){const rr=ar+Math.floor(k/3)-1,cc=ac+k%3-1,x=gap+(k%3)*(cs+gap),y=gap+Math.floor(k/3)*(cs+gap);
+   if(rr<0||rr>8||cc<0||cc>8){zctx.fillStyle='#090d09';zctx.fillRect(x,y,cs,cs);continue;}
+   const ci=rr*9+cc,layer=roots[ci][activeLayer];zctx.fillStyle='#151b13';zctx.fillRect(x,y,cs,cs);
+   const rcs=cs/3;layer.forEach((v,r)=>fillRoot(zctx,x+(r%3)*rcs+1,y+Math.floor(r/3)*rcs+1,rcs-2,rcs-2,v));
+   zctx.fillStyle='#fff';zctx.font=`bold ${cs*.18}px monospace`;zctx.textAlign='center';zctx.fillText(String(ci),x+cs/2,y+cs*.95);
+   if(ci===activeCell){zctx.strokeStyle='#e0a81c';zctx.lineWidth=2;zctx.strokeRect(x,y,cs,cs);}
+  }
+ }else{
+  const bw=size/3;
+  for(let L=0;L<3;L++){const x=L*bw,layer=roots[activeCell][L],cs=bw/3;zctx.fillStyle='#111';zctx.fillRect(x+1,1,bw-2,size-2);
+   layer.forEach((v,r)=>fillRoot(zctx,x+(r%3)*cs+4,cs*2+Math.floor(r/3)*cs+4,cs-7,cs-7,v));
+   zctx.fillStyle='#eee';zctx.font='bold 12px monospace';zctx.textAlign='center';zctx.fillText(LAYERS[L],x+bw/2,20);
+   const d=layerDepth(layer);zctx.fillStyle=d===2?'#e0a81c':d===1?'#4ade80':'#333';zctx.fillRect(x+bw/2-12,size-12,d===2?24:d===1?14:4,6);
+  }
+ }
+}
+function drawBars(){const w=fit(bc,bctx,60),h=60,bw=w/81;bctx.fillStyle='#050805';bctx.fillRect(0,0,w,h);for(let i=0;i<81;i++){const e=fulfillment(roots[i]),bh=e/6*h;bctx.fillStyle=e===6?'#e0a81c':e>=4?'#4ade80':e>=2?'#a3a35a':'#333';bctx.fillRect(i*bw+.5,h-bh,bw-1,bh);if(i===activeCell){bctx.fillStyle='#fff';bctx.fillRect(i*bw,0,bw-1,2);}}}
+function draw(){
+ drawZoom();drawBars();const cell=roots[activeCell],total=2187;let counts=Object.fromEntries(STATES.map(s=>[s,0])),full=0;
+ roots.forEach(c=>{c.flat().forEach(v=>counts[v]++);if(fulfillment(c)===6)full++;});
+ $('hudZoom').textContent=zoom;$('hudCell').textContent=activeCell;$('hudErf').textContent=fulfillment(cell)+'/6';$('hudDelta').textContent=delta(cell).toFixed(2);
+ $('zoomLevel').textContent=LABEL[zoom]+' ('+zoom+')';$('cntFull').textContent=full+'/81';$('kartor').textContent=kartor(activeCell,cell);
+ $('sig').textContent=`${LAYERS[activeLayer]}: ${cell[activeLayer].map(v=>EMOJI[v]).join('')} ${cell[activeLayer].join('/')} · depth ${layerDepth(cell[activeLayer])} · Δ${delta(cell).toFixed(2)}`;
+ $('barLeben').style.width=counts.LEBEN/total*100+'%';$('barUnleben').style.width=counts.UNLEBEN/total*100+'%';$('barMann').style.width=counts.MANN/total*100+'%';
+ document.querySelectorAll('[data-zoom]').forEach(b=>b.classList.toggle('active',Number(b.dataset.zoom)===zoom));
+}
+const logLines=[];function log(s){logLines.unshift(new Date().toLocaleTimeString('de-DE')+'  '+s);if(logLines.length>100)logLines.pop();$('log').textContent=logLines.join('\n');}
+function setZoom(n){if(!ZOOMS.includes(n))return;zoom=n;draw();log('Zoom → '+n+' '+LABEL[n]);}
+function stopAuto(){if(autoTimer){clearInterval(autoTimer);autoTimer=null;}$('autoState').textContent='OFF';$('btnAuto').textContent='AUTO.ZOOM ▶';}
+document.querySelectorAll('[data-zoom]').forEach(b=>b.addEventListener('click',()=>setZoom(Number(b.dataset.zoom))));
+$('btnAuto').addEventListener('click',()=>{if(autoTimer){stopAuto();log('AUTO.ZOOM OFF');return;}let i=ZOOMS.indexOf(zoom);autoTimer=setInterval(()=>{i=(i+1)%ZOOMS.length;zoom=ZOOMS[i];draw();},1200);$('autoState').textContent='ON';$('btnAuto').textContent='AUTO.ZOOM ■';log('AUTO.ZOOM ON');});
+zc.addEventListener('wheel',e=>{e.preventDefault();const i=ZOOMS.indexOf(zoom);setZoom(ZOOMS[Math.max(0,Math.min(ZOOMS.length-1,i+(e.deltaY<0?1:-1)))]);},{passive:false});
+zc.addEventListener('click',e=>{const r=zc.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+ if(zoom===81||zoom===243){const c=Math.floor(x/r.width*9),row=Math.floor(y/r.height*9);if(c<9&&row<9){activeCell=row*9+c;if(e.shiftKey)activeLayer=(activeLayer+1)%3;}}
+ else if(zoom===729){const c=Math.floor(x/r.width*27),row=Math.floor(y/r.height*27),cellRow=Math.floor(row/3),cellCol=Math.floor(c/3);activeCell=cellRow*9+cellCol;}
+ else if(zoom===3){activeLayer=Math.max(0,Math.min(2,Math.floor(x/r.width*3)));}
+ else{const c=Math.floor(x/r.width*3),row=Math.floor(y/r.height*3),rr=Math.floor(activeCell/9)+row-1,cc=activeCell%9+c-1;if(rr>=0&&rr<9&&cc>=0&&cc<9)activeCell=rr*9+cc;}
+ draw();
+});
+zc.addEventListener('dblclick',()=>{roots[activeCell][activeLayer]=Array(9).fill(majority(roots[activeCell][activeLayer]));draw();log(`Doppelklick: Z${activeCell} ${LAYERS[activeLayer]} → depth 2`);});
+zc.addEventListener('mousemove',e=>{if(zoom!==81)return;const r=zc.getBoundingClientRect(),c=Math.floor((e.clientX-r.left)/r.width*9),row=Math.floor((e.clientY-r.top)/r.height*9);hoverCell=c>=0&&c<9&&row>=0&&row<9?row*9+c:-1;drawZoom();});
+$('btnRad').addEventListener('click',()=>{roots[activeCell][activeLayer]=radicalize(roots[activeCell][activeLayer]);draw();log(`√q Z${activeCell} Ebene ${activeLayer} radikalisiert`);});
+$('btnRadAll').addEventListener('click',()=>{let changed=0;roots.forEach(cell=>cell.forEach((layer,L)=>{const before=layerDepth(layer),next=radicalize(layer);if(next.join('|')!==layer.join('|'))changed++;cell[L]=next;}));draw();log(`√q ALLE: ${changed}/243 Ebenen verändert`);});
+$('btnReset').addEventListener('click',()=>{stopAuto();roots=makeInitial();activeCell=40;activeLayer=0;zoom=81;draw();log('NIRWANA RESET · Startzustand wiederhergestellt');});
+$('btnExport').addEventListener('click',()=>{const payload={format:'WURZEL-Q-729',version:2,created:new Date().toISOString(),dimensions:{cells:81,layers:3,rootsPerLayer:9,total:2187},activeCell,activeLayer,zoom,roots};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='wurzel-q-729-v2.json';a.click();URL.revokeObjectURL(url);log('JSON exportiert · 2187 Werte');});
+$('btnImport').addEventListener('click',()=>$('fileImport').click());
+$('fileImport').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());assertState(data.roots);roots=data.roots;activeCell=Math.max(0,Math.min(80,Number(data.activeCell)||0));activeLayer=Math.max(0,Math.min(2,Number(data.activeLayer)||0));zoom=ZOOMS.includes(Number(data.zoom))?Number(data.zoom):81;draw();log('JSON importiert · Struktur 81×3×9 validiert');}catch(err){log('IMPORT ABGEBROCHEN: '+err.message);alert('Import fehlgeschlagen: '+err.message);}finally{e.target.value='';}});
+$('cliForm').addEventListener('submit',e=>{e.preventDefault();const input=$('cliInput'),t=input.value.trim().toLowerCase();if(!t)return;log('❯ '+input.value);
+ if(t==='mini')setZoom(3);else if(['9','81','243','729'].includes(t))setZoom(Number(t));else if(t.startsWith('zoom '))setZoom(Number(t.split(/\s+/)[1]));else if(t==='auto')$('btnAuto').click();else if(t==='√q'||t.includes('radik'))$('btnRadAll').click();else if(t==='reset'||t==='nirwana')$('btnReset').click();else if(t==='help')log('Befehle: mini · 9 · 81 · 243 · 729 · zoom 729 · auto · √q · reset · help');else log('Unbekannter Befehl: '+t);input.value='';});
+window.addEventListener('resize',draw);window.addEventListener('beforeunload',stopAuto);
+log('BOOT V2 · 81 Zellen × 3 Ebenen × 9 Wurzeln = 2187 Werte');log('MAXI ordnet jede Zelle als eigenen 3×3-Block im 27×27-Raster an.');log('Import/Export aktiv · Eingaben werden vor Import validiert.');draw();
+})();
+</script>
+</body>
+</html>
