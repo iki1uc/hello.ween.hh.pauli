@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HOME 40 · Wurzel</title>
+<style>
+:root { --safe-top: env(safe-area-inset-top, 0px); }
+body { margin: 0; background: #05070d; color: #fff; font-family: system-ui; padding-top: var(--safe-top); max-width: 1440px; min-height: 100dvh; }
+.grid { display: grid; grid-template-columns: repeat(9, 1fr); gap: 2px; padding: 16px; }
+.cell { aspect-ratio: 1; background: #243044; border-radius: 2px; display:grid;place-items:center;font-size:10px }
+.nav { display: flex; gap: 12px; padding: 16px; flex-wrap: wrap; }
+button { min-height: 48px; padding: 12px 20px; background: #ffd700; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+h1 { font-size: 1.5rem; padding: 0 16px; }
+@media (max-width: 999px) { .grid { grid-template-columns: repeat(6, 1fr); } }
+@media (max-width: 760px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 520px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 390px) { .grid { grid-template-columns: 1fr; } body{font-size:12px} }
+</style>
+</head>
+<body>
+<nav class="nav">LAUF · HOME · FIGUR · FELD · ZIEL</nav>
+<main>
+<h1>HOME 40 · 9 Dreiecke · 81 · 729 · 2187</h1>
+<p style="padding: 0 16px;">f² = f · idempotent · min(x, 40) · 360° · GRAB WEST</p>
+<div class="grid">
+  <div class="wrap"><div class="inner"><span class="cell">1</span></div></div>
+  <div class="cell">2</div><div class="cell">3</div><div class="cell">4</div><div class="cell">5</div><div class="cell">6</div><div class="cell">7</div><div class="cell">8</div><div class="cell">9</div>
+</div>
+</main>
+<footer style="padding: 16px;"><button onclick="exportJSON()">ZIEL · Export</button></footer>
+<script>
+function f(x) { return Math.min(x, 40); }
+function exportJSON() {
+  const data = { f: 'f²=f', home: 40, n: 81 };
+  const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'report.json'; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1500);
+}
+console.log(f(f(81)), 729, 2187);
+</script>
+</body>
+</html>

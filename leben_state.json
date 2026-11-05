@@ -1,0 +1,145 @@
+{
+  "state": {
+    "score": 1389,
+    "pump": 100,
+    "quote": 0.9545454545454546,
+    "predict": "ACTIVE",
+    "cpuJump": 16,
+    "cpuBias": "FORWARD",
+    "root": 4,
+    "achse": "D",
+    "tmp": 28,
+    "q": 14,
+    "d": 61,
+    "f": 158,
+    "prefetchCount": 20,
+    "predictCount": 20,
+    "cacheCount": 20
+  },
+  "axles": [
+    {
+      "name": "d",
+      "active": true
+    },
+    {
+      "name": "e",
+      "active": false
+    },
+    {
+      "name": "i",
+      "active": true
+    },
+    {
+      "name": "n",
+      "active": false
+    },
+    {
+      "name": "o",
+      "active": true
+    },
+    {
+      "name": "r",
+      "active": false
+    },
+    {
+      "name": "s",
+      "active": false
+    },
+    {
+      "name": "u",
+      "active": false
+    },
+    {
+      "name": "w",
+      "active": true
+    }
+  ],
+  "memory": {
+    "hits": 20,
+    "misses": 0,
+    "slides": [
+      9,
+      9,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      5,
+      4,
+      5,
+      4,
+      5,
+      4
+    ],
+    "jumps": [
+      12,
+      15,
+      7,
+      8,
+      8,
+      9,
+      9,
+      10,
+      10,
+      11,
+      11,
+      12,
+      12,
+      13,
+      14,
+      14,
+      15,
+      15,
+      17,
+      16
+    ]
+  },
+  "history": [
+    1185,
+    1265,
+    1333,
+    1389,
+    1389,
+    1389,
+    1389,
+    1389,
+    1389,
+    1389
+  ],
+  "liveWindow": [
+    [
+      3,
+      9
+    ],
+    [
+      27,
+      81
+    ],
+    [
+      243,
+      729
+    ]
+  ],
+  "prefetch": [
+    [
+      3,
+      9
+    ],
+    [
+      27,
+      81
+    ],
+    [
+      243,
+      729
+    ]
+  ]
+}
