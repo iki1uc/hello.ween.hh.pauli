@@ -1,0 +1,25 @@
+{
+  "todo-tree.general.tags": [
+    "TODO","FIXME","BUG","STATION LOCK","GRID ESCALATION","PARAM","ESSENZ","TRACE","RAW","WHIRLWIND","CORRIDOR","OCTACORE","VOLLBINDUNG","WURZEL","HOME-40","ROOT-729","NC","WURMLOCH"
+  ],
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.)|\\[.*\\])\\s*($TAGS)",
+  "todo-tree.general.rootFolder": "${workspaceFolder}",
+  "todo-tree.filtering.excludeGlobs": ["**/node_modules/**","**/.git/**","**/archive.old.html/**"],
+  "todo-tree.highlights.defaultHighlight": {
+    "type": "text",
+    "foreground": "#e8b64c",
+    "background": "#1c232e",
+    "icon": "alert"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "STATION LOCK": { "foreground": "#4ade80", "icon": "check", "type": "line" },
+    "GRID ESCALATION": { "foreground": "#7df9ff", "icon": "pulse", "type": "text" },
+    "ESSENZ": { "foreground": "#ff3b1f", "icon": "flame", "type": "tag" },
+    "PARAM": { "foreground": "#ffe27a", "icon": "gear", "type": "text" },
+    "TODO": { "foreground": "#ff5974", "icon": "alert", "type": "text" },
+    "FIXME": { "foreground": "white", "background": "red", "icon": "bug", "type": "line" }
+  },
+  "todo-tree.tree.showCountsInTree": true,
+  "todo-tree.general.showActivityBarBadge": true,
+  "todo-tree.tree.grouped": true
+}
